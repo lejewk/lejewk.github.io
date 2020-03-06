@@ -221,7 +221,7 @@
 
       
         <h1 id="zookeeper-watch"><a href="#zookeeper-watch" class="headerlink" title="zookeeper watch"></a>zookeeper watch</h1><p>znode 변경에 따른 이벤트를 핸들링하기 위한것이라고 보시면 됩니다.<br>java 에서 제공하는 인터페이스를 통해서 간단히 개발하였습니다.</p>
-<p>아래 경로를 참조하여 jar 을 만들었습니다.<br><a href="https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode" target="_blank" rel="noopener">https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode</a></p>
+<p>아래 경로를 참조하여 jar 을 만들었습니다.<br><a href="https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode">https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode</a></p>
 <p><strong>실행예시</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">java -jar javawatcher.jar &#123;host&#125;:&#123;port&#125; &#123;namespace&#125; &#123;output_file_path&#125; &#123;execute_file_path&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># param desc</span></span><br><span class="line"><span class="comment"># &#123;host&#125;: 주키퍼 서버가 실행되는 호스트</span></span><br><span class="line"><span class="comment"># &#123;port&#125;: 주키퍼 서버가 실행되는 포트</span></span><br><span class="line"><span class="comment"># &#123;namespace&#125;: 감시하고자 하는 경로</span></span><br><span class="line"><span class="comment"># &#123;output_file_path&#125;: 네임스페이스 변경 정보를 저장하는 파일 경로</span></span><br><span class="line"><span class="comment"># &#123;execute_file_path&#125;: 네임스페이스 변경시 실행할 파일</span></span><br></pre></td></tr></table></figure>
 
@@ -234,7 +234,7 @@
 <li><code>application(web service)</code>: 웹 서비스이며 cache 에 기록된 값을 사용합니다.(출력)</li>
 </ol>
 <h2 id="흐름"><a href="#흐름" class="headerlink" title="흐름"></a>흐름</h2><p><img src="https://user-images.githubusercontent.com/11376406/70581601-0900a580-1bfb-11ea-9806-9176bca40901.png" alt=""></p>
-<h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2><p>전체적인 구성을 docker-compose 를 통해 확인해보실 수 있습니다.<br><a href="https://github.com/lejewk/zk_watcher" target="_blank" rel="noopener">https://github.com/lejewk/zk_watcher</a></p>
+<h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2><p>전체적인 구성을 docker-compose 를 통해 확인해보실 수 있습니다.<br><a href="https://github.com/lejewk/zk_watcher">https://github.com/lejewk/zk_watcher</a></p>
 
     </div>
 

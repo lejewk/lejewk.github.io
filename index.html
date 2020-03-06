@@ -330,7 +330,7 @@
 <p>result</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"Name"</span>:&#123;<span class="string">"First"</span>:<span class="string">"LEE"</span>,<span class="string">"Last"</span>:<span class="string">"JAE WOOK"</span>&#125;,<span class="string">"Job"</span>:<span class="string">"developer"</span>&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="JSON-핸들링-라이브러리"><a href="#JSON-핸들링-라이브러리" class="headerlink" title="JSON 핸들링 라이브러리"></a>JSON 핸들링 라이브러리</h1><h2 id="gojsonq"><a href="#gojsonq" class="headerlink" title="gojsonq"></a>gojsonq</h2><p><a href="https://godoc.org/github.com/thedevsaddam/gojsonq" target="_blank" rel="noopener">https://godoc.org/github.com/thedevsaddam/gojsonq</a></p>
+<h1 id="JSON-핸들링-라이브러리"><a href="#JSON-핸들링-라이브러리" class="headerlink" title="JSON 핸들링 라이브러리"></a>JSON 핸들링 라이브러리</h1><h2 id="gojsonq"><a href="#gojsonq" class="headerlink" title="gojsonq"></a>gojsonq</h2><p><a href="https://godoc.org/github.com/thedevsaddam/gojsonq">https://godoc.org/github.com/thedevsaddam/gojsonq</a></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"github.com/thedevsaddam/gojsonq"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> json = <span class="string">`&#123;"name":&#123;"first":"Tom","last":"Hanks"&#125;,"age":61&#125;`</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  name := gojsonq.New().FromString(json).Find(<span class="string">"name.first"</span>)</span><br><span class="line">  <span class="built_in">println</span>(name.(<span class="keyword">string</span>)) <span class="comment">// Tom</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -553,7 +553,7 @@
 <p><strong>파싱 결과</strong></p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default:</span></span><br><span class="line">  <span class="attr">foo:</span> <span class="string">bar</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">environments:</span></span><br><span class="line">  <span class="attr">qa:</span></span><br><span class="line">    <span class="attr">foo:</span> <span class="string">bar</span></span><br><span class="line">    <span class="attr">script:</span> <span class="string">qa</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">prod:</span></span><br><span class="line">    <span class="attr">foo:</span> <span class="string">bar</span></span><br><span class="line">    <span class="attr">script:</span> <span class="string">prod</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h1><p><a href="https://yaml.org/spec/1.2/spec.html#id2785586" target="_blank" rel="noopener">https://yaml.org/spec/1.2/spec.html#id2785586</a></p>
+<h1 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h1><p><a href="https://yaml.org/spec/1.2/spec.html#id2785586">https://yaml.org/spec/1.2/spec.html#id2785586</a></p>
 
       
     </div>
@@ -830,7 +830,7 @@
 
       
           <h1 id="zookeeper-watch"><a href="#zookeeper-watch" class="headerlink" title="zookeeper watch"></a>zookeeper watch</h1><p>znode 변경에 따른 이벤트를 핸들링하기 위한것이라고 보시면 됩니다.<br>java 에서 제공하는 인터페이스를 통해서 간단히 개발하였습니다.</p>
-<p>아래 경로를 참조하여 jar 을 만들었습니다.<br><a href="https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode" target="_blank" rel="noopener">https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode</a></p>
+<p>아래 경로를 참조하여 jar 을 만들었습니다.<br><a href="https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode">https://zookeeper.apache.org/doc/r3.4.13/javaExample.html#sc_completeSourceCode</a></p>
 <p><strong>실행예시</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">java -jar javawatcher.jar &#123;host&#125;:&#123;port&#125; &#123;namespace&#125; &#123;output_file_path&#125; &#123;execute_file_path&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># param desc</span></span><br><span class="line"><span class="comment"># &#123;host&#125;: 주키퍼 서버가 실행되는 호스트</span></span><br><span class="line"><span class="comment"># &#123;port&#125;: 주키퍼 서버가 실행되는 포트</span></span><br><span class="line"><span class="comment"># &#123;namespace&#125;: 감시하고자 하는 경로</span></span><br><span class="line"><span class="comment"># &#123;output_file_path&#125;: 네임스페이스 변경 정보를 저장하는 파일 경로</span></span><br><span class="line"><span class="comment"># &#123;execute_file_path&#125;: 네임스페이스 변경시 실행할 파일</span></span><br></pre></td></tr></table></figure>
 
@@ -843,7 +843,7 @@
 <li><code>application(web service)</code>: 웹 서비스이며 cache 에 기록된 값을 사용합니다.(출력)</li>
 </ol>
 <h2 id="흐름"><a href="#흐름" class="headerlink" title="흐름"></a>흐름</h2><p><img src="https://user-images.githubusercontent.com/11376406/70581601-0900a580-1bfb-11ea-9806-9176bca40901.png" alt=""></p>
-<h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2><p>전체적인 구성을 docker-compose 를 통해 확인해보실 수 있습니다.<br><a href="https://github.com/lejewk/zk_watcher" target="_blank" rel="noopener">https://github.com/lejewk/zk_watcher</a></p>
+<h2 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h2><p>전체적인 구성을 docker-compose 를 통해 확인해보실 수 있습니다.<br><a href="https://github.com/lejewk/zk_watcher">https://github.com/lejewk/zk_watcher</a></p>
 
       
     </div>
@@ -926,7 +926,7 @@
 <h3 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ java --version</span><br><span class="line">java 13.0.1 2019-10-15</span><br><span class="line">Java(TM) SE Runtime Environment (build 13.0.1+9)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br><span class="line">C:\Program Files\Java\jdk-13.0.1</span><br></pre></td></tr></table></figure>
 
-<h2 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h2><p><a href="https://archive.apache.org/dist/zookeeper/stable/" target="_blank" rel="noopener">https://archive.apache.org/dist/zookeeper/stable/</a> 에서 다운로드 합니다.</p>
+<h2 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h2><p><a href="https://archive.apache.org/dist/zookeeper/stable/">https://archive.apache.org/dist/zookeeper/stable/</a> 에서 다운로드 합니다.</p>
 <blockquote>
 <p>:warning: <code>apache-zookeeper-3.5.6-bin.tar.gz</code> 를 다운로드 해주셔야 합니다.</p>
 </blockquote>
@@ -976,7 +976,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="zookeeper-docker-참조"><a href="#zookeeper-docker-참조" class="headerlink" title="zookeeper docker 참조"></a>zookeeper docker 참조</h2><p>실제 구성은 docker 를 활용하면 좀더 쉬울것 같습니다.<br><a href="https://hub.docker.com/_/zookeeper/" target="_blank" rel="noopener">https://hub.docker.com/_/zookeeper/</a></p>
+<h2 id="zookeeper-docker-참조"><a href="#zookeeper-docker-참조" class="headerlink" title="zookeeper docker 참조"></a>zookeeper docker 참조</h2><p>실제 구성은 docker 를 활용하면 좀더 쉬울것 같습니다.<br><a href="https://hub.docker.com/_/zookeeper/">https://hub.docker.com/_/zookeeper/</a></p>
 
       
     </div>

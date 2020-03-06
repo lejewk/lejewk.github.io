@@ -225,7 +225,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$TOKEN</span>=((kubectl <span class="literal">-n</span> kube<span class="literal">-system</span> describe secret default | <span class="built_in">Select-String</span> <span class="string">"token:"</span>) <span class="operator">-split</span> <span class="string">" +"</span>)[<span class="number">1</span>]</span><br><span class="line">kubectl config <span class="built_in">set-credentials</span> docker<span class="literal">-for</span><span class="literal">-desktop</span> -<span class="literal">-token</span>=<span class="string">"<span class="variable">$</span>&#123;TOKEN&#125;"</span></span><br></pre></td></tr></table></figure>
 <p>완료 시<br><code>C:/Users/&lt;Username&gt;/.kube</code> 경로에 config 파일이 생성됩니다.</p>
 <p><strong>데시보드</strong><br>http://:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/<br>URL을 통해 접근 하고, 인증은 위에서 생성한 config 를 넣어줍니다.</p>
-<p><strong>참고</strong><br><a href="http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/" target="_blank" rel="noopener">http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/</a></p>
+<p><strong>참고</strong><br><a href="http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/">http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/</a></p>
 
     </div>
 
