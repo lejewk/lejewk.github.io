@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /tags/
+Disallow: /tags
+Disallow: /archives/
+Disallow: /archives
+Disallow: /page/
+Disallow: /page
+Disallow: /categories/
+Disallow: /categories
+Allow: /
+Sitemap: https://lejewk.github.io/sitemap.xml

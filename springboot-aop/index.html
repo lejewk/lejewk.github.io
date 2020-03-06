@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="cj3SRJgTsxv9bZn3usdMrLnB2zDldUTicKvaNmpcmHs">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lejewk.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="개요관심사를 분리합니다.비즈니스로직에 집중할 수 있게 합니다. 선행 개념advice실행할 로직은 어떤것인가? 123public void myAdvice() &amp;#123;    System.out.println(&quot;test advice&quot;);&amp;#125;  pointcut어떤 대상을 기준으로 advice 를 동작하게 할것인가?execution(* com.aop.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring boot aop 정리">
+<meta property="og:url" content="https://lejewk.github.io/springboot-aop/index.html">
+<meta property="og:site_name" content="개발자님 cs 드세요">
+<meta property="og:description" content="개요관심사를 분리합니다.비즈니스로직에 집중할 수 있게 합니다. 선행 개념advice실행할 로직은 어떤것인가? 123public void myAdvice() &amp;#123;    System.out.println(&quot;test advice&quot;);&amp;#125;  pointcut어떤 대상을 기준으로 advice 를 동작하게 할것인가?execution(* com.aop.co">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-04-05T14:57:33.000Z">
+<meta property="article:modified_time" content="2020-03-06T07:24:14.579Z">
+<meta property="article:author" content="이재욱이">
+<meta property="article:tag" content="spring boot">
+<meta property="article:tag" content="aop">
+<meta property="article:tag" content="aspect">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://lejewk.github.io/springboot-aop/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>spring boot aop 정리 | 개발자님 cs 드세요</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138075260-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-138075260-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- google adsense start -->
+<script data-ad-client="ca-pub-3619868657611479" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- google adsense end  -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개발자님 cs 드세요</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/lejewk" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/springboot-aop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          spring boot aop 정리
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-05 23:57:33" itemprop="dateCreated datePublished" datetime="2019-04-05T23:57:33+09:00">2019-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>관심사를 분리합니다.<br>비즈니스로직에 집중할 수 있게 합니다.</p>
+<h1 id="선행-개념"><a href="#선행-개념" class="headerlink" title="선행 개념"></a>선행 개념</h1><h2 id="advice"><a href="#advice" class="headerlink" title="advice"></a>advice</h2><p>실행할 로직은 어떤것인가?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAdvice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"test advice"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="pointcut"><a href="#pointcut" class="headerlink" title="pointcut"></a>pointcut</h2><p>어떤 대상을 기준으로 advice 를 동작하게 할것인가?<br><code>execution(* com.aop.controller.*(..))</code><br><code>within(com.aop.controller..)</code> </p>
+<h2 id="joinpoint"><a href="#joinpoint" class="headerlink" title="joinpoint"></a>joinpoint</h2><p>동작될 대상의 어떤 시점에 advice 를 동작시킬것인가?<br><code>@Before(...)</code><br><code>@After(...)</code><br><code>@Around(...)</code></p>
+<h1 id="aspect-구성"><a href="#aspect-구성" class="headerlink" title="aspect 구성"></a>aspect 구성</h1><ol>
+<li>컨트롤러에 <code>@Aspect</code> 를 등록합니다.</li>
+<li>advice 메소드를 만듭니다.</li>
+<li>advice 에 joinpoint 를 등록합니다.</li>
+<li>poinpoint 에 pointcut 을 지정합니다.</li>
+</ol>
+<p><strong>예시</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">// 1. 어노테이션 등록</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"execution(* com.aop.controller.*(..))"</span>) <span class="comment">// 3, 4 pointcut, joinpoint 지정 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAdvice</span><span class="params">()</span> </span>&#123;  <span class="comment">// 2. advice 메소드 구현</span></span><br><span class="line">        System.out.println(<span class="string">"test advice"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Aspect-상세정보"><a href="#Aspect-상세정보" class="headerlink" title="Aspect 상세정보"></a>Aspect 상세정보</h1><h2 id="pointcut-1"><a href="#pointcut-1" class="headerlink" title="pointcut"></a>pointcut</h2><h3 id="지시자"><a href="#지시자" class="headerlink" title="지시자"></a>지시자</h3><ul>
+<li><code>execution</code> 표현식에 부합되는 함수를 선택합니다.</li>
+<li><code>within</code> 특정 타입에 속하는 함수 전체를 지정</li>
+<li><code>bean</code></li>
+<li><code>And, Or</code> 복합적인 조건을 <code>&amp;&amp;</code>, <code>||</code> 로 지정할 수 있습니다.</li>
+</ul>
+<h3 id="표현식"><a href="#표현식" class="headerlink" title="표현식"></a>표현식</h3><p>[접근제어자] [리턴타입] [패키지] [클래스이름] [메소드명](파라미터)</p>
+<h3 id="사용-예제"><a href="#사용-예제" class="headerlink" title="사용 예제"></a>사용 예제</h3><table>
+<thead>
+<tr>
+<th>example</th>
+<th>리턴타입</th>
+<th>패키지</th>
+<th>클래스</th>
+<th>메소드</th>
+<th>파라미터</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>* com.aop.controller.*.*(..)</td>
+<td>모든 타입</td>
+<td>com.aop.controller</td>
+<td>모든 클래스</td>
+<td>모든 메소드</td>
+<td>모든 파라미터</td>
+</tr>
+<tr>
+<td>String com.aop.controller.HomeController.index(*)</td>
+<td>String</td>
+<td>com.aop.controller</td>
+<td>HomeController</td>
+<td>index</td>
+<td>파라미터가 1개</td>
+</tr>
+</tbody></table>
+<h2 id="jointpoint"><a href="#jointpoint" class="headerlink" title="jointpoint"></a>jointpoint</h2><h3 id="동작시점"><a href="#동작시점" class="headerlink" title="동작시점"></a>동작시점</h3><table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Before</code></td>
+<td>메소드 실행 전 동작</td>
+</tr>
+<tr>
+<td><code>@After</code></td>
+<td>메소드 실행 후 동작</td>
+</tr>
+<tr>
+<td><code>@Around</code></td>
+<td>메스도 실행 전, 후 동작</td>
+</tr>
+<tr>
+<td><code>@AfterReturning</code></td>
+<td>메소드 실행 후 동작 <br><strong>메소드 반환값 획득 가능</strong></td>
+</tr>
+<tr>
+<td><code>@AfterThrowing</code></td>
+<td>예외가 발생했을때 동작</td>
+</tr>
+</tbody></table>
+<h2 id="advice-1"><a href="#advice-1" class="headerlink" title="advice"></a>advice</h2><h3 id="파라미터-확인"><a href="#파라미터-확인" class="headerlink" title="파라미터 확인"></a>파라미터 확인</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">"execution(* com.aop.demo.util.*.*(*))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"--- Before ---"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 요청 파라미터 출력</span></span><br><span class="line">    Stream.of(joinPoint.getArgs()).forEach(it -&gt; &#123;</span><br><span class="line">        System.out.println(it.toString());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="리턴-확인"><a href="#리턴-확인" class="headerlink" title="리턴 확인"></a>리턴 확인</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning</span>(value = <span class="string">"execution(* com.aop.demo.util.*.*(*))"</span>, returning = <span class="string">"returnValue"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">(Object returnValue)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"--- After returning ---"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 응답 파라미터 출력</span></span><br><span class="line">    Stream.of(returnValue).forEach(it -&gt; &#123;</span><br><span class="line">        System.out.println(it.toString());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
+              <a href="/tags/aop/" rel="tag"># aop</a>
+              <a href="/tags/aspect/" rel="tag"># aspect</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/sublime-text3-build/" rel="prev" title="sublime text3 build 설정">
+      <i class="fa fa-chevron-left"></i> sublime text3 build 설정
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/docker-dockerfile/" rel="next" title="dockerfile 역할과 활용 정리">
+      dockerfile 역할과 활용 정리 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#개요"><span class="nav-number">1.</span> <span class="nav-text">개요</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#선행-개념"><span class="nav-number">2.</span> <span class="nav-text">선행 개념</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#advice"><span class="nav-number">2.1.</span> <span class="nav-text">advice</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pointcut"><span class="nav-number">2.2.</span> <span class="nav-text">pointcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joinpoint"><span class="nav-number">2.3.</span> <span class="nav-text">joinpoint</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#aspect-구성"><span class="nav-number">3.</span> <span class="nav-text">aspect 구성</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Aspect-상세정보"><span class="nav-number">4.</span> <span class="nav-text">Aspect 상세정보</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pointcut-1"><span class="nav-number">4.1.</span> <span class="nav-text">pointcut</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#지시자"><span class="nav-number">4.1.1.</span> <span class="nav-text">지시자</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#표현식"><span class="nav-number">4.1.2.</span> <span class="nav-text">표현식</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#사용-예제"><span class="nav-number">4.1.3.</span> <span class="nav-text">사용 예제</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jointpoint"><span class="nav-number">4.2.</span> <span class="nav-text">jointpoint</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#동작시점"><span class="nav-number">4.2.1.</span> <span class="nav-text">동작시점</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#advice-1"><span class="nav-number">4.3.</span> <span class="nav-text">advice</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#파라미터-확인"><span class="nav-number">4.3.1.</span> <span class="nav-text">파라미터 확인</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#리턴-확인"><span class="nav-number">4.3.2.</span> <span class="nav-text">리턴 확인</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="이재욱이"
+      src="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+  <p class="site-author-name" itemprop="name">이재욱이</p>
+  <div class="site-description" itemprop="description">소스코드 파밍중...</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lejewk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lejewk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lighten518@gmail.com" title="E-Mail → mailto:lighten518@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">이재욱이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

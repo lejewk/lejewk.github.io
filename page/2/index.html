@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="cj3SRJgTsxv9bZn3usdMrLnB2zDldUTicKvaNmpcmHs">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lejewk.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="소스코드 파밍중...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="개발자님 cs 드세요">
+<meta property="og:url" content="https://lejewk.github.io/page/2/index.html">
+<meta property="og:site_name" content="개발자님 cs 드세요">
+<meta property="og:description" content="소스코드 파밍중...">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="이재욱이">
+<meta property="article:tag" content="개발자">
+<meta property="article:tag" content="api">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="backend">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://lejewk.github.io/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false
+  };
+</script>
+
+  <title>개발자님 cs 드세요</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138075260-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-138075260-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- google adsense start -->
+<script data-ad-client="ca-pub-3619868657611479" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- google adsense end  -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개발자님 cs 드세요</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/lejewk" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/vault-get-started/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/vault-get-started/" class="post-title-link" itemprop="url">hashicorp Vault 시작 (tutorial)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-28 09:48:33" itemprop="dateCreated datePublished" datetime="2019-11-28T09:48:33+09:00">2019-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="vault-란"><a href="#vault-란" class="headerlink" title="vault 란?"></a>vault 란?</h1><p>토큰, 비밀번호, 인증서 ,암호화 키와 같은 비밀 정보나 민감한 데이터를<br>UI, CLI, HTTP API 를 활용할때<br>안전하게 저장하고 제어할수 있게 해주는 오픈 소스 입니다.<br><a href="https://www.vaultproject.io/" target="_blank" rel="noopener">https://www.vaultproject.io/</a></p>
+<h1 id="server-실행"><a href="#server-실행" class="headerlink" title="server 실행"></a>server 실행</h1><p>테스트를 위해 -dev 모드로 서버를 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">vault server -dev</span><br><span class="line">==&gt; Vault server configuration:</span><br><span class="line"> </span><br><span class="line">             Api Address: http://127.0.0.1:8200</span><br><span class="line">                     Cgo: disabled</span><br><span class="line">         Cluster Address: https://127.0.0.1:8201</span><br><span class="line">              Listener 1: tcp (addr: <span class="string">"127.0.0.1:8200"</span>, cluster address: <span class="string">"127.0.0.1:8201"</span>, max_request_duration: <span class="string">"1m30s"</span>, max_request_size: <span class="string">"33554432"</span>, tls: <span class="string">"disabled"</span>)</span><br><span class="line">               Log Level: info</span><br><span class="line">                   Mlock: supported: <span class="literal">false</span>, enabled: <span class="literal">false</span></span><br><span class="line">           Recovery Mode: <span class="literal">false</span></span><br><span class="line">                 Storage: inmem</span><br><span class="line">                 Version: Vault v1.3.0</span><br><span class="line"> </span><br><span class="line">WARNING! dev mode is enabled! In this mode, Vault runs entirely <span class="keyword">in</span>-memory</span><br><span class="line">and starts unsealed with a single unseal key. The root token is already</span><br><span class="line">authenticated to the CLI, so you can immediately begin using Vault.</span><br><span class="line"> </span><br><span class="line">You may need to <span class="built_in">set</span> the following environment variable:</span><br><span class="line"> </span><br><span class="line">PowerShell:</span><br><span class="line">    <span class="variable">$env</span>:VAULT_ADDR=<span class="string">"http://127.0.0.1:8200"</span></span><br><span class="line">cmd.exe:</span><br><span class="line">    <span class="built_in">set</span> VAULT_ADDR=http://127.0.0.1:8200</span><br><span class="line"> </span><br><span class="line">The unseal key and root token are displayed below <span class="keyword">in</span> <span class="keyword">case</span> you want to</span><br><span class="line">seal/unseal the Vault or re-authenticate.</span><br><span class="line"> </span><br><span class="line">Unseal Key: apvm8OuIQeMHgtstu2PB5r7oFkJyyuPTtlz4yxFHa9Y=</span><br><span class="line">Root Token: s.15QsYBSzASsEbHifZrmIMWBH</span><br><span class="line"> </span><br><span class="line">Development mode should NOT be used <span class="keyword">in</span> production installations!</span><br><span class="line"> </span><br><span class="line">==&gt; Vault server started! Log data will stream <span class="keyword">in</span> below:</span><br></pre></td></tr></table></figure>
+<h2 id="dev"><a href="#dev" class="headerlink" title="-dev"></a>-dev</h2><ul>
+<li>미리 준비된 설정으로 서버를 구동</li>
+<li>모든 데이터는 in-memory 저장</li>
+<li>암호화</li>
+<li>localhost 로 listen 되며 TLS 가 없음</li>
+<li>자동 봉인 해제</li>
+<li>봉인 해제된 키와 엑세스 토큰을 보여줌</li>
+<li>프로덕션 모드에서는 이 옵션 사용을 권장하지 않음.</li>
+</ul>
+<h2 id="환경변수-등록"><a href="#환경변수-등록" class="headerlink" title="환경변수 등록"></a>환경변수 등록</h2><p>vault CLI 를 사용하기 위해 환경변수 등록이 필요합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> VAULT_ADDR=<span class="string">'http://127.0.0.1:8200'</span></span><br></pre></td></tr></table></figure>
+<p>서버 구동시 출력된 도움말을 읽으면 도움이 될수있습니다.</p>
+<p>실행된 서버의 상태를 확인할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ vault status</span><br><span class="line">Key             Value</span><br><span class="line">---             -----</span><br><span class="line">Seal Type       shamir</span><br><span class="line">Initialized     <span class="literal">true</span></span><br><span class="line">Sealed          <span class="literal">false</span></span><br><span class="line">Total Shares    1</span><br><span class="line">Threshold       1</span><br><span class="line">Version         1.3.0</span><br><span class="line">Cluster Name    vault-cluster-a6999d5c</span><br><span class="line">Cluster ID      291371dc-e6a5-42d3-fca7-b2373ff70194</span><br><span class="line">HA Enabled      <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="vault-와-secret"><a href="#vault-와-secret" class="headerlink" title="vault 와 secret"></a>vault 와 secret</h1><p>vault 의 핵심 기능중 하나는 비밀정보를 안전하게 읽고 쓰는것입니다.<br>vault 에 기록된 비밀정보는 암호화하여 backend 저장소에 저장됩니다.<br>값을 저장소에 전달하기 전에 암호화를 하며,<br>backend 저장소에 저장된 암호화값은 vault 없이는 해독할 수 없습니다.</p>
+<h1 id="write-a-secret"><a href="#write-a-secret" class="headerlink" title="write a secret"></a>write a secret</h1><p>비밀정보를 작성해봅니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv put secret/hello foo=world</span><br><span class="line">Key              Value</span><br><span class="line">---              -----</span><br><span class="line">created_time     2019-11-26T02:39:20.8458832Z</span><br><span class="line">deletion_time    n/a</span><br><span class="line">destroyed        <span class="literal">false</span></span><br><span class="line">version          1</span><br></pre></td></tr></table></figure>
+<p>key 값의 접두사가 secret/ 여야만 저장이 됩니다.<br>이 접두사(경로)는 어떤 secrets engine 을 실행시킬지 결정하는 route 역할을 합니다.</p>
+<blockquote>
+<p>비밀정보를 기록할때는 shell history 에 남기때문에 되도록이면 file 을 통해서 전달될수있도록 하는것이 좋다고 합니다. </p>
+</blockquote>
+<h1 id="getting-a-secret"><a href="#getting-a-secret" class="headerlink" title="getting a secret"></a>getting a secret</h1><p>비밀정보를 획득해봅니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv get secret/hello</span><br><span class="line">====== Metadata ======</span><br><span class="line">Key              Value</span><br><span class="line">---              -----</span><br><span class="line">created_time     2019-11-26T02:39:20.8458832Z</span><br><span class="line">deletion_time    n/a</span><br><span class="line">destroyed        <span class="literal">false</span></span><br><span class="line">version          1</span><br><span class="line"> </span><br><span class="line">=== Data ===</span><br><span class="line">Key    Value</span><br><span class="line">---    -----</span><br><span class="line">foo    world</span><br></pre></td></tr></table></figure>
+<p>vault 는 저장소로부터 값을 가져올때 복호화하여 가져옵니다.<br>여러가지 메타 데이터가 함께 반환됨을 확인할 수 있습니다.</p>
+<h2 id="값-추출"><a href="#값-추출" class="headerlink" title="값 추출"></a>값 추출</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv get -field=foo secret/hello</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSON-output"><a href="#JSON-output" class="headerlink" title="JSON output"></a>JSON output</h2><p>결과데이터의 포맷을 json 으로 출력할수도 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv get -format=json secret/hello</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"request_id"</span>: <span class="string">"e323e5a1-6ed3-dfcb-d56c-d5d48a5c86be"</span>,</span><br><span class="line">  <span class="string">"lease_id"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"lease_duration"</span>: 0,</span><br><span class="line">  <span class="string">"renewable"</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">"data"</span>: &#123;</span><br><span class="line">    <span class="string">"data"</span>: &#123;</span><br><span class="line">      <span class="string">"foo"</span>: <span class="string">"world"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"metadata"</span>: &#123;</span><br><span class="line">      <span class="string">"created_time"</span>: <span class="string">"2019-11-26T02:39:20.8458832Z"</span>,</span><br><span class="line">      <span class="string">"deletion_time"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="string">"destroyed"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="string">"version"</span>: 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"warnings"</span>: null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="jq-활용"><a href="#jq-활용" class="headerlink" title="jq 활용"></a>jq 활용</h2><p>jq 도구를 통한다면 더 편리하게 원하는 메타정보를 가져올수있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv get -format=json secret/hello | jq -r .data.data.foo</span><br><span class="line">world</span><br></pre></td></tr></table></figure>
+
+<h1 id="deleting-a-secret"><a href="#deleting-a-secret" class="headerlink" title="deleting a secret"></a>deleting a secret</h1><p>저장된 비밀정보를 삭제할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv delete secret/hello</span><br><span class="line">Success! Data deleted (<span class="keyword">if</span> it existed) at: secret/hello</span><br></pre></td></tr></table></figure>
+
+<h1 id="secrets-engines"><a href="#secrets-engines" class="headerlink" title="secrets engines"></a>secrets engines</h1><p>secret/ 접두사는 kv 엔진을 실행하는 route 역할을 합니다.</p>
+<blockquote>
+<p>kv 는 가장 기본적인 데이터 관리 엔진 입니다.</p>
+</blockquote>
+<p><code>foo/</code> 아래와 같은 접두사는 어떻게 동작할까요?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vault write foo/bar a=b</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">* no handler <span class="keyword">for</span> route <span class="string">'foo/bar'</span></span><br></pre></td></tr></table></figure>
+<p>결과가 말해주듯 연결된 핸들러가 없다는 메시지를 반환합니다.<br>vault 는 수많은 <code>secrets engine</code> 이 있습니다.<br><a href="https://www.vaultproject.io/docs/secrets/index.html" target="_blank" rel="noopener">https://www.vaultproject.io/docs/secrets/index.html</a></p>
+<h2 id="secrets-engine-활성화"><a href="#secrets-engine-활성화" class="headerlink" title="secrets engine 활성화"></a>secrets engine 활성화</h2><p>사용자가 원하는 임의의 경로에 vault 에서 제공하는 secrets engine 을 연결할수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault secrets <span class="built_in">enable</span> -path=wook kv</span><br><span class="line">Success! Enabled the kv secrets engine at: wook/</span><br></pre></td></tr></table></figure>
+<p>이 설정은 <code>wook/ 접두사로 시작되는 경로는 kv 엔진을 사용한다</code> 라는 의미입니다.<br>실제로 그런지 secrets list 를 확인해보면 알 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ vault secrets list</span><br><span class="line">Path          Type         Accessor              Description</span><br><span class="line">----          ----         --------              -----------</span><br><span class="line">cubbyhole/    cubbyhole    cubbyhole_9e279c40    per-token private secret storage</span><br><span class="line">identity/     identity     identity_8959bd02     identity store</span><br><span class="line">secret/       kv           kv_e56557df           key/value secret storage</span><br><span class="line">sys/          system       system_dbd69f9d       system endpoints used <span class="keyword">for</span> control, policy and debugging</span><br><span class="line">wook/         kv           kv_e01b755a           n/a</span><br></pre></td></tr></table></figure>
+
+<p>이제 임의로 지정한 경로를 통해 secrets engine 을 활용한 데이터를 기록하고 확인해봅니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vault write wook/hello name=wook</span><br><span class="line">Success! Data written to: wook/hello</span><br><span class="line"> </span><br><span class="line">$ vault write wook/pc cpu=amd</span><br><span class="line">Success! Data written to: wook/pc</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vault list wook</span><br><span class="line">Keys</span><br><span class="line">----</span><br><span class="line">hello</span><br><span class="line">pc</span><br></pre></td></tr></table></figure>
+
+<h2 id="secrets-engine-비활성화"><a href="#secrets-engine-비활성화" class="headerlink" title="secrets engine 비활성화"></a>secrets engine 비활성화</h2><p>secrests engine 에 연결된 임의의 경로를 비활성화 시킬수도 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault secrets <span class="built_in">disable</span> wook/</span><br><span class="line">Success! Disabled the secrets engine (<span class="keyword">if</span> it existed) at: wook/</span><br></pre></td></tr></table></figure>
+<p>비활성화 이후에는 wook/ 경로를 더이상 확인할 수 없는것을 볼수있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault list wook</span><br><span class="line">No value found at wook/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vault secrets list</span><br><span class="line">Path          Type         Accessor              Description</span><br><span class="line">----          ----         --------              -----------</span><br><span class="line">cubbyhole/    cubbyhole    cubbyhole_9e279c40    per-token private secret storage</span><br><span class="line">identity/     identity     identity_8959bd02     identity store</span><br><span class="line">secret/       kv           kv_e56557df           key/value secret storage</span><br><span class="line">sys/          system       system_dbd69f9d       system endpoints used <span class="keyword">for</span> control, policy and debugging</span><br></pre></td></tr></table></figure>
+
+<h2 id="다른-환경과-연동"><a href="#다른-환경과-연동" class="headerlink" title="다른 환경과 연동"></a>다른 환경과 연동</h2><p>vault 에서 제공하는 secrets engine 를 활용하여 read / write 와 같이 추상화된 인터페이스를 통해 다른 환경과 연동이 가능합니다.</p>
+<p><strong>예를 들면</strong></p>
+<ul>
+<li>dynamic SQL user creation</li>
+<li>AWS IAM</li>
+<li>등…</li>
+</ul>
+<p>앞으로 등장할 내용은 정적 비밀정보 처리가 아닌 동적 처리방식을 다룹니다.</p>
+<h1 id="dynamic-secrets-동적-비밀정보"><a href="#dynamic-secrets-동적-비밀정보" class="headerlink" title="dynamic secrets (동적 비밀정보)"></a>dynamic secrets (동적 비밀정보)</h1><p>앞절에서 소개드린 kv 는 vault 가 기본적으로 제공하는 비밀정보 관리 도구입니다.<br>정적인 데이터를 다루는데 자주 사용했지만, 이것이 vault 의 핵심기능의 전부는 아닙니다.</p>
+<p>dynamic secrets 는 kv 와 달리 엑세스 시점에 비밀정보가 생성됩니다.<br>즉, 엑세스 전까지는 비밀정보가 존재하지 않는다는 말입니다.<br>그래서 서로 다른 클라이언트간에 비밀정보 탈취에 대한 염려가 없습니다.<br>또한 vault 에는 사용 이후 dynamic secrets 을 해지하는 메커니즘이 내장되어있습니다.<br>따라서 비밀정보 유지기간을 최소화 하고 있습니다.</p>
+<p>정리하자면,<br>본래 secret 정보를 app 자체가 갖고있거나 외부 저장소로부터 획득하여 사용했다면,<br>vault 를 사용할 경우 secret 정보를 동적으로 생성하고 app 은 이를 사용하다가 필요가 없을경우 폐기 또는 vault 에 의해서 스스로 삭제될수있다고 할수있습니다. app 은 secret 정보가 필요할때마다 vault 를 이용하면 됩니다.</p>
+<h2 id="AWS-secret-테스트"><a href="#AWS-secret-테스트" class="headerlink" title="AWS secret 테스트"></a>AWS secret 테스트</h2><p>vault 를 활용해 AWS 의 IAM 유저를 동적으로 생성해보겠습니다.<br>:star:테스트 전에 AWS 에 가입하여 root key 를 확보해두셔야 합니다.</p>
+<h3 id="AWS-secrets-engine-활성화"><a href="#AWS-secrets-engine-활성화" class="headerlink" title="AWS secrets engine 활성화"></a>AWS secrets engine 활성화</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault secrets <span class="built_in">enable</span> -path=aws aws</span><br><span class="line">Success! Enabled the aws secrets engine at: aws/</span><br></pre></td></tr></table></figure>
+
+<h3 id="config-작성"><a href="#config-작성" class="headerlink" title="config 작성"></a>config 작성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vault write aws/config/root \</span><br><span class="line">    access_key=A---ENIQ \</span><br><span class="line">    secret_key=z1P-----------UW+eB</span><br><span class="line">Success! Data written to: aws/config/root</span><br></pre></td></tr></table></figure>
+
+<h3 id="role-작성"><a href="#role-작성" class="headerlink" title="role 작성"></a>role 작성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ vault write aws/roles/my-role \</span><br><span class="line">    credential_type=iam_user \</span><br><span class="line">    policy_document=-&lt;&lt;EOF</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"Version"</span>: <span class="string">"2012-10-17"</span>,</span><br><span class="line">  <span class="string">"Statement"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"Effect"</span>: <span class="string">"Allow"</span>,</span><br><span class="line">      <span class="string">"Action"</span>: <span class="string">"ec2:*"</span>,</span><br><span class="line">      <span class="string">"Resource"</span>: <span class="string">"*"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">Success! Data written to: aws/roles/my-role</span><br></pre></td></tr></table></figure>
+<p>이 롤은 AWS 에서 제공하는 문서를 참고하여 다양하게 작성할 수 있습니다.<br><a href="https://docs.aws.amazon.com/ko_kr/apigateway/latest/developerguide/permissions.html" target="_blank" rel="noopener">https://docs.aws.amazon.com/ko_kr/apigateway/latest/developerguide/permissions.html</a></p>
+<h3 id="secret-생성"><a href="#secret-생성" class="headerlink" title="secret 생성"></a>secret 생성</h3><p>주입된 롤에의해 IAM 유저를 생성합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ vault <span class="built_in">read</span> aws/creds/my-role</span><br><span class="line">Key                Value</span><br><span class="line">---                -----</span><br><span class="line">lease_id           aws/creds/my-role/0bce07---------ff22106e</span><br><span class="line">lease_duration     768h</span><br><span class="line">lease_renewable    <span class="literal">true</span></span><br><span class="line">access_key         AKIA-------CTZQ</span><br><span class="line">secret_key         WWeSnj0------------mk/8FyTg</span><br><span class="line">security_token     &lt;nil&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>lease_id 는 중요한 정보이므로 따로 정리해둘 필요가 있습니다.</p>
+</blockquote>
+<p>저는 두번의 실행을 통해 IAM 유저 2개를 등록했습니다.<br>AWS 의 IAM 을통해 생성된 유저를 확인할 수 있습니다.<br><img src="https://user-images.githubusercontent.com/11376406/69770027-b66ec480-11ca-11ea-9cfa-7647707a0715.png" alt=""></p>
+<h3 id="secret-갱신-amp-획득"><a href="#secret-갱신-amp-획득" class="headerlink" title="secret 갱신 &amp; 획득"></a>secret 갱신 &amp; 획득</h3><p><code>lease_id</code> 를 통해 client 는 secret 을 갱신함과 동시에 재획득이 가능합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vault lease renew aws/creds/my-role/0bce07---------ff22106e</span><br><span class="line">WARNING! The following warnings were returned from Vault:</span><br><span class="line"> </span><br><span class="line">  * TTL of <span class="string">"768h0m0s"</span> exceeded the effective max_ttl of <span class="string">"751h47m55s"</span>; TTL</span><br><span class="line">  value is capped accordingly</span><br><span class="line"> </span><br><span class="line">Key                Value</span><br><span class="line">---                -----</span><br><span class="line">lease_id           aws/creds/my-role/0bce07---------ff22106e</span><br><span class="line">lease_duration     751h47m55s</span><br><span class="line">lease_renewable    <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="secret-제거"><a href="#secret-제거" class="headerlink" title="secret 제거"></a>secret 제거</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault lease revoke aws/creds/my-role/0bce07---------ff22106e</span><br><span class="line">Success! Revoked lease: aws/creds/my-role/0bce07---------ff22106e</span><br></pre></td></tr></table></figure>
+
+<p>AWS 의 IAM 을통해 삭제된 유저를 확인할 수 있습니다.<br><img src="https://user-images.githubusercontent.com/11376406/69770026-b66ec480-11ca-11ea-8579-15e5de885c12.png" alt=""></p>
+<h2 id="MYSQL-dynamic-sql-user-creation-테스트"><a href="#MYSQL-dynamic-sql-user-creation-테스트" class="headerlink" title="MYSQL dynamic sql user creation 테스트"></a>MYSQL dynamic sql user creation 테스트</h2><p>이번엔 동적으로 mysql 의 유저를 동적으로 생성해보겠습니다.<br>:star: 로컬PC 에 3306 port 로 mysql 또는 mariaDB 서비스가 동작되고있어야 합니다.</p>
+<h3 id="database-secrets-engine-활성화"><a href="#database-secrets-engine-활성화" class="headerlink" title="database secrets engine 활성화"></a>database secrets engine 활성화</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault secrets <span class="built_in">enable</span> database</span><br><span class="line">Success! Enabled the database secrets engine at: database/</span><br></pre></td></tr></table></figure>
+<p>AWS 에서는 path 경로를 지정했지만 vault 가 제공하는 기본룰에 따라 쉽게 활성화할 수 있게 해줍니다.</p>
+<h3 id="config-작성-1"><a href="#config-작성-1" class="headerlink" title="config 작성"></a>config 작성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ vault write database/config/my-mysql-database \</span><br><span class="line">    plugin_name=mysql-database-plugin \</span><br><span class="line">    connection_url=<span class="string">"&#123;&#123;username&#125;&#125;:&#123;&#123;password&#125;&#125;@tcp(127.0.0.1:3306)/"</span> \</span><br><span class="line">    allowed_roles=<span class="string">"my-role"</span> \</span><br><span class="line">    username=<span class="string">"root"</span> \</span><br><span class="line">    password=<span class="string">"password"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="role-작성-1"><a href="#role-작성-1" class="headerlink" title="role 작성"></a>role 작성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ vault write database/roles/my-role \</span><br><span class="line">    db_name=my-mysql-database \</span><br><span class="line">    creation_statements=<span class="string">"CREATE USER '&#123;&#123;name&#125;&#125;'@'%' IDENTIFIED BY '&#123;&#123;password&#125;&#125;';GRANT SELECT ON *.* TO '&#123;&#123;name&#125;&#125;'@'%';"</span> \</span><br><span class="line">    default_ttl=<span class="string">"1h"</span> \</span><br><span class="line">    max_ttl=<span class="string">"24h"</span></span><br><span class="line">Success! Data written to: database/roles/my-role</span><br></pre></td></tr></table></figure>
+
+<h3 id="secret-생성-1"><a href="#secret-생성-1" class="headerlink" title="secret 생성"></a>secret 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ vault <span class="built_in">read</span> database/creds/my-role</span><br><span class="line">Key                Value</span><br><span class="line">---                -----</span><br><span class="line">lease_id           database/creds/my-role/q1c4Aj0tnafhRm4YxGZsOzeD</span><br><span class="line">lease_duration     1h</span><br><span class="line">lease_renewable    <span class="literal">true</span></span><br><span class="line">password           A1a-0uwe7ZxT4pU3JJAR</span><br><span class="line">username           v-root-my-role-2OMpLHt7ZSwdbRg9F</span><br></pre></td></tr></table></figure>
+<p>지정된 롤에 맞춰 동적으로 mysql 의 user가 생성된것을 볼수있습니다.<br><img src="https://user-images.githubusercontent.com/11376406/69770332-f3878680-11cb-11ea-8c06-3d03c5299aa8.png" alt=""></p>
+<h1 id="authentication-인증"><a href="#authentication-인증" class="headerlink" title="authentication (인증)"></a>authentication (인증)</h1><p>vault 의 기능을 사용하기위해서는 원래 인증절차가 필요합니다.<br>위는 <code>-dev</code> 모드를 사용했기때문에 위에서는 자동으로 root token 을 통해 테스트 했던것입니다.</p>
+<p>vault 인증은 token 을 통해 처리됩니다.</p>
+<h2 id="token-생성"><a href="#token-생성" class="headerlink" title="token 생성"></a>token 생성</h2><p>token 생성은 부모 token 을 기반으로 자식 token 을 생성합니다.<br>또는 별도의 정책이 부여된 token 을 발행할수도 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ vault token create</span><br><span class="line">Key                  Value</span><br><span class="line">---                  -----</span><br><span class="line">token                s.0LIcD95AWk9Yyg4QemsoieCN</span><br><span class="line">token_accessor       R3sXav3nhCRMLNjQYuKEtuAf</span><br><span class="line">token_duration       ∞</span><br><span class="line">token_renewable      <span class="literal">false</span></span><br><span class="line">token_policies       [<span class="string">"root"</span>]</span><br><span class="line">identity_policies    []</span><br><span class="line">policies             [<span class="string">"root"</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="token-삭제"><a href="#token-삭제" class="headerlink" title="token 삭제"></a>token 삭제</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault token revoke s.0LIcD95AWk9Yyg4QemsoieCN</span><br><span class="line">Success! Revoked token (<span class="keyword">if</span> it existed)</span><br></pre></td></tr></table></figure>
+
+<h2 id="token-을-통한-인증"><a href="#token-을-통한-인증" class="headerlink" title="token 을 통한 인증"></a>token 을 통한 인증</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 토큰 생성</span></span><br><span class="line">$ vault token create</span><br><span class="line">Key                  Value</span><br><span class="line">---                  -----</span><br><span class="line">token                s.mTG4kSzyKbQjiGhq1cEMFqFs</span><br><span class="line">token_accessor       n7KOg3SDRiIZq6xlsgQbWW9m</span><br><span class="line">token_duration       ∞</span><br><span class="line">token_renewable      <span class="literal">false</span></span><br><span class="line">token_policies       [<span class="string">"root"</span>]</span><br><span class="line">identity_policies    []</span><br><span class="line">policies             [<span class="string">"root"</span>] </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 인증</span></span><br><span class="line">$ vault login s.mTG4kSzyKbQjiGhq1cEMFqFs</span><br><span class="line">Success! You are now authenticated. The token information displayed below</span><br><span class="line">is already stored <span class="keyword">in</span> the token helper. You <span class="keyword">do</span> NOT need to run <span class="string">"vault login"</span></span><br><span class="line">again. Future Vault requests will automatically use this token.</span><br><span class="line"> </span><br><span class="line">Key                  Value</span><br><span class="line">---                  -----</span><br><span class="line">token                s.mTG4kSzyKbQjiGhq1cEMFqFs</span><br><span class="line">token_accessor       n7KOg3SDRiIZq6xlsgQbWW9m</span><br><span class="line">token_duration       ∞</span><br><span class="line">token_renewable      <span class="literal">false</span></span><br><span class="line">token_policies       [<span class="string">"root"</span>]</span><br><span class="line">identity_policies    []</span><br><span class="line">policies             [<span class="string">"root"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>:warning: 실제로 운영자가 이렇게 토큰을 사용하여 클라이언트에 지급하는것은 좋지 못하다고 합니다.<br>따라서 다양한 인증 방식을 통해 토큰을 발행받아 사용하는 방식을 제공하고 있습니다.</p>
+<h1 id="다양한-인증-방식"><a href="#다양한-인증-방식" class="headerlink" title="다양한 인증 방식"></a>다양한 인증 방식</h1><p>vault 는 제 3 서비스가 제공하는 방식을 통해 인증을 처리할수도 있습니다.</p>
+<h2 id="github-인증-테스트"><a href="#github-인증-테스트" class="headerlink" title="github 인증 테스트"></a>github 인증 테스트</h2><p>github 의 organization 및 개별 token 을 활용한 인증 방식을 테스트 합니다.</p>
+<h3 id="github-설정"><a href="#github-설정" class="headerlink" title="github 설정"></a>github 설정</h3><ol>
+<li>organization 구성<br><a href="https://github.com/settings/organizations" target="_blank" rel="noopener">https://github.com/settings/organizations</a></li>
+<li>Personal access tokens 등록<br><a href="https://github.com/settings/tokens" target="_blank" rel="noopener">https://github.com/settings/tokens</a><br>:star:토큰 설정시 user 또는 read.org 권한을 넣어주셔야 합니다.</li>
+</ol>
+<h3 id="github-인증-활성화"><a href="#github-인증-활성화" class="headerlink" title="github 인증 활성화"></a>github 인증 활성화</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault auth <span class="built_in">enable</span> -path=github github</span><br><span class="line">Success! Enabled github auth method at: github/</span><br></pre></td></tr></table></figure>
+
+<h3 id="github-인증-설정"><a href="#github-인증-설정" class="headerlink" title="github 인증 설정"></a>github 인증 설정</h3><p>인증 범위는 github 의 lighten518-til 조직(github 에서 만든) 내의 유저로 설정합니다.<br>그 다음 명령어는 my-team 의 모든 사용자에게 default 와 my-policy 정책을 매핑하게 합니다.</p>
+<p>:star:아직 my-policy 정책에 대한 정보를 구성하지 않았으므로 정책에 대하서는 여기서는 일단 무시하셔도 좋습니다</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vault write auth/github/config organization=lighten518-til</span><br><span class="line">Success! Data written to: auth/github/config</span><br><span class="line"> </span><br><span class="line">$ vault write auth/github/map/teams/my-team value=default,my-policy</span><br><span class="line">Success! Data written to: auth/github/map/teams/my-team</span><br></pre></td></tr></table></figure>
+
+<h3 id="등록된-인증-확인"><a href="#등록된-인증-확인" class="headerlink" title="등록된 인증 확인"></a>등록된 인증 확인</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vault auth list</span><br><span class="line">Path       Type      Accessor                Description</span><br><span class="line">----       ----      --------                -----------</span><br><span class="line">github/    github    auth_github_588abfc9    n/a</span><br><span class="line">token/     token     auth_token_e9c048f1     token based credentials</span><br></pre></td></tr></table></figure>
+
+<h3 id="인증"><a href="#인증" class="headerlink" title="인증"></a>인증</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ vault login -method=github token=e5f6ecb31---------f2b43f181f2</span><br><span class="line">Success! You are now authenticated. The token information displayed below</span><br><span class="line">is already stored <span class="keyword">in</span> the token helper. You <span class="keyword">do</span> NOT need to run <span class="string">"vault login"</span></span><br><span class="line">again. Future Vault requests will automatically use this token.</span><br><span class="line"> </span><br><span class="line">Key                    Value</span><br><span class="line">---                    -----</span><br><span class="line">token                  s.1Gzm----gJa7qlW5</span><br><span class="line">token_accessor         3g7h8px---UKiVMQXzsMO</span><br><span class="line">token_duration         768h</span><br><span class="line">token_renewable        <span class="literal">true</span></span><br><span class="line">token_policies         [<span class="string">"default"</span>]</span><br><span class="line">identity_policies      []</span><br><span class="line">policies               [<span class="string">"default"</span>]</span><br><span class="line">token_meta_org         lighten518-til</span><br><span class="line">token_meta_username    lejewk</span><br></pre></td></tr></table></figure>
+<p>:heavy_check_mark: vault 에 로그인 되었습니다!</p>
+<p>이어서 <code>policy(정책)</code> 에 대해 보겠습니다.</p>
+<h1 id="polices-정책"><a href="#polices-정책" class="headerlink" title="polices (정책)"></a>polices (정책)</h1><p>정책이란 vault 에 로그인한 유저가 어떤 기능을 사용할수있느냐를 정의하는것입니다.<br>이것을 Authorization (인가) 에 대한 부분으로 인지하셔도 좋습니다.<br>인증은 각각의 인증방법(github, 기타 등등…) 에 따라가고, 인가는 vault 가 정의한 정책에 매핑합니다.</p>
+<p>vault 는 삭제 불가능한 몇가지 기본정책을 제공합니다.</p>
+<ul>
+<li><code>root</code>: 관리자</li>
+<li><code>default</code>: 기본기능</li>
+</ul>
+<h2 id="policy-format"><a href="#policy-format" class="headerlink" title="policy format"></a>policy format</h2><p>hcl 문법으로 작성한다고 합니다.<br><a href="https://github.com/hashicorp/hcl" target="_blank" rel="noopener">https://github.com/hashicorp/hcl</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /my-policy.hcl</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Normal servers have version 1 of KV mounted by default, so will need these</span></span><br><span class="line"><span class="comment"># paths:</span></span><br><span class="line">path <span class="string">"secret/*"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"create"</span>]</span><br><span class="line">&#125;</span><br><span class="line">path <span class="string">"secret/foo"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"read"</span>]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Dev servers have version 2 of KV mounted by default, so will need these</span></span><br><span class="line"><span class="comment"># paths:</span></span><br><span class="line">path <span class="string">"secret/data/*"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"create"</span>]</span><br><span class="line">&#125;</span><br><span class="line">path <span class="string">"secret/data/foo"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"read"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>secret/ 의 모든 경로에 쓰기가 가능하지만 secret/foo 는 읽기만 가능하다</code><br>라는 정책입니다.</p>
+<p>:star: vault 는 경로 기반 secrets engine 사용 패턴이므로 경로에 대해서 정책을 정하여 엄격하게 관리할 수 있습니다.</p>
+<h3 id="fmt"><a href="#fmt" class="headerlink" title="fmt"></a>fmt</h3><p>vault 는 policy 의 포맷에 대해 체크해주며 오류 발생시 error를 발생해주는 도구가 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault policy fmt my-policy.hcl</span><br><span class="line">Success! Formatted policy: my-policy.hcl</span><br></pre></td></tr></table></figure>
+
+<h2 id="writing-the-police"><a href="#writing-the-police" class="headerlink" title="writing the police"></a>writing the police</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vault policy write my-policy my-policy.hcl</span><br><span class="line">Success! Uploaded policy: my-policy</span><br></pre></td></tr></table></figure>
+
+<h2 id="list-of-policies"><a href="#list-of-policies" class="headerlink" title="list of policies"></a>list of policies</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vault policy list</span><br><span class="line">default</span><br><span class="line">my-policy</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+
+<h2 id="view-contents-of-policy"><a href="#view-contents-of-policy" class="headerlink" title="view contents of policy"></a>view contents of policy</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ vault policy <span class="built_in">read</span> my-policy</span><br><span class="line"><span class="comment"># Normal servers have version 1 of KV mounted by default, so will need these</span></span><br><span class="line"><span class="comment"># paths:</span></span><br><span class="line">path <span class="string">"secret/*"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"create"</span>]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">path <span class="string">"secret/foo"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"read"</span>]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Dev servers have version 2 of KV mounted by default, so will need these</span></span><br><span class="line"><span class="comment"># paths:</span></span><br><span class="line">path <span class="string">"secret/data/*"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"create"</span>]</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">path <span class="string">"secret/data/foo"</span> &#123;</span><br><span class="line">  capabilities = [<span class="string">"read"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="policy-test"><a href="#policy-test" class="headerlink" title="policy test"></a>policy test</h2><h3 id="정책이-반영된-toke-발행"><a href="#정책이-반영된-toke-발행" class="headerlink" title="정책이 반영된 toke 발행"></a>정책이 반영된 toke 발행</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ vault token create -policy=my-policy</span><br><span class="line">Key                  Value</span><br><span class="line">---                  -----</span><br><span class="line">token                s.vchcnwzB3pI55ja711oaXCwB</span><br><span class="line">token_accessor       SK2qM9OsvruupUlobYL5YBj0</span><br><span class="line">token_duration       768h</span><br><span class="line">token_renewable      <span class="literal">true</span></span><br><span class="line">token_policies       [<span class="string">"default"</span> <span class="string">"my-policy"</span>]</span><br><span class="line">identity_policies    []</span><br><span class="line">policies             [<span class="string">"default"</span> <span class="string">"my-policy"</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="해당-token-으로-인증"><a href="#해당-token-으로-인증" class="headerlink" title="해당 token 으로 인증"></a>해당 token 으로 인증</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ vault login s.vchcnwzB3pI55ja711oaXCwB</span><br><span class="line">Success! You are now authenticated. The token information displayed below</span><br><span class="line">is already stored <span class="keyword">in</span> the token helper. You <span class="keyword">do</span> NOT need to run <span class="string">"vault login"</span></span><br><span class="line">again. Future Vault requests will automatically use this token.</span><br><span class="line"> </span><br><span class="line">Key                  Value</span><br><span class="line">---                  -----</span><br><span class="line">token                s.vchcnwzB3pI55ja711oaXCwB</span><br><span class="line">token_accessor       SK2qM9OsvruupUlobYL5YBj0</span><br><span class="line">token_duration       767h59m47s</span><br><span class="line">token_renewable      <span class="literal">true</span></span><br><span class="line">token_policies       [<span class="string">"default"</span> <span class="string">"my-policy"</span>]</span><br><span class="line">identity_policies    []</span><br><span class="line">policies             [<span class="string">"default"</span> <span class="string">"my-policy"</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="kv-쓰기-테스트"><a href="#kv-쓰기-테스트" class="headerlink" title="kv 쓰기 테스트"></a>kv 쓰기 테스트</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv put secret/<span class="built_in">test</span> name=wook</span><br><span class="line">Key              Value</span><br><span class="line">---              -----</span><br><span class="line">created_time     2019-11-27T07:45:44.5049062Z</span><br><span class="line">deletion_time    n/a</span><br><span class="line">destroyed        <span class="literal">false</span></span><br><span class="line">version          1</span><br><span class="line"> </span><br><span class="line"><span class="comment"># foo 는 쓰기에 대한 권한이 없어 실패</span></span><br><span class="line">$ vault kv put secret/foo age=10</span><br><span class="line">Error writing data to secret/data/foo: Error making API request.</span><br><span class="line"> </span><br><span class="line">URL: PUT http://127.0.0.1:8200/v1/secret/data/foo</span><br><span class="line">Code: 403. Errors:</span><br><span class="line"> </span><br><span class="line">* 1 error occurred:</span><br><span class="line">        * permission denied</span><br></pre></td></tr></table></figure>
+
+<h1 id="deploy-vault"><a href="#deploy-vault" class="headerlink" title="deploy vault"></a>deploy vault</h1><p>배포 환경에서는 어떻게 설정되야할까요?<br>개발모드에서는 -dev 를 통해 미리 준비된 설정을 사용했다면,<br>이제는 직접 설정을 구성하여  vault 를 실행해야 합니다.</p>
+<h2 id="server-설정"><a href="#server-설정" class="headerlink" title="server 설정"></a>server 설정</h2><p>hcl 문법으로 실행시 필요한 설정 정보를 작성합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /config.hcl</span></span><br><span class="line"></span><br><span class="line">ui = <span class="literal">true</span></span><br><span class="line"> </span><br><span class="line">storage <span class="string">"consul"</span> &#123;</span><br><span class="line">  address = <span class="string">"127.0.0.1:8500"</span></span><br><span class="line">  path    = <span class="string">"vault/"</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">listener <span class="string">"tcp"</span> &#123;</span><br><span class="line"> address     = <span class="string">"127.0.0.1:8200"</span></span><br><span class="line"> tls_disable = 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>ui</code> 는 vault 가 제공하는 웹 gui tool 을 활성화 합니다.<br><a href="http://127.0.0.1:8200/ui" target="_blank" rel="noopener">http://127.0.0.1:8200/ui</a></p>
+<p><code>storage</code> 는 vault 의 데이터를 저장할 backend 를 지정합니다.<br>consul 을 지정했고 따라서 consul agent server 가 동작되야 합니다.<br><a href="https://www.consul.io/" target="_blank" rel="noopener">https://www.consul.io/</a> 참고</p>
+<p><code>listener</code> 는 vault 의 API 를 사용할 endpoint 로 보시면 됩니다.</p>
+<p>개발 테스트이므로 환경변수에 vault 주소를 등록해주셔야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> VAULT_ADDR=http://127.0.0.1:8200</span><br></pre></td></tr></table></figure>
+
+<h2 id="server-start-with-config-hcl"><a href="#server-start-with-config-hcl" class="headerlink" title="server start with config.hcl"></a>server start with config.hcl</h2><p>먼저 consul 을 실행시킵니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consul agent -dev</span><br></pre></td></tr></table></figure>
+
+<p>이후 vault 를 설정파일과 함께 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ vault server -config=config.hcl</span><br><span class="line">WARNING! mlock is not supported on this system! An mlockall(2)-like syscall to</span><br><span class="line">prevent memory from being swapped to disk is not supported on this system. For</span><br><span class="line">better security, only run Vault on systems <span class="built_in">where</span> this call is supported. If</span><br><span class="line">you are running Vault <span class="keyword">in</span> a Docker container, provide the IPC_LOCK <span class="built_in">cap</span> to the</span><br><span class="line">container.</span><br><span class="line">==&gt; Vault server configuration:</span><br><span class="line"> </span><br><span class="line">             Api Address: http://127.0.0.1:8200</span><br><span class="line">                     Cgo: disabled</span><br><span class="line">         Cluster Address: https://127.0.0.1:8201</span><br><span class="line">              Listener 1: tcp (addr: <span class="string">"127.0.0.1:8200"</span>, cluster address: <span class="string">"127.0.0.1:8201"</span>, max_request_duration: <span class="string">"1m30s"</span>, max_request_size: <span class="string">"33554432"</span>, tls: <span class="string">"disabled"</span>)</span><br><span class="line">               Log Level: info</span><br><span class="line">                   Mlock: supported: <span class="literal">false</span>, enabled: <span class="literal">false</span></span><br><span class="line">           Recovery Mode: <span class="literal">false</span></span><br><span class="line">                 Storage: consul (HA available)</span><br><span class="line">                 Version: Vault v1.3.0</span><br><span class="line"> </span><br><span class="line">==&gt; Vault server started! Log data will stream <span class="keyword">in</span> below:</span><br></pre></td></tr></table></figure>
+
+<h2 id="vault-초기화"><a href="#vault-초기화" class="headerlink" title="vault 초기화"></a>vault 초기화</h2><p>-dev 모드와 다르게 vault 를 사용하려면 초기화가 필요합니다.<br>:warning: 초기화 없이 cli 를 사용하게 될경우 봉인 오류가 발생됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vault kv put secret/wook a=b</span><br><span class="line">Error making API request.</span><br><span class="line"> </span><br><span class="line">URL: GET http://127.0.0.1:8200/v1/sys/internal/ui/mounts/secret/wook</span><br><span class="line">Code: 503. Errors:</span><br><span class="line"> </span><br><span class="line">* Vault is sealed</span><br></pre></td></tr></table></figure>
+
+<p>초기화는 backend 서버가 시작된 경우 1회만 실행하면 됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ vault operator init</span><br><span class="line">Unseal Key 1: 6VoUsGk140OnDi2Z3OcXBJyr/cS3Zv+gnAGDOteiOeFO</span><br><span class="line">Unseal Key 2: 4wrk+3AX7Z39BKSZcAsGNO+5Zsn1s4MjWK/2N5o0Tc7U</span><br><span class="line">Unseal Key 3: HIqhJ9p5rRaYjN8Rjhm6bDMO+zVlyy3Tc2HD+0MeY6dJ</span><br><span class="line">Unseal Key 4: hkmXS/d6Wdmg4xkyJVLlWJP8L8uEKhmKbOH0nOm1PNfE</span><br><span class="line">Unseal Key 5: /GJp/G+7aoMjTqarPqmxYtN+oSEw38C4kWZNQNuw6zsf</span><br><span class="line">  </span><br><span class="line">Initial Root Token: s.eRWvoMPfKdxk2ja7kqIlSuR6</span><br><span class="line">  </span><br><span class="line">Vault initialized with 5 key shares and a key threshold of 3. Please securely</span><br><span class="line">distribute the key shares printed above. When the Vault is re-sealed,</span><br><span class="line">restarted, or stopped, you must supply at least 3 of these keys to unseal it</span><br><span class="line">before it can start servicing requests.</span><br><span class="line">  </span><br><span class="line">Vault does not store the generated master key. Without at least 3 key to</span><br><span class="line">reconstruct the master key, Vault will remain permanently sealed!</span><br><span class="line">  </span><br><span class="line">It is possible to generate new unseal keys, provided you have a quorum of</span><br><span class="line">existing unseal keys shares. See <span class="string">"vault operator rekey"</span> <span class="keyword">for</span> more information.</span><br></pre></td></tr></table></figure>
+
+<p>:star:이때 생산된 봉인 해제키와 루트 토큰을 잘 갖고 계셔야합니다.<br>이 키또한 관리대상이므로 vault’s PGP 또는 keybase.io 를 활용한다고 합니다.</p>
+<h2 id="sear-unseal-봉인-해제"><a href="#sear-unseal-봉인-해제" class="headerlink" title="sear / unseal (봉인 / 해제)"></a>sear / unseal (봉인 / 해제)</h2><p>초기화된 모든 vault 서버는 봉인된 상태로 시작합니다.<br>vault 는 물리서버에 접근할수있으나 해독 방법을 모르기때문에 데이터를 읽을수는 없습니다.<br>vault 가 데이터를 해독하는 방법을 가르치는 과정을 vault unseal 이라고 합니다.</p>
+<p>vault 가 시작될때마다 unseal 을 해야합니다.<br>이 과정은 API 와 CLI 를 통해 수행할 수 있습니다.</p>
+<p>unseal 을 하려면 임계값 개수(최소) 의 unseal key 를 소유하고 있어야 합니다. (3개)<br><code>Vault initialized with 5 key shares and a key threshold of 3</code></p>
+<p><strong>첫번째 해제</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ vault operator unseal 6VoUsGk140OnDi2Z3OcXBJyr/cS3Zv+gnAGDOteiOeFO</span><br><span class="line">Key                Value</span><br><span class="line">---                -----</span><br><span class="line">Seal Type          shamir</span><br><span class="line">Initialized        <span class="literal">true</span></span><br><span class="line">Sealed             <span class="literal">true</span></span><br><span class="line">Total Shares       5</span><br><span class="line">Threshold          3</span><br><span class="line">Unseal Progress    1/3</span><br><span class="line">Unseal Nonce       0195ceed-69fd-dd26-cb82-604952a572ae</span><br><span class="line">Version            1.3.0</span><br><span class="line">HA Enabled         <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><strong>두번째, 세번째 해제</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ vault operator unseal hkmXS/d6Wdmg4xkyJVLlWJP8L8uEKhmKbOH0nOm1PNfE</span><br><span class="line">$ vault operator unseal 4wrk+3AX7Z39BKSZcAsGNO+5Zsn1s4MjWK/2N5o0Tc7U</span><br><span class="line">Key                    Value</span><br><span class="line">---                    -----</span><br><span class="line">Seal Type              shamir</span><br><span class="line">Initialized            <span class="literal">true</span></span><br><span class="line">Sealed                 <span class="literal">false</span> <span class="comment"># &lt;-- false 로 해제됨을 확인 가능</span></span><br><span class="line">Total Shares           5</span><br><span class="line">Threshold              3</span><br><span class="line">Version                1.3.0</span><br><span class="line">Cluster Name           vault-cluster-6075fd5f</span><br><span class="line">Cluster ID             c08caafe-09e6-c546-3216-b30a5d289ece</span><br><span class="line">HA Enabled             <span class="literal">true</span></span><br><span class="line">HA Cluster             n/a</span><br><span class="line">HA Mode                standby</span><br><span class="line">Active Node Address    &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="authentication-인증-1"><a href="#authentication-인증-1" class="headerlink" title="authentication (인증)"></a>authentication (인증)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ vault login s.eRWvoMPfKdxk2ja7kqIlSuR6</span><br><span class="line">Success! You are now authenticated. The token information displayed below</span><br><span class="line">is already stored <span class="keyword">in</span> the token helper. You <span class="keyword">do</span> NOT need to run <span class="string">"vault login"</span></span><br><span class="line">again. Future Vault requests will automatically use this token.</span><br><span class="line">  </span><br><span class="line">Key                  Value</span><br><span class="line">---                  -----</span><br><span class="line">token                s.eRWvoMPfKdxk2ja7kqIlSuR6</span><br><span class="line">token_accessor       OcjXZLaLlkAIO9cyZj8eRrMZ</span><br><span class="line">token_duration       ∞</span><br><span class="line">token_renewable      <span class="literal">false</span></span><br><span class="line">token_policies       [<span class="string">"root"</span>]</span><br><span class="line">identity_policies    []</span><br><span class="line">policies             [<span class="string">"root"</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="HTTP-API"><a href="#HTTP-API" class="headerlink" title="HTTP API"></a>HTTP API</h1><p>http api 를 통해서도 여러가지 작업을 할 수 있습니다.<br>이전까지의 작업이 모두 cli 환경이었다면 마찬가지로 http api 도 동일하게 가능합니다.<br><a href="https://www.vaultproject.io/intro/getting-started/apis.html" target="_blank" rel="noopener">https://www.vaultproject.io/intro/getting-started/apis.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/gitbash-alias/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/gitbash-alias/" class="post-title-link" itemprop="url">gitbash alias</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-11 23:52:34" itemprop="dateCreated datePublished" datetime="2019-11-11T23:52:34+09:00">2019-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="프로필-생성"><a href="#프로필-생성" class="headerlink" title="프로필 생성"></a>프로필 생성</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/</span><br><span class="line">notepad .bash_profile</span><br></pre></td></tr></table></figure>
+
+<h1 id="alias-작성"><a href="#alias-작성" class="headerlink" title="alias 작성"></a>alias 작성</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> d=<span class="string">'docker'</span></span><br><span class="line"><span class="built_in">alias</span> dc=<span class="string">'docker-compose'</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -al'</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="적용-amp-사용"><a href="#적용-amp-사용" class="headerlink" title="적용 &amp; 사용"></a>적용 &amp; 사용</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bash_profile</span><br><span class="line"></span><br><span class="line">ll <span class="comment"># ls -al</span></span><br><span class="line">d <span class="comment"># docker</span></span><br><span class="line">dc <span class="comment"># docker-compose</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/consul-kv-watch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/consul-kv-watch/" class="post-title-link" itemprop="url">consul kv watch 설정</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-21 21:47:49" itemprop="dateCreated datePublished" datetime="2019-10-21T21:47:49+09:00">2019-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="목표"><a href="#목표" class="headerlink" title="목표"></a>목표</h1><p>consul 의 watch 를 활용해 kv 의 값이 변경되었을경우<br>이를 감지하여 커스텀 핸들러를 실행시킵니다.</p>
+<h1 id="handler-작성"><a href="#handler-작성" class="headerlink" title="handler 작성"></a>handler 작성</h1><p><code>my_handler.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"hello world"</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="consul-kv-watch-설정"><a href="#consul-kv-watch-설정" class="headerlink" title="consul kv watch 설정"></a>consul kv watch 설정</h1><p><code>watch.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"watches"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"key"</span>,</span><br><span class="line">      <span class="attr">"key"</span>: <span class="string">"foo/bar"</span>,</span><br><span class="line">      <span class="attr">"args"</span>: [<span class="string">"sh"</span>, <span class="string">"-c"</span>, <span class="string">"F:\/tool\/consul\/my_handler.sh"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="consul-agent-실행"><a href="#consul-agent-실행" class="headerlink" title="consul agent 실행"></a>consul agent 실행</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">consul agent -dev -<span class="built_in">enable</span>-script-checks -config-dir=./</span><br><span class="line"></span><br><span class="line"><span class="comment"># -config-dir</span></span><br><span class="line"><span class="comment"># 설정 디렉토리를 옵션으로 넣어줌으로써 해당 경로 하위에 있는 모든 json 설정을 읽습니다.</span></span><br></pre></td></tr></table></figure>
+
+<p>log 를 통해 sh 이 실행된 결과를 확인할 수 있습니다.<br>에이전트를 새로 실행하여도 트리거가 발생되며, 따로 옵션이 있을거라 예상됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2019/10/21 22:52:36 [DEBUG] http: Request GET /v1/kv/foo/bar (207.6168ms) from=127.0.0.1:50751</span><br><span class="line">2019/10/21 22:52:36 [DEBUG] agent: watch handler <span class="string">'[sh -c F:/tool/consul/append.sh]'</span> output: hello world</span><br></pre></td></tr></table></figure>
+
+<h1 id="consul-kv-데이터-갱신"><a href="#consul-kv-데이터-갱신" class="headerlink" title="consul kv 데이터 갱신"></a>consul kv 데이터 갱신</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ consul kv put foo/bar 100</span><br><span class="line">Success! Data written to: foo/bar</span><br></pre></td></tr></table></figure>
+
+<p>log 를 통해 sh 이 실행된 결과를 확인할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2019/10/21 22:54:52 [DEBUG] http: Request PUT /v1/kv/foo/bar (997.7µs) from=127.0.0.1:50783</span><br><span class="line">2019/10/21 22:54:52 [DEBUG] http: Request GET /v1/kv/foo/bar?index=1 (2m16.8935827s) from=127.0.0.1:50751</span><br><span class="line">2019/10/21 22:54:53 [DEBUG] agent: watch handler <span class="string">'[sh -c F:/tool/consul/append.sh]'</span> output: hello world</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/vscode-setting-recommended/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/vscode-setting-recommended/" class="post-title-link" itemprop="url">vscode 설정 추천</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-10-20 14:53:39" itemprop="dateCreated datePublished" datetime="2019-10-20T14:53:39+09:00">2019-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Terminal-git-bash-설정"><a href="#Terminal-git-bash-설정" class="headerlink" title="Terminal git bash 설정"></a>Terminal git bash 설정</h1><p>vscode 에서 기본 terminal 을 git bash 로 변경합니다.</p>
+<ol>
+<li>설정 열기: <code>ctrl + ,</code></li>
+<li>설정 검색: <code>terminal.integrated.shell.windows</code></li>
+<li>설정 변경: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;terminal.integrated.shell.windows&quot;: &quot;C:\\Program Files\\Git\\bin\\bash.exe&quot;,</span><br><span class="line">&quot;terminal.integrated.shellArgs.windows&quot;: [&quot;--login&quot;, &quot;-i&quot;]</span><br></pre></td></tr></table></figure></li>
+<li>저장 &amp; vscode 재시작<br><img src="https://user-images.githubusercontent.com/11376406/58460340-67d36580-8168-11e9-9185-990da8d8da27.png" alt=""></li>
+</ol>
+<h1 id="Explorer-파일-숨기기"><a href="#Explorer-파일-숨기기" class="headerlink" title="Explorer 파일 숨기기"></a>Explorer 파일 숨기기</h1><p>Explorer 에 노출되는 불필요한 파일을 숨깁니다.</p>
+<ol>
+<li>설정 열기: <code>ctrl + ,</code></li>
+<li>설정 검색: <code>files.exclude</code></li>
+<li>패턴 추가: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br><span class="line">.next</span><br><span class="line"># .. 기타 등등</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/service-discovery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/service-discovery/" class="post-title-link" itemprop="url">MSA - 서비스 디스커버리</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-27 00:18:09" itemprop="dateCreated datePublished" datetime="2019-09-27T00:18:09+09:00">2019-09-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="서비스의-위치를-어떻게-알수있을까"><a href="#서비스의-위치를-어떻게-알수있을까" class="headerlink" title="서비스의 위치를 어떻게 알수있을까?"></a>서비스의 위치를 어떻게 알수있을까?</h1><p>클라우드 기반에서는 환경에따라 서비스의 위치가 유동적으로 변경될 수 있습니다.</p>
+<ul>
+<li>인스턴스의 동적할당</li>
+<li>오토 스케일링에 따른 중지 및 복구</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">client | --&gt; service (0.0.0.0)</span><br><span class="line">       | --&gt; service (0.0.0.1)</span><br><span class="line">       | --&gt; service (0.0.0.2) <span class="comment"># Changed ip to 0.0.0.5</span></span><br><span class="line">       | --&gt; service (0.0.0.3) <span class="comment"># New one</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 하드코딩된 연결정보가 외부 환경에 의해 변하거나 추가된다. </span></span><br><span class="line"><span class="comment"># 어떻게 대응해야하나??</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="서비스-디스커버리"><a href="#서비스-디스커버리" class="headerlink" title="서비스 디스커버리"></a>서비스 디스커버리</h1><p>따라서 클라이언트가 서비스를 호출할때 해당 서비스위 위치를 알아낼 수 있어야 하는데,<br>이 문제를 해소해주는것을 <strong>“서비스 디스커버리(service discovery)”</strong> 라고 합니다.</p>
+<h2 id="클라이언트-사이드-서비스-디스커버리"><a href="#클라이언트-사이드-서비스-디스커버리" class="headerlink" title="클라이언트 사이드 서비스 디스커버리"></a>클라이언트 사이드 서비스 디스커버리</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 서비스 구동시 내 서비스 정보를 service registry 에 등록</span></span><br><span class="line">service (0.0.0.0) -- add(ip, port) --&gt; | service registry</span><br><span class="line">service (0.0.0.1) -- add(ip, port) --&gt; | </span><br><span class="line">service (0.0.0.2) -- add(ip, port) --&gt; |</span><br><span class="line">service (0.0.0.3) -- add(ip, port) --&gt; |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 클라이언트는 service registry 에서 연결될 서비스 정보를 조회</span></span><br><span class="line">client | --  1. Where is service        --&gt; | service registry</span><br><span class="line">       | &lt;-- 2. <span class="built_in">return</span> service ip &amp; port -- |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 클라이언트는 조회된 정보로 서비스 호출</span></span><br><span class="line">client | --&gt; service (0.0.0.3)</span><br></pre></td></tr></table></figure>
+<p><strong>요약</strong></p>
+<ol>
+<li>서비스 인스턴스가 시작될때 service registry 에 서비스 정보를 등록합니다.</li>
+<li>service registry 는 이 서비스의 상태를 계속 체크합니다. <strong>(health check)</strong></li>
+<li>클라이언트는 service registry 에 연결하고자 하는 서비스를 조회합니다.</li>
+<li>service registry 는 연결된 서비스중 하나의 연결을 반환합니다. <strong>(load balancing)</strong></li>
+<li>클라이언트는 전달받은 연결정보로 서비스에 연결합니다.</li>
+<li>서비스 인스턴스가 종료되면 service registry 에서는 해당 서비스를 제외합니다.</li>
+</ol>
+<h2 id="서버-사이드-서비스-디스커버리"><a href="#서버-사이드-서비스-디스커버리" class="headerlink" title="서버 사이드 서비스 디스커버리"></a>서버 사이드 서비스 디스커버리</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 서비스 구동시 내 서비스 정보를 service registry 에 등록</span></span><br><span class="line">service (0.0.0.0) -- add(ip, port) --&gt; | service registry</span><br><span class="line">service (0.0.0.1) -- add(ip, port) --&gt; | </span><br><span class="line">service (0.0.0.2) -- add(ip, port) --&gt; |</span><br><span class="line">service (0.0.0.3) -- add(ip, port) --&gt; |</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 클라이언트는 proxy 서버에 요청</span></span><br><span class="line">client | --&gt; proxy server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># proxy 서버는 service registry 에서 연결될 서비스 정보를 조회</span></span><br><span class="line">proxy server | --  1. Where is service        --&gt; | service registry</span><br><span class="line">             | &lt;-- 2. <span class="built_in">return</span> service ip &amp; port -- | </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># proxy 서버는 조회된 정보로 서비스 호출</span></span><br><span class="line">proxy server | --&gt; service (0.0.0.3)</span><br></pre></td></tr></table></figure>
+<p>클라이언트 사이드 방식과 유사하지만 중간에 proxy 서버를 통해 서비스에 연결합니다.<br>이 방식의 특징은 클라이언트가 service registry 를 몰라도 되고 따로 구현할 필요가 없다는 점입니다.</p>
+<h1 id="service-registry"><a href="#service-registry" class="headerlink" title="service registry"></a>service registry</h1><p>모든 연결정보를 들고있는 서비스입니다.<br>연결될 서비스정보를 조회하고 체크해야하므로 고가용성이 요구됩니다.</p>
+<h1 id="service-discovery-를-제공하는-오픈소스들"><a href="#service-discovery-를-제공하는-오픈소스들" class="headerlink" title="service discovery 를 제공하는 오픈소스들"></a>service discovery 를 제공하는 오픈소스들</h1><p><strong>zookeeper</strong><br><a href="https://coding-start.tistory.com/66" target="_blank" rel="noopener">https://coding-start.tistory.com/66</a></p>
+<p><strong>consul</strong><br><a href="https://www.consul.io/" target="_blank" rel="noopener">https://www.consul.io/</a></p>
+<p><strong>etcd</strong><br><a href="https://etcd.io/" target="_blank" rel="noopener">https://etcd.io/</a></p>
+<p><strong>Eureka</strong><br><a href="https://coe.gitbook.io/guide/service-discovery/eureka" target="_blank" rel="noopener">https://coe.gitbook.io/guide/service-discovery/eureka</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/house-rental-check-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/house-rental-check-list/" class="post-title-link" itemprop="url">전/월세 계약시 체크리스트 - 깡통전세 역전세 예방</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-10 23:42:43" itemprop="dateCreated datePublished" datetime="2019-07-10T23:42:43+09:00">2019-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="집을-알아볼때"><a href="#집을-알아볼때" class="headerlink" title="집을 알아볼때"></a>집을 알아볼때</h1><p>무조건 부동산을 통해 현재 내가 원하는 집의 조건을 제시하고 알아 볼 수 있도록 합니다.</p>
+<h1 id="집-체크"><a href="#집-체크" class="headerlink" title="집 체크"></a>집 체크</h1><ul>
+<li>주차장 유무, 주차 혼잡도</li>
+<li>엘르베이터</li>
+<li>도어락, 문잠금 이상 유무</li>
+<li>신발장</li>
+<li>도배 상태 및 곰팡이 유무 (꼼꼼히)</li>
+<li>장판이나 바닥의 크래시 유무 (꼼꼼히)</li>
+<li>발코니 곰팡이 유무</li>
+<li>난방<ul>
+<li>가스보일러: 제일 비쌈</li>
+<li>중앙난방: 내가 설정하지 않아도 돈이 나감</li>
+<li>지역난방: 제일 저렴</li>
+</ul>
+</li>
+<li>인테리어 및 수리 유무</li>
+<li>싱크대<ul>
+<li>모양: - 또는 ㄱ 자</li>
+<li>배수</li>
+<li>수압</li>
+</ul>
+</li>
+<li>욕실<ul>
+<li>곰팡이 </li>
+<li>배수</li>
+</ul>
+</li>
+<li>기본 옵션<ul>
+<li>에어컨</li>
+<li>세탁기</li>
+<li>냉장고</li>
+</ul>
+</li>
+<li>누수 확인</li>
+<li>층간 소음</li>
+<li>거주자가 세입자인지 집주인인지 확인(집주인이면 좋지~)</li>
+</ul>
+<h1 id="건축물-대장"><a href="#건축물-대장" class="headerlink" title="건축물 대장"></a>건축물 대장</h1><ul>
+<li>불법 증축은 하지 않았는지? </li>
+<li>내가 사는집의 평수는 어떠한지 꼼꼼히 체크해봐야 합니다.</li>
+<li>전세보증보험에 가입될수있는 건축물인지 확인한다.<ul>
+<li>아파트</li>
+<li>주거용 오피스텔</li>
+<li>도시형 생활주택</li>
+<li>단독, 다가구, 연립, 다세대주택</li>
+</ul>
+</li>
+</ul>
+<h1 id="등기부-등본"><a href="#등기부-등본" class="headerlink" title="등기부 등본"></a>등기부 등본</h1><ul>
+<li>등기부등본이 깔끔할수록 좋습니다.</li>
+<li>가처분, 가등기설정이 된 집은 되도록이면 계약하지 않습니다.</li>
+<li>다가구에 입주할때는 내가 몇번째 세입자인지, 어느 순위에 있는지 확인해야 합니다. (집주인에게 문의)</li>
+</ul>
+<h2 id="갑구"><a href="#갑구" class="headerlink" title="갑구"></a>갑구</h2><ul>
+<li>갑구에서 건물의 소유자를 확인할 수 있습니다.</li>
+<li>건물의 소유자가 내가 계약하려는 사람과 동일한지 확인해야 합니다.</li>
+<li>절대 대리인을 통해 계약하지 않습니다. (그게 설령 부동산 중개인이라도 말이죠)</li>
+</ul>
+<h2 id="을구"><a href="#을구" class="headerlink" title="을구"></a>을구</h2><ul>
+<li>근저당권을 통해 채권자와 채무액을 확인합니다.</li>
+<li>선순위 전세권이 설정되어 있는경우 말소해달라고 해야합니다.</li>
+<li>임차권 등기가 설정된 집은 계약하지 않는것이 좋습니다.</li>
+</ul>
+<h1 id="계약서-작성"><a href="#계약서-작성" class="headerlink" title="계약서 작성"></a>계약서 작성</h1><h2 id="특약사항"><a href="#특약사항" class="headerlink" title="특약사항"></a>특약사항</h2><ul>
+<li>임차인은 기본 시설물을 훼손할 경우 원상복구의 책임을 진다.</li>
+<li>임대인은 본 임대차 계약 기간 중에 매매나 담보제공을 할 경우에는 사전에 미리 통보해주기로 한다.</li>
+<li>임대인은 계약당시의 등기부상 권리 관계를 잔금 익일까지 유지하기로 하며, 이를 위반시 임차인은 계약을 해제 또는 해지 할 수 있며, 이에 따른 손해배상금액은 임대인과 임차인의 합의에 따르기로 한다.</li>
+<li>임대차 계약만료일에는 새로운 임대차계약의 성사여부와 관계없이 임대보증금을 즉시 반환해주기로 한다.</li>
+<li>잔금시 신탁등기 말소조건으로 한다.(임차할 주택이 신탁등기일때만)</li>
+</ul>
+<h1 id="전세금-반환-보증보험"><a href="#전세금-반환-보증보험" class="headerlink" title="전세금 반환 보증보험"></a>전세금 반환 보증보험</h1><ul>
+<li>집주인 동의없이 가입할 수 있습니다.</li>
+<li>선순위 채권한도 80% 까지 보장 받을 수 있습니다.</li>
+</ul>
+<h2 id="대상"><a href="#대상" class="headerlink" title="대상"></a>대상</h2><p>건축물 대장을 통해 아래 항목의 범주에 있는지 확인해야 합니다.</p>
+<ul>
+<li>아파트</li>
+<li>연립주택</li>
+<li>다세대 주택</li>
+<li>오피스텔</li>
+<li>단독주택</li>
+</ul>
+<h2 id="가입조건"><a href="#가입조건" class="headerlink" title="가입조건"></a>가입조건</h2><ul>
+<li>전입신고를 마치고 확정일자를 받을것</li>
+<li>선순위 채권 &lt;= 추정 시가의 60%<br>예) 주택가격이 1억, 나를 제외한 선순위 채권이 6천만원 이하일 경우</li>
+<li>선순위 채권 + 전세보증금 &lt;= 추정 시가의 100%<br>예) 주택가격이 1억, 선순위 채권과 내 보증금을 합한 금액이 1억 이하일 경우</li>
+<li>전세보증금이 보증한도 내일것</li>
+</ul>
+<h2 id="가입가능-기간"><a href="#가입가능-기간" class="headerlink" title="가입가능 기간"></a>가입가능 기간</h2><p>전세 계약기간의 1/2 가 지나기 전에 해야합니다.</p>
+<h2 id="보증-한도"><a href="#보증-한도" class="headerlink" title="보증 한도"></a>보증 한도</h2><p>주택가격 - 선순위채권 의 가격에서 수도권은 최대 7억까지</p>
+<h1 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h1><p><a href="https://brunch.co.kr/@readme999/137" target="_blank" rel="noopener">https://brunch.co.kr/@readme999/137</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/docker-dockerfile-centos-httpd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/docker-dockerfile-centos-httpd/" class="post-title-link" itemprop="url">dockerfile 을 이용한 centos + apache(httpd) 빌드 & 실행</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-11 16:17:09" itemprop="dateCreated datePublished" datetime="2019-06-11T16:17:09+09:00">2019-06-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Dockerfile 을통해 httpd 를 서비스하는 예제를 정리합니다.<br>httpd 나 apache 이미지를 사용하지 않고 centos 에 직접 설치를 해보았습니다.</p>
+<p><strong>설치 상세</strong></p>
+<ol>
+<li>centos:7.5.1804</li>
+<li>apache(httpd) 2.4.6</li>
+</ol>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p><strong>/Dockerfile</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos:<span class="number">7.5</span>.<span class="number">1804</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install httpd</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> /entry-point.sh /entry-point.sh</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod 755 /entry-point.sh</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">"sh"</span>,<span class="string">"/etc/entry-point.sh"</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>/entry-point.sh</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">/usr/sbin/httpd -D FOREGROUND</span><br></pre></td></tr></table></figure>
+
+<h1 id="Build-amp-Run"><a href="#Build-amp-Run" class="headerlink" title="Build &amp; Run"></a>Build &amp; Run</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build</span></span><br><span class="line">docker build --rm -t my-httpd:latest .</span><br><span class="line"></span><br><span class="line"><span class="comment"># run</span></span><br><span class="line">docker run -d -p 80:80 my-httpd:latest</span><br></pre></td></tr></table></figure>
+
+<p><strong>주의</strong><br>컨테이너 실행(run) 시 /bin/bash 를 통해 컨테이너에 접근하게될 경우 httpd 서비스가 실행되지 않을 수 있습니다.</p>
+<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><p><a href="http://localhost:80" target="_blank" rel="noopener">http://localhost:80</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/no-home-period-calc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/no-home-period-calc/" class="post-title-link" itemprop="url">무주택 기간 계산기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-17 16:04:49" itemprop="dateCreated datePublished" datetime="2019-05-17T16:04:49+09:00">2019-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="무주택-기간-계산기"><a href="#무주택-기간-계산기" class="headerlink" title="무주택 기간 계산기"></a>무주택 기간 계산기</h1><p>무주택 기간 계산을 도와드립니다.<br><a href="https://lejewk.github.io/home/">https://lejewk.github.io/home/</a></p>
+<p><strong>샘플 화면 ↓↓↓</strong><br><img src="https://user-images.githubusercontent.com/11376406/57909393-aa21ba80-78bd-11e9-982e-e1bfcc75031d.gif" alt=""></p>
+<h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><p><a href="https://github.com/lejewk/no_home_period_calc" target="_blank" rel="noopener">https://github.com/lejewk/no_home_period_calc</a></p>
+<h1 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h1><p><a href="https://www.apt2you.com/" target="_blank" rel="noopener">https://www.apt2you.com/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/react-webpack-babel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/react-webpack-babel/" class="post-title-link" itemprop="url">react webpack babel 활용한 개발 빌드 환경 구축</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-17 12:13:51" itemprop="dateCreated datePublished" datetime="2019-05-17T12:13:51+09:00">2019-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>webpack 과 babel 을 활용한 react 개발환경 설정을 정리합니다.</p>
+<h1 id="의존성-설치"><a href="#의존성-설치" class="headerlink" title="의존성 설치"></a>의존성 설치</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/core @babel/preset-env @babel/polyfill @babel/preset-react @babel/plugin-proposal-class-properties -D</span><br><span class="line">npm install webpack webpack-cli webpack-dev-server -D</span><br><span class="line">npm install babel-loader css-loader html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+
+<p><strong>바벨 라이브러리</strong><br><code>@babel/core</code> 바벨 사용필수 라이브러리<br><code>@babel/preset-env</code> es5 트랜스파일러<br><code>@babel/polyfill</code> es6 의 새로운 객체와 메소드 사용 가능 처리<br><code>@babel/preset-react</code> 리액트 jsx를 위한 라이브러리<br><code>@babel/plugin-proposal-class-properties</code> class 를 사용 가능처리</p>
+<p><strong>웹팩 라이브러리</strong><br><code>webpack</code> 웹팩 사용필수 라이브러리<br><code>webpack-cli</code> 웹팩 커맨드라인 인터페이스 라이브러리<br><code>webpack-dev-server</code> 웹팩 개발서버 라이브러리<br><code>babel-loader</code> 바벨과 웹팩을 이용해 자바스크립트 파일을 트랜스파일<br><code>css-loader</code> css 파일을 import, require 할수있게 함<br><code>html-webpack-plugin</code> 웹팩 번들에 html을 제공할수있는 라이브러리</p>
+<h1 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h1><p>babel 을 사용하려면 .babelrc 파일이 필요합니다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/.babelrc</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    <span class="string">"@babel/preset-env"</span>, </span><br><span class="line">    <span class="string">"@babel/preset-react"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    <span class="string">"@babel/plugin-proposal-class-properties"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h1><p>웹팩은 webpack.config.js 파일이 존재하고, 이 파일을 토대로 동작합니다.<br>이 파일에서 babel, bundle, dev server 설정을 합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/webpack.config.js</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> port = process.env.PORT || <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">'/dist'</span>.</span><br><span class="line">    filename: <span class="string">'bundle.[hash].js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(js|jsx)$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        use: <span class="string">'babel-loader'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: <span class="string">'style-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">'public/index.html,</span></span><br><span class="line"><span class="string">      favicon: '</span>public/favicon.ico</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    port: port,</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    historyApiFallback: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="scripts-수정"><a href="#scripts-수정" class="headerlink" title="scripts 수정"></a>scripts 수정</h1><p>webpack 을 통해 build 와 start 를 하도록 변경합니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/package.json</span><br><span class="line">&#123;</span><br><span class="line">  ..</span><br><span class="line">  ..</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "start": "webpack-dev-server",</span><br><span class="line">    "build": "webpack --mode production"</span><br><span class="line">  &#125;</span><br><span class="line">  ..</span><br><span class="line">  ..</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>npm start</code> 를 통해 webpack dev server 에서 앱이 실행되는것을 확인할 수 있습니다.<br><code>npm run build</code> 를 통해 <code>dist</code> 경로에 build 된 index.html 과 js 파일도 확인할 수 있습니다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/intellij-live-templates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/intellij-live-templates/" class="post-title-link" itemprop="url">intellij Live Templates 활용</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-13 16:05:08" itemprop="dateCreated datePublished" datetime="2019-05-13T16:05:08+09:00">2019-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>자주 사용되는 코드를 템플릿화 하여 빠르게 에디터에 붙여넣을 수 있습니다.<br>기본적으로 intellij 에서 제공하는 템플릿은 언어별로 다양하지만, 본인이 자주 사용하는 코드가 없기때문에<br>이를 템플릿화 하여 좀더 개발에 도움이 될 수 있습니다.</p>
+<p><code>live templates</code> 의 단축키는 <code>ctrl + j</code> 입니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602237-93b3f000-7599-11e9-8d33-dc6076e73044.png" alt=""></p>
+<p>php 를 사용하기때문에 php에 맞는 템플릿이 노출됩니다.</p>
+<h1 id="Live-Templates-설정"><a href="#Live-Templates-설정" class="headerlink" title="Live Templates 설정"></a>Live Templates 설정</h1><p>설정 (<code>ctrl + alt + s</code>) 을 열어 live templates 메뉴로 이동합니다.<br><code>Editor -&gt; Live Templates</code><br><img src="https://user-images.githubusercontent.com/11376406/57602351-dbd31280-7599-11e9-81e3-44bf752143d8.png" alt=""></p>
+<p>추가를 원하는 그룹을 선택하고 우측 [+] 를 눌러 신규 템플릿을 입력합니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602610-8cd9ad00-759a-11e9-999e-0b2715fbe232.png" alt=""></p>
+<p><strong>템플릿과 변수</strong><br>저는 아래와같이 템플릿을 입력했습니다.<br>내용 중 <code>$LOG_TITLE$</code> 과 같이 <code>$</code> 로 감싸진 값을 볼 수 있는데요,<br>이런 식의 처리를 하면 템플릿을 불러왔을때 자동으로 커서의 포커스가 이동되게 됩니다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error_log(<span class="string">"\n[TIME : "</span> . date(<span class="string">'Y-m-d/H:i:s'</span>, time()) . <span class="string">"]\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br><span class="line">error_log(var_export(<span class="string">"$LOG_TITLE$"</span>, <span class="keyword">true</span>) . <span class="string">"\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br><span class="line">error_log(var_export($LOG_DATA$, <span class="keyword">true</span>) . <span class="string">"\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br><span class="line">error_log(<span class="string">"------------------\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Define - 노출 장소 정의</strong><br>템플릿이 정의될 위치를 결정합니다.<br>어떤 언어에서 노출될지 유무를 결정하게 된다고 보시면 됩니다.</p>
+<p>저의 경우 PHP 전역에서 해당 템플릿이 노출되도록 적용했습니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602850-30c35880-759b-11e9-8b5e-5740a0b12c9c.png" alt=""></p>
+<h1 id="사용"><a href="#사용" class="headerlink" title="사용"></a>사용</h1><p><code>ctrl + j</code> 를 입력하면 바로 확인 할 수 있습니다.<br>이후 방향키와 Enter 키로 쉽게 입력이 가능합니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602977-72ec9a00-759b-11e9-8bdb-f60dfa4e9db1.png" alt=""></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="이재욱이"
+      src="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+  <p class="site-author-name" itemprop="name">이재욱이</p>
+  <div class="site-description" itemprop="description">소스코드 파밍중...</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lejewk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lejewk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lighten518@gmail.com" title="E-Mail → mailto:lighten518@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">이재욱이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
