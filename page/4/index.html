@@ -171,6 +171,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/springboot-aop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/springboot-aop/" class="post-title-link" itemprop="url">spring boot aop 정리</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-05 23:57:33" itemprop="dateCreated datePublished" datetime="2019-04-05T23:57:33+09:00">2019-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>관심사를 분리합니다.<br>비즈니스로직에 집중할 수 있게 합니다.</p>
+<h1 id="선행-개념"><a href="#선행-개념" class="headerlink" title="선행 개념"></a>선행 개념</h1><h2 id="advice"><a href="#advice" class="headerlink" title="advice"></a>advice</h2><p>실행할 로직은 어떤것인가?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAdvice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"test advice"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="pointcut"><a href="#pointcut" class="headerlink" title="pointcut"></a>pointcut</h2><p>어떤 대상을 기준으로 advice 를 동작하게 할것인가?<br><code>execution(* com.aop.controller.*(..))</code><br><code>within(com.aop.controller..)</code> </p>
+<h2 id="joinpoint"><a href="#joinpoint" class="headerlink" title="joinpoint"></a>joinpoint</h2><p>동작될 대상의 어떤 시점에 advice 를 동작시킬것인가?<br><code>@Before(...)</code><br><code>@After(...)</code><br><code>@Around(...)</code></p>
+<h1 id="aspect-구성"><a href="#aspect-구성" class="headerlink" title="aspect 구성"></a>aspect 구성</h1><ol>
+<li>컨트롤러에 <code>@Aspect</code> 를 등록합니다.</li>
+<li>advice 메소드를 만듭니다.</li>
+<li>advice 에 joinpoint 를 등록합니다.</li>
+<li>poinpoint 에 pointcut 을 지정합니다.</li>
+</ol>
+<p><strong>예시</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">// 1. 어노테이션 등록</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"execution(* com.aop.controller.*(..))"</span>) <span class="comment">// 3, 4 pointcut, joinpoint 지정 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myAdvice</span><span class="params">()</span> </span>&#123;  <span class="comment">// 2. advice 메소드 구현</span></span><br><span class="line">        System.out.println(<span class="string">"test advice"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Aspect-상세정보"><a href="#Aspect-상세정보" class="headerlink" title="Aspect 상세정보"></a>Aspect 상세정보</h1><h2 id="pointcut-1"><a href="#pointcut-1" class="headerlink" title="pointcut"></a>pointcut</h2><h3 id="지시자"><a href="#지시자" class="headerlink" title="지시자"></a>지시자</h3><ul>
+<li><code>execution</code> 표현식에 부합되는 함수를 선택합니다.</li>
+<li><code>within</code> 특정 타입에 속하는 함수 전체를 지정</li>
+<li><code>bean</code></li>
+<li><code>And, Or</code> 복합적인 조건을 <code>&amp;&amp;</code>, <code>||</code> 로 지정할 수 있습니다.</li>
+</ul>
+<h3 id="표현식"><a href="#표현식" class="headerlink" title="표현식"></a>표현식</h3><p>[접근제어자] [리턴타입] [패키지] [클래스이름] [메소드명](파라미터)</p>
+<h3 id="사용-예제"><a href="#사용-예제" class="headerlink" title="사용 예제"></a>사용 예제</h3><table>
+<thead>
+<tr>
+<th>example</th>
+<th>리턴타입</th>
+<th>패키지</th>
+<th>클래스</th>
+<th>메소드</th>
+<th>파라미터</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>* com.aop.controller.*.*(..)</td>
+<td>모든 타입</td>
+<td>com.aop.controller</td>
+<td>모든 클래스</td>
+<td>모든 메소드</td>
+<td>모든 파라미터</td>
+</tr>
+<tr>
+<td>String com.aop.controller.HomeController.index(*)</td>
+<td>String</td>
+<td>com.aop.controller</td>
+<td>HomeController</td>
+<td>index</td>
+<td>파라미터가 1개</td>
+</tr>
+</tbody></table>
+<h2 id="jointpoint"><a href="#jointpoint" class="headerlink" title="jointpoint"></a>jointpoint</h2><h3 id="동작시점"><a href="#동작시점" class="headerlink" title="동작시점"></a>동작시점</h3><table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Before</code></td>
+<td>메소드 실행 전 동작</td>
+</tr>
+<tr>
+<td><code>@After</code></td>
+<td>메소드 실행 후 동작</td>
+</tr>
+<tr>
+<td><code>@Around</code></td>
+<td>메스도 실행 전, 후 동작</td>
+</tr>
+<tr>
+<td><code>@AfterReturning</code></td>
+<td>메소드 실행 후 동작 <br><strong>메소드 반환값 획득 가능</strong></td>
+</tr>
+<tr>
+<td><code>@AfterThrowing</code></td>
+<td>예외가 발생했을때 동작</td>
+</tr>
+</tbody></table>
+<h2 id="advice-1"><a href="#advice-1" class="headerlink" title="advice"></a>advice</h2><h3 id="파라미터-확인"><a href="#파라미터-확인" class="headerlink" title="파라미터 확인"></a>파라미터 확인</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">"execution(* com.aop.demo.util.*.*(*))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"--- Before ---"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 요청 파라미터 출력</span></span><br><span class="line">    Stream.of(joinPoint.getArgs()).forEach(it -&gt; &#123;</span><br><span class="line">        System.out.println(it.toString());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="리턴-확인"><a href="#리턴-확인" class="headerlink" title="리턴 확인"></a>리턴 확인</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AfterReturning</span>(value = <span class="string">"execution(* com.aop.demo.util.*.*(*))"</span>, returning = <span class="string">"returnValue"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">(Object returnValue)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"--- After returning ---"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 응답 파라미터 출력</span></span><br><span class="line">    Stream.of(returnValue).forEach(it -&gt; &#123;</span><br><span class="line">        System.out.println(it.toString());</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/sublime-text3-build/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1036,84 +1179,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/springboot-swagger/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
-      <meta itemprop="name" content="이재욱이">
-      <meta itemprop="description" content="소스코드 파밍중...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개발자님 cs 드세요">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/springboot-swagger/" class="post-title-link" itemprop="url">spring boot Swagger 와 REST API 문서 자동화</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-20 18:30:26" itemprop="dateCreated datePublished" datetime="2019-01-20T18:30:26+09:00">2019-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>swagger 를 이용하여 Spring 의 REST API 문서를 자동화하는 방법을 정리합니다.</p>
-<p>API를 제공하려면 가이드 문서 제공은 필수적입니다.<br>그런데 개발을 진행하면서 기능이 추가될때마다 별도로 문서를 작성하고 갱신하는것에는 많은 비용이 따릅니다.<br>따라서 swagger 를 활용해 이런 문제를 해소할 수 있습니다.</p>
-<h1 id="의존성-등록"><a href="#의존성-등록" class="headerlink" title="의존성 등록"></a>의존성 등록</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ..</span><br><span class="line">    ..</span><br><span class="line">    compile <span class="string">'io.springfox:springfox-swagger2:2.4.0'</span></span><br><span class="line">    compile <span class="string">'io.springfox:springfox-swagger-ui:2.4.0'</span></span><br><span class="line">    ..</span><br><span class="line">    ..</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Config-설정"><a href="#Config-설정" class="headerlink" title="Config 설정"></a>Config 설정</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.devwook88.learn_spring_boot.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger.web.UiConfiguration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> springfox.documentation.builders.PathSelectors.regex;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">metadata</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"JPub Spring Boot"</span>)</span><br><span class="line">                .description(<span class="string">"Spring Boot Rest API"</span>)</span><br><span class="line">                .version(<span class="string">"1.0"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">api</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.any())</span><br><span class="line">                .paths(PathSelectors.any()) <span class="comment">// 모든 경로를 문서화</span></span><br><span class="line">                <span class="comment">// .paths(regex("/basic/.*")) // /basic/ 하위 경로를 문서화</span></span><br><span class="line">                .build()</span><br><span class="line">                .apiInfo(metadata());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>설정이므로 최상단에 <code>@Configuration</code> 과 swagger 를 이용하기위해 <code>@EnableSwagger2</code> 어노테이션을 추가합니다.</p>
-<p>ApiInfo 에는 API 의 기본정보를 저장할 수 있습니다.</p>
-<p>문서화는 전체를 지정하거나 특정 URI 를 지정할 수 있습니다</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">paths(PathSelectors.any())</span><br><span class="line">or</span><br><span class="line">paths(regex(<span class="string">"/basic/.*"</span>))</span><br></pre></td></tr></table></figure>
-
-<p>swagger 는 문서가 참조할 API 경로와 메타 정보를 포함해서 Docket 인스턴스를 생성하고<br>이를 기준으로 동작합니다.</p>
-<h1 id="docs"><a href="#docs" class="headerlink" title="docs"></a>docs</h1><p>서버를 구동하고 아래 URL을 통해 결과를 확인할 수 있습니다.<br><a href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></p>
-<h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><p>swagger 에 대한 자세한 정보는 아래 github 에서 구체적으로 확인할 수 있습니다.<br><a href="https://github.com/swagger-api/swagger-core/wiki/Annotations">https://github.com/swagger-api/swagger-core/wiki/Annotations</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1199,14 +1264,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
