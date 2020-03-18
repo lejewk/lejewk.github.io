@@ -171,6 +171,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/zookeeper-get-started/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/zookeeper-get-started/" class="post-title-link" itemprop="url">apache Zookeeper 시작하기 (tutorial / windows 10)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-04 16:30:35" itemprop="dateCreated datePublished" datetime="2019-12-04T16:30:35+09:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="zookeeper-주키퍼-란"><a href="#zookeeper-주키퍼-란" class="headerlink" title="zookeeper(주키퍼) 란?"></a>zookeeper(주키퍼) 란?</h1><p>분산시스템 환경에서 사용하기 적합한 key/value 저장 시스템입니다.</p>
+<blockquote>
+<p>혹은 다른 더 적합한 대목을 달 수 있습니다. 사용하기 나름입니다.</p>
+</blockquote>
+<h1 id="주키퍼-아키텍처"><a href="#주키퍼-아키텍처" class="headerlink" title="주키퍼 아키텍처"></a>주키퍼 아키텍처</h1><h2 id="znode"><a href="#znode" class="headerlink" title="znode"></a>znode</h2><p>znode 라는 데이터 저장 객체를 제공합니다. (key/value 와 흡사한)<br>이 객체에 데이터를 넣고 빼는 기능을 제공합니다.<br><img src="https://user-images.githubusercontent.com/11376406/70122641-62754b80-16b4-11ea-8355-eaec68e45a06.jpg" alt=""><br>그림과 같이 디렉토리 형식을 사용하며, 데이터를 계층화한 구조로 저장합니다.<br>어떤식으로 데이터를 다루는지(생성,수정,삭제)에 대해서는 이후에 다루겠습니다.</p>
+<h2 id="server-cluster"><a href="#server-cluster" class="headerlink" title="server (cluster)"></a>server (cluster)</h2><p>주키퍼는 단독 또는 클러스터로 구성을 합니다.</p>
+<blockquote>
+<p>분산 처리 시스템에서 사용하기때문에 자연스레 클러스터로 구성하며 고가용성이 요구되나 봅니다.</p>
+</blockquote>
+<h3 id="Leader-Follower"><a href="#Leader-Follower" class="headerlink" title="Leader - Follower"></a>Leader - Follower</h3><p>주키퍼는 하나의 리더와 다수의 팔로워가 클러스터를 이룹니다.<br><img src="https://user-images.githubusercontent.com/11376406/70122642-630de200-16b4-11ea-9059-731fe09d48c4.png" alt=""></p>
+<h3 id="Ensemble-앙상블"><a href="#Ensemble-앙상블" class="headerlink" title="Ensemble(앙상블)"></a>Ensemble(앙상블)</h3><p>이런 클러스터를 앙상블이라고 합니다.<br>추후 클라이언트는 앙상블에 연결하여 서비스의 존재를 알리거나 데이터를 핸들링하게 됩니다.</p>
+<h1 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h1><h2 id="의존성"><a href="#의존성" class="headerlink" title="의존성"></a>의존성</h2><p>zookeeper 는 독립적으로 사용이 불가능하며 자바에 의존성이 있습니다.<br>따라서 자바를 설치해야 합니다.</p>
+<h3 id="java"><a href="#java" class="headerlink" title="java"></a>java</h3><p>oracle 자바를 설치했습니다.</p>
+<h3 id="환경변수-등록"><a href="#환경변수-등록" class="headerlink" title="환경변수 등록"></a>환경변수 등록</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME = C:\Program Files\Java\jdk-13.0.1</span><br><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
+
+<h3 id="확인"><a href="#확인" class="headerlink" title="확인"></a>확인</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ java --version</span><br><span class="line">java 13.0.1 2019-10-15</span><br><span class="line">Java(TM) SE Runtime Environment (build 13.0.1+9)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br><span class="line">C:\Program Files\Java\jdk-13.0.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h2><p><a href="https://archive.apache.org/dist/zookeeper/stable/">https://archive.apache.org/dist/zookeeper/stable/</a> 에서 다운로드 합니다.</p>
+<blockquote>
+<p>:warning: <code>apache-zookeeper-3.5.6-bin.tar.gz</code> 를 다운로드 해주셔야 합니다.</p>
+</blockquote>
+<h1 id="zoo-cfg-설정"><a href="#zoo-cfg-설정" class="headerlink" title="zoo.cfg 설정"></a>zoo.cfg 설정</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line"><span class="comment"># 데이터 저장 경로</span></span><br><span class="line">dataDir=data</span><br><span class="line">clientPort=2181</span><br></pre></td></tr></table></figure>
+
+<p><strong>dir 구조</strong><br><img src="https://user-images.githubusercontent.com/11376406/70123557-44104f80-16b6-11ea-8b35-ab4dffae6ccb.png" alt=""></p>
+<h1 id="server-standalone-git-bash"><a href="#server-standalone-git-bash" class="headerlink" title="server (standalone / git bash)"></a>server (standalone / git bash)</h1><p>단독으로 서버를 실행시켜 봅니다.</p>
+<blockquote>
+<p>:warning: 꼭 <code>git bash</code> 로 해야합니다. 안그러면 삽질을 하게될것입니다.</p>
+</blockquote>
+<h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ bin/zkServer.sh start</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: D:\zookeeper\apache-zookeeper-3.5.6-bin\apache-zookeeper-3.5.6-bin\conf\zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br></pre></td></tr></table></figure>
+
+<h2 id="log-확인"><a href="#log-확인" class="headerlink" title="log 확인"></a>log 확인</h2><p>로그를 통해 서버가 올바르게 실행되었는지 확인할 수 있습니다.<br>오류 발생시 에러가 출력됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># logs/zookeeper--server-username.out</span></span><br><span class="line">..</span><br><span class="line">..</span><br></pre></td></tr></table></figure>
+
+<h2 id="stop"><a href="#stop" class="headerlink" title="stop"></a>stop</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ bin/zkServer.sh stop</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: D:\zookeeper\apache-zookeeper-3.5.6-bin\apache-zookeeper-3.5.6-bin\conf\zoo.cfg</span><br><span class="line">Stopping zookeeper ... <span class="built_in">kill</span>: 2904: No such process</span><br><span class="line">STOPPED</span><br></pre></td></tr></table></figure>
+
+<h1 id="client-cmd"><a href="#client-cmd" class="headerlink" title="client (cmd)"></a>client (cmd)</h1><p>client 로 서버에 접근하여 데이터를 다뤄봅니다.</p>
+<blockquote>
+<p>:warning: 이번엔 <code>windows</code> 의 <code>cmd</code> 로 접근하셔야 합니다.<br>git bash 도 가능하긴 하나, 명령어에 대한 응답이 오지 않습니다.<br>혹시 성공하시면 공유좀 부탁드립니다.</p>
+</blockquote>
+<h2 id="연결"><a href="#연결" class="headerlink" title="연결"></a>연결</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ bin/zkCli.cmd</span><br><span class="line">Connecting to localhost:2181</span><br><span class="line">..</span><br><span class="line">Welcome to ZooKeeper!</span><br><span class="line">..</span><br><span class="line">WATCHER::</span><br><span class="line"> </span><br><span class="line">WatchedEvent state:SyncConnected <span class="built_in">type</span>:None path:null</span><br><span class="line">[zk: localhost:2181(CONNECTED) 0]</span><br></pre></td></tr></table></figure>
+<p>연결 된 이후부터는 zookeeper cli 가 제공하는 명령어를 통해 znode 를 핸들링할 수 있습니다.</p>
+<h1 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h1><h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><p>znode 내에 있는 경로를 탐색합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 0] ls /</span><br><span class="line">[zookeeper]</span><br></pre></td></tr></table></figure>
+
+<h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>새로운 경로와 값을 구성합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 1] create /name wook</span><br><span class="line">Created /name</span><br><span class="line">[zk: localhost:2181(CONNECTED) 3] ls /</span><br><span class="line">[name, zookeeper]</span><br></pre></td></tr></table></figure>
+
+<h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><p>경로의 값을 반환합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 5] get /name</span><br><span class="line">wook</span><br></pre></td></tr></table></figure>
+
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>경로에 값을 수정합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 14] <span class="built_in">set</span> /name kim</span><br><span class="line">[zk: localhost:2181(CONNECTED) 15] get /name</span><br><span class="line">kim</span><br></pre></td></tr></table></figure>
+
+<h2 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h2><p>경로를 제거합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 16] delete /name</span><br><span class="line">[zk: localhost:2181(CONNECTED) 17] get /name</span><br><span class="line">org.apache.zookeeper.KeeperException<span class="variable">$NoNodeException</span>: KeeperErrorCode = NoNode <span class="keyword">for</span> /name</span><br><span class="line">[zk: localhost:2181(CONNECTED) 19] ls /</span><br><span class="line">[zookeeper]</span><br></pre></td></tr></table></figure>
+
+<h1 id="Replication-설정"><a href="#Replication-설정" class="headerlink" title="Replication 설정"></a>Replication 설정</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">dataDir=data</span><br><span class="line">clientPort=2181</span><br><span class="line">initLimit=5</span><br><span class="line">syncLimit=2</span><br><span class="line">server.1=zoo1:2888:3888</span><br><span class="line">server.2=zoo2:2888:3888</span><br><span class="line">server.3=zoo3:2888:3888</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>tickTime</code>: tick 단위 시간을 설정합니다.</li>
+<li><code>lnitLimit</code>: follwer 가 leader 와 연결 시도시 갖는 tick 제한 횟수 입니다. tick 제한 횟수(5회, 1회당 2초, 총 10초)가 넘으면 timeout 이 발생합니다.</li>
+<li><code>syncLimit</code>: follower 가 leader 와 연결된 후 계속하여 앙상블 안에서 leader 와 동기화되기 위한 tick 제한 횟수.</li>
+<li><code>server.1 ~ server.3</code>: 주키퍼가 앙상블을 이루기 위한 서버정보를 기재합니다. <ul>
+<li><code>2888</code> port 는 동기화를 위한 포트</li>
+<li><code>3888</code> port 는 클러스터 구성시 leader 를 선출하기 위한 포트 입니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="zookeeper-docker-참조"><a href="#zookeeper-docker-참조" class="headerlink" title="zookeeper docker 참조"></a>zookeeper docker 참조</h2><p>실제 구성은 docker 를 활용하면 좀더 쉬울것 같습니다.<br><a href="https://hub.docker.com/_/zookeeper/">https://hub.docker.com/_/zookeeper/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/docker-container-infinite-loop-method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1103,85 +1236,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/react-webpack-babel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
-      <meta itemprop="name" content="이재욱이">
-      <meta itemprop="description" content="소스코드 파밍중...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개발자님 cs 드세요">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/react-webpack-babel/" class="post-title-link" itemprop="url">react webpack babel 활용한 개발 빌드 환경 구축</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-05-17 12:13:51" itemprop="dateCreated datePublished" datetime="2019-05-17T12:13:51+09:00">2019-05-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>webpack 과 babel 을 활용한 react 개발환경 설정을 정리합니다.</p>
-<h1 id="의존성-설치"><a href="#의존성-설치" class="headerlink" title="의존성 설치"></a>의존성 설치</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install @babel/core @babel/preset-env @babel/polyfill @babel/preset-react @babel/plugin-proposal-class-properties -D</span><br><span class="line">npm install webpack webpack-cli webpack-dev-server -D</span><br><span class="line">npm install babel-loader css-loader html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
-
-<p><strong>바벨 라이브러리</strong><br><code>@babel/core</code> 바벨 사용필수 라이브러리<br><code>@babel/preset-env</code> es5 트랜스파일러<br><code>@babel/polyfill</code> es6 의 새로운 객체와 메소드 사용 가능 처리<br><code>@babel/preset-react</code> 리액트 jsx를 위한 라이브러리<br><code>@babel/plugin-proposal-class-properties</code> class 를 사용 가능처리</p>
-<p><strong>웹팩 라이브러리</strong><br><code>webpack</code> 웹팩 사용필수 라이브러리<br><code>webpack-cli</code> 웹팩 커맨드라인 인터페이스 라이브러리<br><code>webpack-dev-server</code> 웹팩 개발서버 라이브러리<br><code>babel-loader</code> 바벨과 웹팩을 이용해 자바스크립트 파일을 트랜스파일<br><code>css-loader</code> css 파일을 import, require 할수있게 함<br><code>html-webpack-plugin</code> 웹팩 번들에 html을 제공할수있는 라이브러리</p>
-<h1 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h1><p>babel 을 사용하려면 .babelrc 파일이 필요합니다.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/.babelrc</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    <span class="string">"@babel/preset-env"</span>, </span><br><span class="line">    <span class="string">"@babel/preset-react"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    <span class="string">"@babel/plugin-proposal-class-properties"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h1><p>웹팩은 webpack.config.js 파일이 존재하고, 이 파일을 토대로 동작합니다.<br>이 파일에서 babel, bundle, dev server 설정을 합니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/webpack.config.js</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> port = process.env.PORT || <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: __dirname + <span class="string">'/dist'</span>.</span><br><span class="line">    filename: <span class="string">'bundle.[hash].js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(js|jsx)$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        use: <span class="string">'babel-loader'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: <span class="string">'style-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">'public/index.html,</span></span><br><span class="line"><span class="string">      favicon: '</span>public/favicon.ico</span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    host: <span class="string">'localhost'</span>,</span><br><span class="line">    port: port,</span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    historyApiFallback: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="scripts-수정"><a href="#scripts-수정" class="headerlink" title="scripts 수정"></a>scripts 수정</h1><p>webpack 을 통해 build 와 start 를 하도록 변경합니다.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/package.json</span><br><span class="line">&#123;</span><br><span class="line">  ..</span><br><span class="line">  ..</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "start": "webpack-dev-server",</span><br><span class="line">    "build": "webpack --mode production"</span><br><span class="line">  &#125;</span><br><span class="line">  ..</span><br><span class="line">  ..</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>npm start</code> 를 통해 webpack dev server 에서 앱이 실행되는것을 확인할 수 있습니다.<br><code>npm run build</code> 를 통해 <code>dist</code> 경로에 build 된 index.html 과 js 파일도 확인할 수 있습니다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1267,14 +1321,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
