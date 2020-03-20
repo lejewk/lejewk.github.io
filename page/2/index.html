@@ -171,129 +171,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/springboot-gradle-spring-profiles-active/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
-      <meta itemprop="name" content="이재욱이">
-      <meta itemprop="description" content="소스코드 파밍중...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개발자님 cs 드세요">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/springboot-gradle-spring-profiles-active/" class="post-title-link" itemprop="url">spring boot 에서 profile 사용한 application.properties 로딩 (gradle build)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-01-10 11:32:15" itemprop="dateCreated datePublished" datetime="2020-01-10T11:32:15+09:00">2020-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="환경-dev-qa-stage-prod-에-따른-설정-로딩-요구"><a href="#환경-dev-qa-stage-prod-에-따른-설정-로딩-요구" class="headerlink" title="환경(dev, qa, stage, prod) 에 따른 설정 로딩 요구"></a>환경(dev, qa, stage, prod) 에 따른 설정 로딩 요구</h1><p>개발환경에 따라 설정값을 달리 로딩해야할 필요가 있습니다.</p>
-<blockquote>
-<p>Eg) <code>dev</code>, <code>qa</code>, <code>stage</code>, <code>prod</code></p>
-</blockquote>
-<p>spring boot 에서는 이들을 <code>profile</code> 로 취급하며,<br><code>application-&lt;profile&gt;.properties</code> 파일과 <code>spring.profiles.active</code> 값을 통해 이 문제를 해결할 수 있습니다.</p>
-<p>여기에는 몇가지 <code>규칙</code>과 <code>gradle build</code> 에서 이를 사용하기 위한 <code>설정</code>이 있습니다.</p>
-<h1 id="application-properties-작성-규칙"><a href="#application-properties-작성-규칙" class="headerlink" title="application.properties 작성 규칙"></a>application.properties 작성 규칙</h1><h2 id="application-lt-profile-gt-properties-파일명과-내용"><a href="#application-lt-profile-gt-properties-파일명과-내용" class="headerlink" title="application-&lt;profile&gt;.properties 파일명과 내용"></a>application-&lt;profile&gt;.properties 파일명과 내용</h2><p>먼저 원하는 profile 을 포함한 파일명을 작성해야합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># prod 라는 profile 을 만든다고 하였을때</span></span><br><span class="line">application-prod.properties</span><br><span class="line"></span><br><span class="line"><span class="comment"># qa</span></span><br><span class="line">application-qa.properties</span><br><span class="line"></span><br><span class="line"><span class="comment"># etc</span></span><br><span class="line">application-etc.properties</span><br><span class="line"></span><br><span class="line"><span class="comment"># custom</span></span><br><span class="line">application-custom.properties</span><br></pre></td></tr></table></figure>
-<p>profile 에 들어갈 단어는 꼭 dev, local, qa 등과 같이 미리 정의된 keyword 가 아닙니다. 개발자 마음이긴 하나 통상 아래와 같은 약어를 많이 사용합니다.</p>
-<table>
-<thead>
-<tr>
-<th>profiles</th>
-<th>desc</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>dev</td>
-<td>개발 환경</td>
-</tr>
-<tr>
-<td>test</td>
-<td>테스트 환경</td>
-</tr>
-<tr>
-<td>prod</td>
-<td>실서비서 환경</td>
-</tr>
-</tbody></table>
-<p>파일 내용에는 아래와 같이 현재 나의 <code>profile</code> 이 어떤것임을 명시해주어야 합니다.</p>
-<p><strong>application-prod.properties 파일의 경우</strong></p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.profiles.active</span>=<span class="string">prod</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>application-prod.yml 파일의 경우</strong></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">prod</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="application-properties-profile-이-없는-형태-default"><a href="#application-properties-profile-이-없는-형태-default" class="headerlink" title="application.properties (profile 이 없는 형태 = default)"></a>application.properties (profile 이 없는 형태 = default)</h2><p>아무런 <code>profile</code> 을 작성하지 않을경우 spring boot 는 default 라는 기본값을 사용합니다.<br>그렇다고 하여 <code>application-default.properties</code> 가 존재해야 하는것은 아닙니다.<br><code>profile</code> 이 없다면 <code>application.properties</code> 를 가져오기때문입니다.</p>
-<h1 id="build-gradle-수정"><a href="#build-gradle-수정" class="headerlink" title="build.gradle 수정"></a>build.gradle 수정</h1><p><code>gradle bootRun</code> 시 스프링부트가 제공하는 <code>spring.profiles.active</code> 를 적용받기 위해 아래와 같은 설정을 추가해야 합니다.</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bootRun &#123;</span><br><span class="line">    String activeProfile = System.properties[<span class="string">'spring.profiles.active'</span>]</span><br><span class="line">    systemProperty <span class="string">"spring.profiles.active"</span>, activeProfile</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>:warning: <strong>주의 하실점은 이 설정을 최하단 적절한곳에 넣어주셔야 오류가 발생되지 않습니다.</strong></p>
-<h2 id="build-gradle-샘플"><a href="#build-gradle-샘플" class="headerlink" title="build.gradle 샘플"></a>build.gradle 샘플</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">'org.springframework.boot'</span> version <span class="string">'2.2.2.RELEASE'</span></span><br><span class="line">    id <span class="string">'io.spring.dependency-management'</span> version <span class="string">'1.0.8.RELEASE'</span></span><br><span class="line">    id <span class="string">'java'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = <span class="string">'com.example'</span></span><br><span class="line">version = <span class="string">'0.0.1-SNAPSHOT'</span></span><br><span class="line">sourceCompatibility = <span class="string">'1.8'</span></span><br><span class="line"></span><br><span class="line">configurations &#123;</span><br><span class="line">    compileOnly &#123;</span><br><span class="line">        extendsFrom annotationProcessor</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation <span class="string">'org.springframework.boot:spring-boot-starter-data-redis'</span></span><br><span class="line">    implementation <span class="string">'org.springframework.boot:spring-boot-starter-web'</span></span><br><span class="line">    compileOnly <span class="string">'org.projectlombok:lombok'</span></span><br><span class="line">    annotationProcessor <span class="string">'org.springframework.boot:spring-boot-configuration-processor'</span></span><br><span class="line">    annotationProcessor <span class="string">'org.projectlombok:lombok'</span></span><br><span class="line">    testImplementation(<span class="string">'org.springframework.boot:spring-boot-starter-test'</span>) &#123;</span><br><span class="line">        exclude <span class="string">group:</span> <span class="string">'org.junit.vintage'</span>, <span class="string">module:</span> <span class="string">'junit-vintage-engine'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test &#123;</span><br><span class="line">    useJUnitPlatform()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bootRun &#123;</span><br><span class="line">    String activeProfile = System.properties[<span class="string">'spring.profiles.active'</span>]</span><br><span class="line">    systemProperty <span class="string">"spring.profiles.active"</span>, activeProfile</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Application-실행"><a href="#Application-실행" class="headerlink" title="Application 실행"></a>Application 실행</h1><h2 id="intellij-spring-boot-Run-Debug"><a href="#intellij-spring-boot-Run-Debug" class="headerlink" title="intellij - spring boot Run/Debug"></a>intellij - spring boot Run/Debug</h2><p>아래 사진과 같이 Active profiles 에 적용하고자 하는 환경값을 넣으면 <code>(eg: prod)</code><br><code>application-prod.properties</code> 의 설정을 읽어오게 됩니다.<br><img src="https://user-images.githubusercontent.com/11376406/72121409-4a24da80-339e-11ea-97dc-c55e310e3eba.png" alt=""></p>
-<h2 id="gradle-CLI"><a href="#gradle-CLI" class="headerlink" title="gradle CLI"></a>gradle CLI</h2><p>cli 에서 하신다면 아래와 같은 파라미터를 전달해주세요.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gradle bootRun -Dspring.profiles.active=prod</span><br><span class="line"><span class="comment"># -Dspring.profiles.active=prod</span></span><br><span class="line"><span class="comment"># -Dspring.profiles.active=dev</span></span><br><span class="line"><span class="comment"># -Dspring.profiles.active=stage</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h1><p>application.properties</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">localhost</span></span><br></pre></td></tr></table></figure>
-
-<p>application-prod.properties</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.profiles.active</span>=<span class="string">prod # 이 값을 꼭 넣어주셔야 작동합니다.</span></span><br><span class="line"><span class="meta">server.port</span>=<span class="string">8081</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">prodhost</span></span><br></pre></td></tr></table></figure>
-<p>:white_check_mark: <code>application.yml</code>, <code>application-prod.yml</code> 로도 동일하게 동작됩니다.</p>
-<h2 id="RedisConfig-설정"><a href="#RedisConfig-설정" class="headerlink" title="RedisConfig 설정"></a>RedisConfig 설정</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;spring.redis.host&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisConnectionFactory <span class="title">redisConnectionFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RedisStandaloneConfiguration redisStandaloneConfiguration = <span class="keyword">new</span> RedisStandaloneConfiguration();</span><br><span class="line">        System.out.println(<span class="string">"spring.redis.host: "</span> + host);</span><br><span class="line">        redisStandaloneConfiguration.setHostName(host);</span><br><span class="line">        redisStandaloneConfiguration.setPort(<span class="number">6379</span>);</span><br><span class="line">        LettuceConnectionFactory lettuceConnectionFactory = <span class="keyword">new</span> LettuceConnectionFactory(redisStandaloneConfiguration);</span><br><span class="line">        <span class="keyword">return</span> lettuceConnectionFactory;</span><br><span class="line">    &#125;</span><br><span class="line">    ..</span><br><span class="line">    ..</span><br><span class="line">    <span class="comment">// 생략</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="환경-주입-없이-테스트-default"><a href="#환경-주입-없이-테스트-default" class="headerlink" title="환경 주입 없이 테스트: default"></a>환경 주입 없이 테스트: default</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2020-01-10 11:48:55.950  INFO 23460 --- [           main] com.example.demo.DemoApplication         : Starting DemoApplication on jwlee08PC with PID 23460 (C:\workspace\spring-boot-simple-api\build\classes\java\main started by ����� <span class="keyword">in</span> C:\workspace\spring-boot-simple-api)</span><br><span class="line">2020-01-10 11:48:55.954  INFO 23460 --- [           main] com.example.demo.DemoApplication         : No active profile <span class="built_in">set</span>, falling back to default profiles: default</span><br><span class="line">2020-01-10 11:48:56.520  INFO 23460 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!</span><br><span class="line">2020-01-10 11:48:56.523  INFO 23460 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories <span class="keyword">in</span> DEFAULT mode.</span><br><span class="line">2020-01-10 11:48:56.559  INFO 23460 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning <span class="keyword">in</span> 17ms. Found 0 Redis repository interfaces.</span><br><span class="line">2020-01-10 11:48:58.400  INFO 23460 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)</span><br><span class="line">2020-01-10 11:48:58.413  INFO 23460 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]</span><br><span class="line">2020-01-10 11:48:58.413  INFO 23460 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]</span><br><span class="line">2020-01-10 11:48:58.596  INFO 23460 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext</span><br><span class="line">2020-01-10 11:48:58.596  INFO 23460 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed <span class="keyword">in</span> 2596 ms</span><br><span class="line">spring.redis.host: localhost</span><br></pre></td></tr></table></figure>
-
-<h2 id="환경-주입-테스트-prod"><a href="#환경-주입-테스트-prod" class="headerlink" title="환경 주입 테스트: prod"></a>환경 주입 테스트: prod</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2020-01-10 11:52:20.750  INFO 3520 --- [           main] com.example.demo.DemoApplication         : Starting DemoApplication on jwlee08PC with PID 3520 (C:\workspace\spring-boot-simple-api\build\classes\java\main started by ����� <span class="keyword">in</span> C:\workspace\spring-boot-simple-api)</span><br><span class="line">2020-01-10 11:52:20.752  INFO 3520 --- [           main] com.example.demo.DemoApplication         : The following profiles are active: prod</span><br><span class="line">2020-01-10 11:52:21.685  INFO 3520 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!</span><br><span class="line">2020-01-10 11:52:21.688  INFO 3520 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories <span class="keyword">in</span> DEFAULT mode.</span><br><span class="line">2020-01-10 11:52:21.737  INFO 3520 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning <span class="keyword">in</span> 19ms. Found 0 Redis repository interfaces.</span><br><span class="line">2020-01-10 11:52:23.543  INFO 3520 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)</span><br><span class="line">2020-01-10 11:52:23.555  INFO 3520 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]</span><br><span class="line">2020-01-10 11:52:23.555  INFO 3520 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]</span><br><span class="line">2020-01-10 11:52:23.756  INFO 3520 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext</span><br><span class="line">2020-01-10 11:52:23.756  INFO 3520 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed <span class="keyword">in</span> 2938 ms</span><br><span class="line">spring.redis.host: prodhost</span><br></pre></td></tr></table></figure>
-
-<h1 id="느낀점"><a href="#느낀점" class="headerlink" title="느낀점"></a>느낀점</h1><p>빌드 도구와 스프링부트의 인터페이스도 가끔 생각을 해야할것 같습니다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/zookeeper-watch-java-web/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1290,6 +1167,86 @@
   
   
 
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/docker-dockerfile-centos-httpd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/docker-dockerfile-centos-httpd/" class="post-title-link" itemprop="url">dockerfile 을 이용한 centos + apache(httpd) 빌드 & 실행</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-11 16:17:09" itemprop="dateCreated datePublished" datetime="2019-06-11T16:17:09+09:00">2019-06-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Dockerfile 을통해 httpd 를 서비스하는 예제를 정리합니다.<br>httpd 나 apache 이미지를 사용하지 않고 centos 에 직접 설치를 해보았습니다.</p>
+<p><strong>설치 상세</strong></p>
+<ol>
+<li>centos:7.5.1804</li>
+<li>apache(httpd) 2.4.6</li>
+</ol>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p><strong>/Dockerfile</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos:<span class="number">7.5</span>.<span class="number">1804</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install httpd</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> /entry-point.sh /entry-point.sh</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> chmod 755 /entry-point.sh</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">"sh"</span>,<span class="string">"/etc/entry-point.sh"</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>/entry-point.sh</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">/usr/sbin/httpd -D FOREGROUND</span><br></pre></td></tr></table></figure>
+
+<h1 id="Build-amp-Run"><a href="#Build-amp-Run" class="headerlink" title="Build &amp; Run"></a>Build &amp; Run</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build</span></span><br><span class="line">docker build --rm -t my-httpd:latest .</span><br><span class="line"></span><br><span class="line"><span class="comment"># run</span></span><br><span class="line">docker run -d -p 80:80 my-httpd:latest</span><br></pre></td></tr></table></figure>
+
+<p><strong>주의</strong><br>컨테이너 실행(run) 시 /bin/bash 를 통해 컨테이너에 접근하게될 경우 httpd 서비스가 실행되지 않을 수 있습니다.</p>
+<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><p><a href="http://localhost:80">http://localhost:80</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
@@ -1375,14 +1332,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
