@@ -273,7 +273,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-23 16:37:52" itemprop="dateModified" datetime="2020-03-23T16:37:52+09:00">2020-03-23</time>
+                <time title="Modified: 2020-03-23 17:44:38" itemprop="dateModified" datetime="2020-03-23T17:44:38+09:00">2020-03-23</time>
               </span>
 
           
@@ -318,6 +318,8 @@
 <p>config/config.proto</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">syntax &#x3D; &quot;proto3&quot;;</span><br><span class="line"></span><br><span class="line">package config;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 설정 조회 서비스</span><br><span class="line">service ConfigStore &#123;</span><br><span class="line">    rpc Get (ConfigRequest) returns (ConfigResponse);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 요청</span><br><span class="line">message ConfigRequest &#123;</span><br><span class="line">    string profile &#x3D; 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 응답</span><br><span class="line">message ConfigResponse &#123;</span><br><span class="line">    string json_config &#x3D; 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="go-grpc-의존성-설치"><a href="#go-grpc-의존성-설치" class="headerlink" title="go grpc 의존성 설치"></a>go grpc 의존성 설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get google.golang.org/grpc</span><br></pre></td></tr></table></figure>
+
 <h3 id="protoc-로-컴파일"><a href="#protoc-로-컴파일" class="headerlink" title="protoc 로 컴파일"></a>protoc 로 컴파일</h3><p><code>protoc -I config config.proto --go_out=plugins=grpc:config</code> 를 통해 <code>config.pb.go</code> 파일을 생성합니다. 추후 로직에서 이 파일을 사용하게 됩니다.</p>
 <p>:warning: 경험상 패키지명과 파일명이 일치하지 않으면 추후 오류가 발생되는데 이 부분은 좀더 확인이 필요합니다.</p>
 <h3 id="main-함수-작성"><a href="#main-함수-작성" class="headerlink" title="main 함수 작성"></a>main 함수 작성</h3><blockquote>
