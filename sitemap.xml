@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lejewk.github.io/php-archives/</loc>
+    
+    <lastmod>2020-03-24T01:45:28.921Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lejewk.github.io/grpc-go-example/</loc>
     
     <lastmod>2020-03-24T01:01:07.988Z</lastmod>
