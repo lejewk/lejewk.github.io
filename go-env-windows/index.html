@@ -21,23 +21,20 @@
     var CONFIG = {"hostname":"lejewk.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="springboot + hibernate + mariadb + hikariCP 설정입니다. build.gradle1234567891011121314151617181920212223plugins &amp;#123;    id &#39;org.springframework.boot&#39; version &#39;2.1.3.RELEASE&#39;    id &#39;java&#39;&amp;#125;apply plug">
+  <meta name="description" content="window 환경에서 go 의 환경변수를 지정합니다. 12345678910111213# cmdset GOROOT&#x3D;c:\goset GOPATH&#x3D;%USERPROFILE%\goset GOBIN&#x3D;%GOPATH%\binC:\Users\devwook&gt;echo %GOROOT%C:\GoC:\Users\devwook&gt;echo %GOPATH%C:\Users\dev">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring boot + hibernate + mariadb + hikariCP 설정">
-<meta property="og:url" content="https://lejewk.github.io/springboot-hibernate-mariadb-hikaricp/index.html">
+<meta property="og:title" content="windows 에서 go 환경변수 등록 (GOROOT, GOPATH, GOBIN)">
+<meta property="og:url" content="https://lejewk.github.io/go-env-windows/index.html">
 <meta property="og:site_name" content="개발자님 cs 드세요">
-<meta property="og:description" content="springboot + hibernate + mariadb + hikariCP 설정입니다. build.gradle1234567891011121314151617181920212223plugins &amp;#123;    id &#39;org.springframework.boot&#39; version &#39;2.1.3.RELEASE&#39;    id &#39;java&#39;&amp;#125;apply plug">
+<meta property="og:description" content="window 환경에서 go 의 환경변수를 지정합니다. 12345678910111213# cmdset GOROOT&#x3D;c:\goset GOPATH&#x3D;%USERPROFILE%\goset GOBIN&#x3D;%GOPATH%\binC:\Users\devwook&gt;echo %GOROOT%C:\GoC:\Users\devwook&gt;echo %GOPATH%C:\Users\dev">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-03-06T13:41:11.000Z">
-<meta property="article:modified_time" content="2020-03-06T07:24:14.580Z">
+<meta property="article:published_time" content="2020-03-25T06:17:25.000Z">
+<meta property="article:modified_time" content="2020-03-25T07:25:41.524Z">
 <meta property="article:author" content="이재욱이">
-<meta property="article:tag" content="spring boot">
-<meta property="article:tag" content="hibernate">
-<meta property="article:tag" content="mariadb">
-<meta property="article:tag" content="hikariCP">
+<meta property="article:tag" content="go">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://lejewk.github.io/springboot-hibernate-mariadb-hikaricp/">
+<link rel="canonical" href="https://lejewk.github.io/go-env-windows/">
 
 
 <script id="page-configurations">
@@ -49,7 +46,7 @@
   };
 </script>
 
-  <title>spring boot + hibernate + mariadb + hikariCP 설정 | 개발자님 cs 드세요</title>
+  <title>windows 에서 go 환경변수 등록 (GOROOT, GOPATH, GOBIN) | 개발자님 cs 드세요</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138075260-1"></script>
     <script>
@@ -171,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/springboot-hibernate-mariadb-hikaricp/">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/go-env-windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
@@ -184,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          spring boot + hibernate + mariadb + hikariCP 설정
+          windows 에서 go 환경변수 등록 (GOROOT, GOPATH, GOBIN)
         </h1>
 
         <div class="post-meta">
@@ -193,16 +190,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-03-06 22:41:11" itemprop="dateCreated datePublished" datetime="2019-03-06T22:41:11+09:00">2019-03-06</time>
+              <time title="Created: 2020-03-25 15:17:25 / Modified: 16:25:41" itemprop="dateCreated datePublished" datetime="2020-03-25T15:17:25+09:00">2020-03-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
 
           
 
@@ -215,10 +206,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>springboot + hibernate + mariadb + hikariCP 설정입니다.</p>
-<h1 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">'org.springframework.boot'</span> version <span class="string">'2.1.3.RELEASE'</span></span><br><span class="line">    id <span class="string">'java'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'io.spring.dependency-management'</span></span><br><span class="line"></span><br><span class="line">group = <span class="string">'com.todo'</span></span><br><span class="line">version = <span class="string">'0.0.1-SNAPSHOT'</span></span><br><span class="line">sourceCompatibility = <span class="string">'1.8'</span></span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123; </span><br><span class="line">    compile <span class="string">'org.springframework.boot:spring-boot-starter-web'</span></span><br><span class="line">    implementation <span class="string">'org.springframework.boot:spring-boot-starter'</span></span><br><span class="line">    testImplementation <span class="string">'org.springframework.boot:spring-boot-starter-test'</span></span><br><span class="line">    compile <span class="string">'org.springframework.boot:spring-boot-starter-data-jpa'</span></span><br><span class="line">    compile <span class="string">group:</span> <span class="string">'com.zaxxer'</span>, <span class="string">name:</span> <span class="string">'HikariCP'</span>, <span class="string">version:</span> <span class="string">'2.6.2'</span></span><br><span class="line">    compile <span class="string">'org.mariadb.jdbc:mariadb-java-client'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>window 환경에서 go 의 환경변수를 지정합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cmd</span></span><br><span class="line"><span class="built_in">set</span> GOROOT=c:\go</span><br><span class="line"><span class="built_in">set</span> GOPATH=%USERPROFILE%\go</span><br><span class="line"><span class="built_in">set</span> GOBIN=%GOPATH%\bin</span><br><span class="line"></span><br><span class="line">C:\Users\devwook&gt;<span class="built_in">echo</span> %GOROOT%</span><br><span class="line">C:\Go</span><br><span class="line"></span><br><span class="line">C:\Users\devwook&gt;<span class="built_in">echo</span> %GOPATH%</span><br><span class="line">C:\Users\devwook\go</span><br><span class="line"></span><br><span class="line">C:\Users\devwook&gt;<span class="built_in">echo</span> %GOBIN%</span><br><span class="line">C:\Users\devwook\go\bin</span><br></pre></td></tr></table></figure>
 
-<h1 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">spring.datasource.url=<span class="string">jdbc:</span><span class="string">mariadb:</span><span class="comment">//localhost:3306/todo</span></span><br><span class="line">spring.datasource.driver-<span class="class"><span class="keyword">class</span>-<span class="title">name</span>=<span class="title">org</span>.<span class="title">mariadb</span>.<span class="title">jdbc</span>.<span class="title">Driver</span></span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">datasource</span>.<span class="title">username</span>=<span class="title">root</span></span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">datasource</span>.<span class="title">password</span>=1111</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"># <span class="title">timeout</span> 60 <span class="title">sec</span></span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">datasource</span>.<span class="title">hikari</span>.<span class="title">connection</span>-<span class="title">timeout</span>=60000</span></span><br><span class="line"><span class="class"># <span class="title">max</span> 5</span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">datasource</span>.<span class="title">hikari</span>.<span class="title">maximum</span>-<span class="title">pool</span>-<span class="title">size</span>=5</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">jpa</span>.<span class="title">show</span>-<span class="title">sql</span>=<span class="title">true</span></span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">jpa</span>.<span class="title">hibernate</span>.<span class="title">ddl</span>-<span class="title">auto</span>=<span class="title">create</span>-<span class="title">drop</span></span></span><br><span class="line"><span class="class"><span class="title">spring</span>.<span class="title">jpa</span>.<span class="title">properties</span>.<span class="title">hibernate</span>.<span class="title">dialect</span>=<span class="title">org</span>.<span class="title">hibernate</span>.<span class="title">dialect</span>.<span class="title">MySQL5InnoDBDialect</span></span></span><br><span class="line"><span class="class">`</span></span><br></pre></td></tr></table></figure>
+<h1 id="go-에서-사용되는-환경변수"><a href="#go-에서-사용되는-환경변수" class="headerlink" title="go 에서 사용되는 환경변수"></a>go 에서 사용되는 환경변수</h1><table>
+<thead>
+<tr>
+<th>변수명</th>
+<th>설명</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GOROOT</td>
+<td>go SDK 가 설치된 경로</td>
+<td>c:\go</td>
+</tr>
+<tr>
+<td>GOPATH</td>
+<td>go 프로젝트 의존성 경로</td>
+<td>c:\users${USERNAME}\go</td>
+</tr>
+<tr>
+<td>GOBIN</td>
+<td>go 프로젝트 의존성 바이너리 경로</td>
+<td>c:\users${USERNAME}\go\bin</td>
+</tr>
+</tbody></table>
+<h1 id="GOBIN-오류"><a href="#GOBIN-오류" class="headerlink" title="GOBIN 오류"></a>GOBIN 오류</h1><p><code>go install cannot install cross-compiled binaries when gobin is set</code> 과 같은 오류 발생시 GOBIN 환경변수를 제거해주면 해결됩니다.</p>
+
     </div>
 
     
@@ -227,10 +243,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
-              <a href="/tags/hibernate/" rel="tag"># hibernate</a>
-              <a href="/tags/mariadb/" rel="tag"># mariadb</a>
-              <a href="/tags/hikaricp/" rel="tag"># hikariCP</a>
+              <a href="/tags/go/" rel="tag"># go</a>
           </div>
 
         
@@ -239,13 +252,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/springboot-devtool/" rel="prev" title="spring boot devtool 을 이용한 intellij autoload 설정">
-      <i class="fa fa-chevron-left"></i> spring boot devtool 을 이용한 intellij autoload 설정
+    <a href="/php-archives/" rel="prev" title="window php archives download">
+      <i class="fa fa-chevron-left"></i> window php archives download
     </a></div>
-      <div class="post-nav-item">
-    <a href="/book-review-clean-code/" rel="next" title="clean code 후기">
-      clean code 후기 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -318,7 +328,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#build-gradle"><span class="nav-number">1.</span> <span class="nav-text">build.gradle</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#application-properties"><span class="nav-number">2.</span> <span class="nav-text">application.properties</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#go-에서-사용되는-환경변수"><span class="nav-number">1.</span> <span class="nav-text">go 에서 사용되는 환경변수</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GOBIN-오류"><span class="nav-number">2.</span> <span class="nav-text">GOBIN 오류</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
