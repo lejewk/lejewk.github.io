@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lejewk.github.io/go-mod/</loc>
+    
+    <lastmod>2020-04-01T04:57:02.318Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lejewk.github.io/go-env-windows/</loc>
     
     <lastmod>2020-03-25T07:27:09.828Z</lastmod>
@@ -201,13 +208,6 @@
     <loc>https://lejewk.github.io/springboot-devtool/</loc>
     
     <lastmod>2020-03-06T07:24:14.579Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lejewk.github.io/go-module/</loc>
-    
-    <lastmod>2020-03-06T07:24:14.578Z</lastmod>
     
   </url>
   
