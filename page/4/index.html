@@ -171,6 +171,127 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/kubernetes-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/kubernetes-study/" class="post-title-link" itemprop="url">kubernetes 학습 정리</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-30 17:35:12" itemprop="dateCreated datePublished" datetime="2019-04-30T17:35:12+09:00">2019-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="앱-배포"><a href="#앱-배포" class="headerlink" title="앱 배포"></a>앱 배포</h1><p><strong>레플리케이션 컨트롤러를 생성</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl run kubia --image=lejewk/kubia --port=8080 --generator=run/v1</span><br><span class="line">replicationcontroller <span class="string">"kubia"</span> created</span><br></pre></td></tr></table></figure>
+<p><code>--image=lejewk/kubia</code> 는 docker hub에 등록된 이미지를 기반으로 하겠다는 의미 입니다.<br><code>--port=8080</code> 은 앱이 포트 8080 에서 수신 대기하고 있음을 나타냅니다.<br><code>--generator=run/v1</code> 은 레플리케이션 컨트롤러를 생성한다는 의미 입니다.</p>
+<h1 id="포드-pod"><a href="#포드-pod" class="headerlink" title="포드(pod)"></a>포드(pod)</h1><p>쿠버네티스는 개별 컨테이너를 직접 취급하지 않습니다.<br>대신 여러 위치에 배치되는 컨테이너의 개념을 사용합니다.<br>이런 컨테이너 그룹을 <code>포드(pod)</code> 라고 합니다.</p>
+<p>각 포드는 고유한 IP와 컨테이너가 하나 이상 있으며,<br>각 컨테이너에는 애플리케이션 프로세스가 실행됩니다.<br>포드는 여러개의 워커노드에 분산되어 있습니다.</p>
+<p><strong>아래와 같은 식으로 구성</strong></p>
+<ul>
+<li><strong>워커노드1</strong><ul>
+<li>포드1 <ul>
+<li>컨테이너1</li>
+</ul>
+</li>
+<li>포드2<ul>
+<li>컨테이너1</li>
+<li>컨테이너2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>워커노드2</strong><ul>
+<li>포드3<ul>
+<li>컨테이너2</li>
+<li>컨테이너3</li>
+</ul>
+</li>
+<li>포드4<ul>
+<li>컨테이너1</li>
+<li>컨테이너2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>포드 나열</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">λ kubectl get pods</span><br><span class="line">NAME                        READY     STATUS             RESTARTS   AGE</span><br><span class="line"><span class="built_in">local</span>-5d4cd5cf4f-hwksd      0/1       CrashLoopBackOff   189        6d</span><br><span class="line">kubia-vstsr                 1/1       Running            0          2h</span><br></pre></td></tr></table></figure>
+<p>kubia-vstsr 의 STATUS 를 보면 <code>running</code> 을 알수있습니다.<br>이는 포드내 컨테이너가 이미지 다운로드를 완료하고 실행중인 상태를 의미 합니다.<br><code>pending</code> 의 상태도 존재합니다. 이는 이미지를 다운로드 받고 있다는 의미 입니다.</p>
+<h1 id="웹-애플리케이션-엑세스"><a href="#웹-애플리케이션-엑세스" class="headerlink" title="웹 애플리케이션 엑세스"></a>웹 애플리케이션 엑세스</h1><p>각 포드에는 자체 IP 주소가 있지만 이 주소는 클러스터의 내부에 있으며 외부에서 엑세스할수 없습니다.<br>따라서 <code>서비스 객체</code> 를 통해 IP를 노출해야합니다.<br><code>LoadBalancer</code> 형태의 특별한 서비스를 만들어야 합니다. 이 형태의 서비스를 작성하면 외부 로드밸런서가 생성되므로 로드밸런서의 공용 IP를 통해 포드에 연결할 수 있습니다.</p>
+<p><strong>서비스 객체 생성</strong><br>서비스를 만들려면 쿠버네티스에게 앞에서 작성한 레플리케이션 컨트롤러를 노출하도록 명령해야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl expose rc kubil --<span class="built_in">type</span>=LoadBalancer --name kubia-http</span><br><span class="line">service <span class="string">"kubia-http"</span> exposed</span><br></pre></td></tr></table></figure>
+<p><strong>alias</strong><br>|name|alias|<br>|-|-|<br>|replicationcontroller|rc|<br>|pods|po|<br>|services|svc|</p>
+<p><strong>서비스 목록</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get services</span><br><span class="line">NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)           AGE</span><br><span class="line">kubernetes   ClusterIP      10.96.0.1       &lt;none&gt;        443/TCP           7d</span><br><span class="line">kubia-http   LoadBalancer   10.99.138.121   localhost     8080:31787/TCP    5h</span><br></pre></td></tr></table></figure>
+<p><code>EXTERNAL-IP</code> 를 통해 localhost:8080 으로 접속이 가능하다는것을 확인할 수 있습니다.</p>
+<p><strong>서비스가 필요한 이유</strong><br>포드는 일시적입니다. 포드는 언제든지 사라질 수 있습니다.<br>레플리케이션컨트롤러는 손실된 포드를 새로운 포드로 대체하며 새로운 포드는 기존 포드와 다른 IP를 갖게 됩니다.<br>따라서 포드에 연결하기 위해서는 정적인 IP가 필요하며 이를 그룹화 한 <code>서비스</code> 가 있어야 합니다.</p>
+<h1 id="에플리케이션-스케일-아웃"><a href="#에플리케이션-스케일-아웃" class="headerlink" title="에플리케이션 스케일 아웃"></a>에플리케이션 스케일 아웃</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get replicationcontrollers</span><br><span class="line">NAME      DESIRED   CURRENT   READY     AGE</span><br><span class="line">kubia     1         1         1         6h</span><br></pre></td></tr></table></figure>
+<p><code>DESIRED</code> 는 레플리케이션컨트롤러가 유지해야할 포드 복제본 수를 표시합니다.<br><code>CURRENT</code> 는 현재 실행중인 포드의 실제 수를 나타냅니다.</p>
+<p><strong>레플리카 수 증가시키기</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl scale rc kubia --replicas=3</span><br><span class="line">replicationcontroller <span class="string">"kubia"</span> scaled</span><br></pre></td></tr></table></figure>
+<p>쿠버네티스에게 포드가 항상 3가지 인스턴스를 유지해야함을 전달했습니다.<br>별도의 액션을 취하지 않은 상태에서 모든 포드를 나열해보면</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get rc</span><br><span class="line">NAME      DESIRED   CURRENT   READY     AGE</span><br><span class="line">kubia     3         3         3         6h</span><br><span class="line"></span><br><span class="line">$ kubectl get pods</span><br><span class="line">NAME                        READY     STATUS    RESTARTS   AGE</span><br><span class="line">kubia-r6kfr                 1/1       Running   0          2m</span><br><span class="line">kubia-vfxmv                 1/1       Running   0          2m</span><br><span class="line">kubia-vstsr                 1/1       Running   0          6h</span><br></pre></td></tr></table></figure>
+
+<p>3개로 증가된것을 확인할 수 있습니다.</p>
+<p><strong>포드 IP와 노드 표시</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">λ kubectl get pods -o wide</span><br><span class="line">NAME                READY     STATUS    RESTARTS   AGE    IP          NODE</span><br><span class="line">kubia-r6kfr         1/1       Running   0          5m     10.1.0.14   docker-for-desktop</span><br><span class="line">kubia-vfxmv         1/1       Running   0          5m     10.1.0.15   docker-for-desktop</span><br><span class="line">kubia-vstsr         1/1       Running   0          6h     10.1.0.13   docker-for-desktop</span><br></pre></td></tr></table></figure>
+
+<p><strong>kubectl describe를 이용한 포드 세부내용 확인</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl describe pod kubia-r6kfr</span><br><span class="line">Name:           kubia-r6kfr</span><br><span class="line">Namespace:      default</span><br><span class="line">Node:           docker-for-desktop/192.168.65.3</span><br><span class="line">Start Time:     Thu, 09 May 2019 16:39:57 +0900</span><br><span class="line">Labels:         run=kubia</span><br><span class="line">Annotations:    &lt;none&gt;</span><br><span class="line">Status:         Running</span><br><span class="line">IP:             10.1.0.14</span><br><span class="line">Controlled By:  ReplicationController/kubia</span><br><span class="line">Containers:</span><br><span class="line">....</span><br><span class="line">..</span><br><span class="line">..</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/yaml-syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1021,128 +1142,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/frontend-api-cross-domain-issue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
-      <meta itemprop="name" content="이재욱이">
-      <meta itemprop="description" content="소스코드 파밍중...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개발자님 cs 드세요">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/frontend-api-cross-domain-issue/" class="post-title-link" itemprop="url">frontend - api cross domain 해결</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-14 23:09:01" itemprop="dateCreated datePublished" datetime="2019-03-14T23:09:01+09:00">2019-03-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>frontend 와 backend api 통신에 있어 크로스도메인 이슈가 발생할 수 있습니다.</p>
-<blockquote>
-<p>CORS: Cross Origin Resource Sharing</p>
-</blockquote>
-<p>그러나 이 문제는 몇가지 방법으로 쉽게 해결할 수 있습니다.</p>
-<ol>
-<li>Access-Control-Allow-Origin</li>
-<li>Reverse Proxy</li>
-</ol>
-<h1 id="Access-Control-Allow-Origin"><a href="#Access-Control-Allow-Origin" class="headerlink" title="Access-Control-Allow-Origin"></a>Access-Control-Allow-Origin</h1><p>응답헤더 <code>Access-Control-Allow-Orign</code> 에 CORS 를 허용해줄 도메인을 지정하여 해결할 수 있습니다.</p>
-<h2 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h2><h3 id="CrossOrigin-어노테이션"><a href="#CrossOrigin-어노테이션" class="headerlink" title="@CrossOrigin 어노테이션"></a>@CrossOrigin 어노테이션</h3><p>controller 또는 method 상단에 <code>@CrossOrigin</code> 어노테이션을 선언하여 처리 합니다.<br>기본값은 <code>*</code> 로 모든 도메인을 허용합니다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(method = RequestMethod.GET)</span><br><span class="line"><span class="keyword">public</span> ResponseEntity&lt;List&lt;Todo&gt;&gt; todos() &#123;</span><br><span class="line">    List&lt;Todo&gt; todos = todoRepository.findAll(<span class="keyword">new</span> Sort(Sort.Direction.DESC, <span class="string">"id"</span>));</span><br><span class="line">    <span class="keyword">return</span> ResponseEntity.ok(todos);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>특정 도메인만을 처리하려 할 경우 아래와 같이 개별 설정이 가능합니다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CrossOrigin</span>(origins = <span class="string">"http://domain.com, http://domain.co.kr"</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Global-CORS-설정"><a href="#Global-CORS-설정" class="headerlink" title="Global CORS 설정"></a>Global CORS 설정</h3><p>URI Path 를 지정하여 처리할 수 있습니다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.todo.api.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.CorsRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.EnableWebMvc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addMapping(<span class="string">"/todos/**"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="nodejs-express"><a href="#nodejs-express" class="headerlink" title="nodejs express"></a>nodejs express</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cors</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> cors = <span class="built_in">require</span>(<span class="string">'cors'</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(cors())</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/products/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.json(&#123;<span class="attr">msg</span>: <span class="string">'This is CORS-enabled for all origins!'</span>&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">80</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'CORS-enabled web server listening on port 80'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><a href="https://expressjs.com/en/resources/middleware/cors.html">https://expressjs.com/en/resources/middleware/cors.html</a></p>
-<h1 id="Nginx-reverse-proxy"><a href="#Nginx-reverse-proxy" class="headerlink" title="Nginx reverse proxy"></a>Nginx reverse proxy</h1><p>Reverse proxy 를 활용해 같은 도메인내에서 Frontend 와 API를 분기하여 사용할 수 있습니다.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>IP</th>
-<th>domain</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>proxy</td>
-<td>211.10.10.1</td>
-<td>todos.com</td>
-</tr>
-<tr>
-<td>frontend</td>
-<td>211.10.10.2</td>
-<td></td>
-</tr>
-<tr>
-<td>API</td>
-<td>211.10.10.3</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx conf"></a>nginx conf</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  upstream frontend &#123;</span><br><span class="line">    server 211.10.10.1:80;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  upstream api &#123;</span><br><span class="line">    server 211.10.10.2:80;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name todos.com;</span><br><span class="line"></span><br><span class="line">    location &#x2F;api&#x2F; &#123;</span><br><span class="line">      proxy_pass http:&#x2F;&#x2F;api&#x2F;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">      proxy_pass http:&#x2F;&#x2F;frontend&#x2F;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h2><p><a href="http://todos.com">http://todos.com</a> 에서 API 를 사용할때 아래와 같이 호출할수 있습니다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'http://todos.com/api/todos'</span>)</span><br><span class="line">.then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;<span class="built_in">console</span>.log(res)&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="CORS-가-발생하는-원인"><a href="#CORS-가-발생하는-원인" class="headerlink" title="CORS 가 발생하는 원인"></a>CORS 가 발생하는 원인</h1><p>SOP(Same-origin policy) 위배<br><a href="https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy">https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy</a></p>
-<p>HTML 문서에서 일반적으로 외부 도메인의 자원을 호출하는것은 문제되지 않습니다.<br>하지만, <code>&lt;script&gt;&lt;/script&gt;</code> 내에서는 보안상의 이슈로 CORS 가 허용되지 않습니다.</p>
-<p><strong>오류 예시</strong></p>
-<blockquote>
-<p>Access to fetch at ‘<a href="http://localhost:8080/todos&#39;">http://localhost:8080/todos&#39;</a> from origin ‘<a href="http://localhost:3000&#39;">http://localhost:3000&#39;</a> has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource. If an opaque response serves your needs, set the request’s mode to ‘no-cors’ to fetch the resource with CORS disabled.</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1228,14 +1227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
