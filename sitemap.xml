@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lejewk.github.io/go-test/</loc>
+    
+    <lastmod>2020-04-02T01:16:46.677Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lejewk.github.io/go-singleton-sync-once/</loc>
     
     <lastmod>2020-04-02T00:35:54.900Z</lastmod>
