@@ -29,7 +29,7 @@
 <meta property="og:description" content="요약go mod init 을 이용해 프로젝트 루트 경로에 go.mod 파일 생성하면 됩니다. 커멘드1234567891011# mod 초기화 및 go.mod 파일 생성go mod init &amp;#123;package name&amp;#125;# go.sum 파일 생성go build # 소스내 의존성을 go.mod 파일에 정리go tidy# go.sum 파일 유효성 검사">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-11T17:14:57.000Z">
-<meta property="article:modified_time" content="2020-04-01T04:57:02.318Z">
+<meta property="article:modified_time" content="2020-04-03T07:25:45.466Z">
 <meta property="article:author" content="이재욱이">
 <meta property="article:tag" content="go">
 <meta property="article:tag" content="mod">
@@ -199,7 +199,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-01 13:57:02" itemprop="dateModified" datetime="2020-04-01T13:57:02+09:00">2020-04-01</time>
+                <time title="Modified: 2020-04-03 16:25:45" itemprop="dateModified" datetime="2020-04-03T16:25:45+09:00">2020-04-03</time>
               </span>
 
           
@@ -239,7 +239,11 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"github.com/labstack/echo"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <h1 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h1><p><strong>go 1.13</strong> (2020.01 현재 최신) 버전에서 보면 기본적으로 mod 를 이용한 패키지 모듈관리를 권장하고 있으므로 다른 패키지 관리자를 찾는 시간낭비를 하지 않아도 될것같습니다.</p>
+<h1 id="오류-사례-및-대응"><a href="#오류-사례-및-대응" class="headerlink" title="오류 사례 및 대응"></a>오류 사례 및 대응</h1><h2 id="import-410-Gone"><a href="#import-410-Gone" class="headerlink" title="import 410 Gone"></a>import 410 Gone</h2><p><strong>해결</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> GOSUMDB=off</span><br><span class="line">$ go mod tidy</span><br></pre></td></tr></table></figure>
 
+<p><strong>오류 메시지</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ go mod tidy</span><br><span class="line">go: finding module <span class="keyword">for</span> package my.domain.com/proto</span><br><span class="line">go: found my.domain.com/proto <span class="keyword">in</span> my.domain.com/proto v0.0.0-20200403070107-7aa1a88d0c5c</span><br><span class="line">go: my.domain.com/pj imports</span><br><span class="line">        my.domain.com/proto: my.domain.com/proto@v0.0.0-20200403070107-7aa1a88d0c5c/go.mod: verifying module: my.domain.com/proto@v0.0.0-20200403070107-7aa1a88d0c5c/go.mod: reading https://sum.gol</span><br><span class="line">ang.org/lookup/my.domain.com/proto@v0.0.0-20200403070107-7aa1a88d0c5c: 410 Gone</span><br><span class="line">        server response: not found: my.domain.com/proto@v0.0.0-20200403070107-7aa1a88d0c5c: unrecognized import path <span class="string">"my.domain.com/proto"</span>: https fetch: Get <span class="string">"https://my.domain.com/proto?go-get=1"</span>:</span><br><span class="line"> dial tcp 222.122.86.35:443: connect: connection refused</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -337,7 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#요약"><span class="nav-number">1.</span> <span class="nav-text">요약</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#커멘드"><span class="nav-number">1.1.</span> <span class="nav-text">커멘드</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mod-파일-생성"><span class="nav-number">2.</span> <span class="nav-text">mod 파일 생성</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#샘플"><span class="nav-number">3.</span> <span class="nav-text">샘플</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#외부-공개-모듈"><span class="nav-number">4.</span> <span class="nav-text">외부 공개 모듈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#참고"><span class="nav-number">5.</span> <span class="nav-text">참고</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#요약"><span class="nav-number">1.</span> <span class="nav-text">요약</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#커멘드"><span class="nav-number">1.1.</span> <span class="nav-text">커멘드</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mod-파일-생성"><span class="nav-number">2.</span> <span class="nav-text">mod 파일 생성</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#샘플"><span class="nav-number">3.</span> <span class="nav-text">샘플</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#외부-공개-모듈"><span class="nav-number">4.</span> <span class="nav-text">외부 공개 모듈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#참고"><span class="nav-number">5.</span> <span class="nav-text">참고</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#오류-사례-및-대응"><span class="nav-number">6.</span> <span class="nav-text">오류 사례 및 대응</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#import-410-Gone"><span class="nav-number">6.1.</span> <span class="nav-text">import 410 Gone</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
