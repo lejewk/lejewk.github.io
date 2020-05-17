@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lejewk.github.io/kubernetes-pod-replicaset-deploymemt/</loc>
+    <loc>https://lejewk.github.io/kubernetes-helm/</loc>
     
-    <lastmod>2020-05-17T03:19:23.910Z</lastmod>
+    <lastmod>2020-05-17T06:45:40.694Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://lejewk.github.io/kubernetes-service-ingress/</loc>
     
-    <lastmod>2020-05-17T03:19:16.167Z</lastmod>
+    <lastmod>2020-05-17T05:56:51.745Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lejewk.github.io/kubernetes-pod-replicaset-deploymemt/</loc>
+    
+    <lastmod>2020-05-17T05:56:19.637Z</lastmod>
     
   </url>
   

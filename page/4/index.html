@@ -171,6 +171,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/intellij-live-templates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/intellij-live-templates/" class="post-title-link" itemprop="url">intellij Live Templates 활용</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-13 16:05:08" itemprop="dateCreated datePublished" datetime="2019-05-13T16:05:08+09:00">2019-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>자주 사용되는 코드를 템플릿화 하여 빠르게 에디터에 붙여넣을 수 있습니다.<br>기본적으로 intellij 에서 제공하는 템플릿은 언어별로 다양하지만, 본인이 자주 사용하는 코드가 없기때문에<br>이를 템플릿화 하여 좀더 개발에 도움이 될 수 있습니다.</p>
+<p><code>live templates</code> 의 단축키는 <code>ctrl + j</code> 입니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602237-93b3f000-7599-11e9-8d33-dc6076e73044.png" alt=""></p>
+<p>php 를 사용하기때문에 php에 맞는 템플릿이 노출됩니다.</p>
+<h1 id="Live-Templates-설정"><a href="#Live-Templates-설정" class="headerlink" title="Live Templates 설정"></a>Live Templates 설정</h1><p>설정 (<code>ctrl + alt + s</code>) 을 열어 live templates 메뉴로 이동합니다.<br><code>Editor -&gt; Live Templates</code><br><img src="https://user-images.githubusercontent.com/11376406/57602351-dbd31280-7599-11e9-81e3-44bf752143d8.png" alt=""></p>
+<p>추가를 원하는 그룹을 선택하고 우측 [+] 를 눌러 신규 템플릿을 입력합니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602610-8cd9ad00-759a-11e9-999e-0b2715fbe232.png" alt=""></p>
+<p><strong>템플릿과 변수</strong><br>저는 아래와같이 템플릿을 입력했습니다.<br>내용 중 <code>$LOG_TITLE$</code> 과 같이 <code>$</code> 로 감싸진 값을 볼 수 있는데요,<br>이런 식의 처리를 하면 템플릿을 불러왔을때 자동으로 커서의 포커스가 이동되게 됩니다.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">error_log(<span class="string">"\n[TIME : "</span> . date(<span class="string">'Y-m-d/H:i:s'</span>, time()) . <span class="string">"]\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br><span class="line">error_log(var_export(<span class="string">"$LOG_TITLE$"</span>, <span class="keyword">true</span>) . <span class="string">"\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br><span class="line">error_log(var_export($LOG_DATA$, <span class="keyword">true</span>) . <span class="string">"\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br><span class="line">error_log(<span class="string">"------------------\n"</span>, <span class="number">3</span>, <span class="string">"/tmp/my_error_"</span> . date(<span class="string">'Ymd'</span>) . <span class="string">".log"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Define - 노출 장소 정의</strong><br>템플릿이 정의될 위치를 결정합니다.<br>어떤 언어에서 노출될지 유무를 결정하게 된다고 보시면 됩니다.</p>
+<p>저의 경우 PHP 전역에서 해당 템플릿이 노출되도록 적용했습니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602850-30c35880-759b-11e9-8b5e-5740a0b12c9c.png" alt=""></p>
+<h1 id="사용"><a href="#사용" class="headerlink" title="사용"></a>사용</h1><p><code>ctrl + j</code> 를 입력하면 바로 확인 할 수 있습니다.<br>이후 방향키와 Enter 키로 쉽게 입력이 가능합니다.<br><img src="https://user-images.githubusercontent.com/11376406/57602977-72ec9a00-759b-11e9-8bdb-f60dfa4e9db1.png" alt=""></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/sublime-text3-setting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -929,94 +1004,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/sublime-text3-build/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
-      <meta itemprop="name" content="이재욱이">
-      <meta itemprop="description" content="소스코드 파밍중...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개발자님 cs 드세요">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/sublime-text3-build/" class="post-title-link" itemprop="url">sublime text3 build 설정</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-01 17:59:02" itemprop="dateCreated datePublished" datetime="2019-04-01T17:59:02+09:00">2019-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://user-images.githubusercontent.com/11376406/55319223-60b51180-54af-11e9-9301-27ca16c8fa16.png" alt=""></p>
-<p>sublime text3 를 사용하여 간단한 소스코드를 build 하고 그 결과를 확인 할 수 있습니다.<br>(물론 sublime 을 이용하여 큰 규모의 프로젝트를 개발할 수도 있습니다.)</p>
-<p>:-) 별도의 플러그인 설치없이 툴 자체가 지원하는 기능만을 사용하여 설정할 수 있습니다.</p>
-<h1 id="build-설정"><a href="#build-설정" class="headerlink" title="build 설정"></a>build 설정</h1><ol>
-<li><code>Tools &gt; Build System &gt; New Build System...</code> 클릭합니다.</li>
-<li>build 할 언어에 맞게 설정을 입력합니다.</li>
-<li><code>{language}.sublime-build</code> 로 저장합니다.<br>eg) <strong><code>js.sublime-build</code></strong><br>eg) <strong><code>php7.0.sublime-build</code></strong></li>
-</ol>
-<h1 id="언어별-설정-json"><a href="#언어별-설정-json" class="headerlink" title="언어별 설정 json"></a>언어별 설정 json</h1><h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"cmd"</span>: [<span class="string">"node"</span>, <span class="string">"$file"</span>],</span><br><span class="line">    <span class="attr">"selector"</span>: <span class="string">"source.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>node.js 가 설치되어있어야 합니다.<br><a href="https://nodejs.org/ko/">https://nodejs.org/ko/</a></p>
-<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"cmd"</span>: [<span class="string">"D:\\sdk\\php-7.0.23-nts-Win32-VC14-x86\\php.exe"</span>, <span class="string">"$file"</span>],</span><br><span class="line">    <span class="attr">"file_regex"</span>: <span class="string">"php$"</span>,</span><br><span class="line">    <span class="attr">"selector"</span>: <span class="string">"source.php"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>php 가 설치되어 있어야 합니다.<br><a href="https://www.php.net/downloads.php">https://www.php.net/downloads.php</a></p>
-<p><code>cmd</code> 에는 <code>php.exe</code> 가 설치된 경로를 넣어주셔야 합니다. </p>
-<p>환경변수에 등록된 경우 <code>php</code> 만 넣으셔도 되지만, 저의 경우는 다양한 버젼의 php를 사용하므로 강제로 경로를 지정하였습니다.</p>
-<h1 id="build-하기"><a href="#build-하기" class="headerlink" title="build 하기"></a>build 하기</h1><p><code>Tools &gt; Build System &gt; Automatic (기본)</code> 으로 선택되어있어야 합니다.<br><code>Tools &gt; Build</code> 또는 <code>Tools &gt; Build With...</code> 을 선택하여 <code>build</code> 합니다.</p>
-<blockquote>
-<p>단축키 : ctrl + b</p>
-</blockquote>
-<h1 id="console-output"><a href="#console-output" class="headerlink" title="console output"></a>console output</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].map(<span class="function"><span class="params">it</span> =&gt;</span> it * <span class="number">10</span>)</span><br><span class="line">  .filter(<span class="function"><span class="params">it</span> =&gt;</span> it &gt; <span class="number">30</span>)</span><br><span class="line">  .forEach(<span class="function"><span class="params">it</span> =&gt;</span> <span class="built_in">console</span>.log(it))</span><br><span class="line">-----------------------</span><br><span class="line"><span class="number">40</span></span><br><span class="line"><span class="number">50</span></span><br><span class="line">[Finished <span class="keyword">in</span> <span class="number">0.3</span>s]</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1097,7 +1089,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="jumWe7MTa5tSVY7FGkeOk2r_5HtW4p3O-32v0WoJoEM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lejewk.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="쿠버네티스를 운영할때 단일 클러스터만으로 운영하는 경우는 흔치 않습니다.결국 애플리케이션을 여러 클러스터에 배포해야하는데, 이 과정에서 발생하는 관리 이슈가 생길 수 있습니다. 서비스의 경우는 그렇다 쳐도, 인그레스와 같이 호스트가 지정된 정보들의 경우 클러스터마다 상이하게 설정해야하는데 클러스터마다 매니패스트를 따로관리하는것도 문제입니다. 따라서 환경에">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernetes helm">
+<meta property="og:url" content="https://lejewk.github.io/kubernetes-helm/index.html">
+<meta property="og:site_name" content="개발자님 cs 드세요">
+<meta property="og:description" content="쿠버네티스를 운영할때 단일 클러스터만으로 운영하는 경우는 흔치 않습니다.결국 애플리케이션을 여러 클러스터에 배포해야하는데, 이 과정에서 발생하는 관리 이슈가 생길 수 있습니다. 서비스의 경우는 그렇다 쳐도, 인그레스와 같이 호스트가 지정된 정보들의 경우 클러스터마다 상이하게 설정해야하는데 클러스터마다 매니패스트를 따로관리하는것도 문제입니다. 따라서 환경에">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-17T04:56:19.000Z">
+<meta property="article:modified_time" content="2020-05-17T06:45:40.694Z">
+<meta property="article:author" content="이재욱이">
+<meta property="article:tag" content="kubernetes">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://lejewk.github.io/kubernetes-helm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>kubernetes helm | 개발자님 cs 드세요</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138075260-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-138075260-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- google adsense start -->
+<script data-ad-client="ca-pub-3619868657611479" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- google adsense end  -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">개발자님 cs 드세요</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/kubernetes-helm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kubernetes helm
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-17 13:56:19 / Modified: 15:45:40" itemprop="dateCreated datePublished" datetime="2020-05-17T13:56:19+09:00">2020-05-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>쿠버네티스를 운영할때 단일 클러스터만으로 운영하는 경우는 흔치 않습니다.<br>결국 애플리케이션을 여러 클러스터에 배포해야하는데, 이 과정에서 발생하는 관리 이슈가 생길 수 있습니다.</p>
+<p>서비스의 경우는 그렇다 쳐도, 인그레스와 같이 호스트가 지정된 정보들의 경우 클러스터마다 상이하게 설정해야하는데 클러스터마다 매니패스트를 따로관리하는것도 문제입니다.</p>
+<p>따라서 환경에 따라 달라지는 값만 정의해두고 이에 따라 배포하는 메커니즘이 필요하며 이를 해결하는것이 바로 <strong>“헬름”</strong> 입니다.</p>
+<h1 id="헬름"><a href="#헬름" class="headerlink" title="헬름"></a>헬름</h1><p>헬름이란 쿠버네티스 차트를 관리하기 위한 도구 입니다.<br><strong>차트</strong> 는 사전 구성된 쿠버네티스 리소스 패키지 입니다.</p>
+<p>헬름, 차트, 매니페스트, 쿠버네티스의 관계는 다음과 같습니다.</p>
+<ul>
+<li>헬름: 차트 관리</li>
+<li>차트: 매니페스트 템플릿을 구성하고 패키지로 관리, 차트를 사용하여 매니패스트 파일 생성</li>
+<li>매니페스트: 매니페스트 파일에 기초하여 쿠버네티스 리소스(ingress, deployment, replicaset… 등)를 관리</li>
+</ul>
+<blockquote>
+<p>실무에서는 로컬 및 운영 클러스터를 막론하고 여러 환경에 배포해야하는 애플리케이션은 모두 차트로 패키징해 kubectl 대신 헬름으로 배포 및 업데이트를 수행합니다.</p>
+</blockquote>
+<blockquote>
+<p>kubectl 은 이미 배포된 리소스를 운영중에 수정하는데 주로 사용합니다.</p>
+</blockquote>
+<h1 id="헬름-설치"><a href="#헬름-설치" class="headerlink" title="헬름 설치"></a>헬름 설치</h1><p><a href="https://github.com/helm/helm/releases">https://github.com/helm/helm/releases</a> 에서 현재 환경에 맞는 헬름을 설치합니다.</p>
+<blockquote>
+<p>3 버전 받는다면 helm 과 tiller 가 혼합된형태? 가 되는듯하니 2 버전으로 진행하였습니다.</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 헬름 초기화</span></span><br><span class="line">$ helm init</span><br><span class="line">Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com</span><br><span class="line">Adding <span class="built_in">local</span> repo with URL: http://127.0.0.1:8879/charts </span><br><span class="line"><span class="variable">$HELM_HOME</span> has been configured at C:\Users\---\.helm.</span><br><span class="line"></span><br><span class="line">Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.</span><br><span class="line"></span><br><span class="line">Please note: by default, Tiller is deployed with an insecure <span class="string">'allow unauthenticated users'</span> policy.</span><br><span class="line">To prevent this, run `helm init` with the --tiller-tls-verify flag.</span><br><span class="line">For more information on securing your installation see: https://v2.helm.sh/docs/securing_installation/</span><br></pre></td></tr></table></figure>
+
+<p>init 명령어를 실행하면 틸러 라는 서버 애플리케이션이 kube-system 네임스페이스에 배포됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl -n kube-system get service,deployment,pod --selector app=helm</span><br><span class="line">NAME                    TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)     AGE</span><br><span class="line">service/tiller-deploy   ClusterIP   10.98.66.79   &lt;none&gt;        44134/TCP   2m51s</span><br><span class="line"></span><br><span class="line">NAME                            READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/tiller-deploy   1/1     1            1           2m52s</span><br><span class="line"></span><br><span class="line">NAME                                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/tiller-deploy-566d8c9b77-t5bd8   1/1     Running   0          2m52s</span><br></pre></td></tr></table></figure>
+
+<p>틸러는 헬름의 명령에 따라 설치등의 작업을 담당합니다.</p>
+<p>헬름과 틸러는 여러 클러스터 작업을 진행할때 버젼을 일치시키는것이 좋습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ helm version</span><br><span class="line">Client: &amp;version.Version&#123;SemVer:<span class="string">"v2.16.7"</span>, GitCommit:<span class="string">"5f2584fd3d35552c4af26036f0c464191287986b"</span>, GitTreeState:<span class="string">"clean"</span>&#125;</span><br><span class="line">Server: &amp;version.Version&#123;SemVer:<span class="string">"v2.16.7"</span>, GitCommit:<span class="string">"5f2584fd3d35552c4af26036f0c464191287986b"</span>, GitTreeState:<span class="string">"clean"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="헬름-구성"><a href="#헬름-구성" class="headerlink" title="헬름 구성"></a>헬름 구성</h1><p>헬름은 <strong>클라이언트(cli)</strong> 와 <strong>서버(쿠버네티스 클러스터에 설치된 틸러)</strong> 로 구성됩니다.<br>클라이언트는 서버를 대상으로 명령어를 지시합니다.<br>서버는 전달받은 명령에 따라 쿠버네티스 클러스터에 패키지 설치, 업데이트, 삭제등의 작업을 수행합니다.</p>
+<p>쿠버네티스는 서비스나 디플로이먼트, 인그레스와 같은 리소스를 생성하고 매니페스트파일을 적용하는 방식으로 애플리케이션을 배포합니다.<br>이 매니페스트 파일을 생성하는 템플릿을 여러 개 패키징한 것이 <strong>차트</strong>입니다.</p>
+<p>차트는 헬름 리포지토리에 tgz 파일로 저장되며, 틸러가 매니페스트를 생성하는 데 사용합니다.</p>
+<p>리포지토리의 종류는 3가지가 있습니다.</p>
+<ul>
+<li>local: 헬름 클라이언트가 설치된 로컬 저장소</li>
+<li>stable: 안정 버전에 이른 차트가 존재하는 저장소</li>
+<li>incubator: stable 요건을 만족하지 못한 차트 저장소</li>
+</ul>
+<p>검색을 해보면 stable 차트가 보입니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ helm search</span><br><span class="line">NAME                                    CHART VERSION   APP VERSION             DESCRIPTION</span><br><span class="line">stable/acs-engine-autoscaler            2.2.2           2.1.1                   DEPRECATED Scales worker nodes within agent pools</span><br><span class="line">stable/aerospike                        0.3.2           v4.5.0.5                A Helm chart <span class="keyword">for</span> Aerospike <span class="keyword">in</span> Kubernetes</span><br><span class="line">stable/airflow                          6.10.4          1.10.4                  Airflow is a platform to programmatically author, schedul...</span><br><span class="line">stable/ambassador                       5.3.1           0.86.1                  A Helm chart <span class="keyword">for</span> Datawire Ambassador</span><br></pre></td></tr></table></figure>
+
+<h1 id="차트"><a href="#차트" class="headerlink" title="차트"></a>차트</h1><p>차트는 구성이 정해져있습니다.<br>애플리케이션의 동작을 제어하는 설정의 기본값을 <code>values.yaml</code> 파일에 저장합니다.<br>이 기본값을 변경하려면 기본값 value 파일에서 변경할 값만 수정한 <code>커스텀 value</code> 파일이 있습니다.</p>
+<h1 id="차트-설치해보기"><a href="#차트-설치해보기" class="headerlink" title="차트 설치해보기"></a>차트 설치해보기</h1><p>stable 에 올라온것중 쉽게 <code>stable/redmine</code> 을 쿠버네티스 환경에 설치해보겠습니다.<br><a href="https://github.com/helm/charts/tree/master/stable/redmine">https://github.com/helm/charts/tree/master/stable/redmine</a></p>
+<p>차트를 이용해 설치하려면 <code>helm install</code> 명령어를 사용해야 합니다.<br>업데이트와 삭제를 하려면 release 네임이 필요하므로 <code>--name</code> 옵션을 통해 이름을 붙여줘야합니다.<br>이 이름은 클러스터안에서 유일해야합니다.</p>
+<p><code>helm install</code> 을 이용하면 차트에 포함된 기본값 value 파일에 정의된 설정값으로 애플리케이션이 설치됩니다.<br>그러나 실무에서는 커스텀해서 사용해야하므로 커스텀 value 파일을 구성해보겠습니다.</p>
+<p><a href="https://github.com/helm/charts/blob/master/stable/redmine/README.md">https://github.com/helm/charts/blob/master/stable/redmine/README.md</a> 의 config 를 참고하여 바꾸고자 하는 내용에 대한 별도 yaml 파일을 로컬에 구성합니다.</p>
+<p>redmine.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">redmineUsername:</span> <span class="string">wook</span></span><br><span class="line"><span class="attr">redminePassword:</span> <span class="string">wook</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 로드벨런서가 아니라 그냥 서비스를 노출하고자 하므로 NodePort 로 정정</span></span><br><span class="line"><span class="attr">service:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">NodePort</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -f 옵션을 통해 커스텀 value 를 포함하여 설치해봅니다.</span></span><br><span class="line"><span class="comment"># --name 옵션을 통해 네임을 필히 지정합니다.</span></span><br><span class="line">$ helm install -f redmine.yaml --name rmine stable/redmine</span><br><span class="line">NAME:   rmine</span><br><span class="line">LAST DEPLOYED: Sun May 17 15:23:37 2020</span><br><span class="line">NAMESPACE: default</span><br><span class="line">STATUS: DEPLOYED</span><br></pre></td></tr></table></figure>
+
+<p>설치가 끝나면 배포된 목록을 확인해볼 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ helm ls</span><br><span class="line">NAME    REVISION        UPDATED                         STATUS          CHART           APP VERSION     NAMESPACE</span><br><span class="line">rmine   1               Sun May 17 15:23:37 2020        DEPLOYED        redmine-14.1.12 4.1.0           default</span><br></pre></td></tr></table></figure>
+
+<p>설정한 리소스가 올바르게 반영됬는지 확인해봅니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl get service,deployment</span><br><span class="line">NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE</span><br><span class="line">service/kubernetes      ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP        63m</span><br><span class="line">service/rmine-mariadb   ClusterIP   10.109.39.18   &lt;none&gt;        3306/TCP       6m22s</span><br><span class="line">service/rmine-redmine   NodePort    10.100.66.7    &lt;none&gt;        80:30912/TCP   6m22s</span><br></pre></td></tr></table></figure>
+<p>service.type 을 NodePort 로 바꾸었기때문에 NodePort 로 설정이 된것을 볼 수 있습니다. (기본 Load Balancer)<br>30912 포트로 연결시 redmine 서비스가 뜨는것을 확인할 수 있습니다.<br>login 시 id/pw 를 wook/wook 으로 하여 정상적으로 인증이 되는것도 확인할 수 있습니다.</p>
+<h1 id="차트-업그레이드"><a href="#차트-업그레이드" class="headerlink" title="차트 업그레이드"></a>차트 업그레이드</h1><p>헬름으로 설치한 릴리즈를 업데이트도 가능합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ helm upgrade -f redmine.yaml --name rmine stable/redmine --version 4.1.2</span><br></pre></td></tr></table></figure>
+
+<h1 id="차트-제거"><a href="#차트-제거" class="headerlink" title="차트 제거"></a>차트 제거</h1><p>헬름을 통해 설치한 애플리케이션은 지정한 이름을 통해 쉽게 제거 가능합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm delete rmine</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/kubernetes/" rel="tag"># kubernetes</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/kubernetes-service-ingress/" rel="prev" title="kubernetes service, ingress">
+      <i class="fa fa-chevron-left"></i> kubernetes service, ingress
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+          <!-- blog sidbar google ads start-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- blog 게시물 하단 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3619868657611479"
+     data-ad-slot="4733801133"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- blog sidbar google ads end-->
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#헬름"><span class="nav-number">1.</span> <span class="nav-text">헬름</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#헬름-설치"><span class="nav-number">2.</span> <span class="nav-text">헬름 설치</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#헬름-구성"><span class="nav-number">3.</span> <span class="nav-text">헬름 구성</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#차트"><span class="nav-number">4.</span> <span class="nav-text">차트</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#차트-설치해보기"><span class="nav-number">5.</span> <span class="nav-text">차트 설치해보기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#차트-업그레이드"><span class="nav-number">6.</span> <span class="nav-text">차트 업그레이드</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#차트-제거"><span class="nav-number">7.</span> <span class="nav-text">차트 제거</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="이재욱이"
+      src="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+  <p class="site-author-name" itemprop="name">이재욱이</p>
+  <div class="site-description" itemprop="description">소스코드 파밍중...</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">83</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lejewk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lejewk" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lighten518@gmail.com" title="E-Mail → mailto:lighten518@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+        
+      </div>
+      
+      <!--ads-->
+      <div style="margin-top:40px;">
+        <!-- blog sidbar google ads start-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- blog 사이드바 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3619868657611479"
+     data-ad-slot="2557681046"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- blog sidbar google ads end-->
+      </div>
+      <!--ads-->
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">이재욱이</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
