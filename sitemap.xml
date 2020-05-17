@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lejewk.github.io/kubernetes-kubernetes-pod-replicaset-deploymemt/</loc>
+    
+    <lastmod>2020-05-17T00:43:11.993Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lejewk.github.io/go-mod/</loc>
     
     <lastmod>2020-04-06T01:11:14.952Z</lastmod>
@@ -173,13 +180,6 @@
     <loc>https://lejewk.github.io/vault-get-started/</loc>
     
     <lastmod>2020-03-06T07:24:14.580Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lejewk.github.io/kubernetes-study/</loc>
-    
-    <lastmod>2020-03-06T07:24:14.579Z</lastmod>
     
   </url>
   

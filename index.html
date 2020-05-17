@@ -171,6 +171,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/kubernetes-kubernetes-pod-replicaset-deploymemt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
+      <meta itemprop="name" content="이재욱이">
+      <meta itemprop="description" content="소스코드 파밍중...">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="개발자님 cs 드세요">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/kubernetes-kubernetes-pod-replicaset-deploymemt/" class="post-title-link" itemprop="url">kubernetes-pod-replicaset-deploymemt</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-16 21:47:49" itemprop="dateCreated datePublished" datetime="2020-05-16T21:47:49+09:00">2020-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-17 09:43:11" itemprop="dateModified" datetime="2020-05-17T09:43:11+09:00">2020-05-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="대시보드-설치"><a href="#대시보드-설치" class="headerlink" title="대시보드 설치"></a>대시보드 설치</h1><p><a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 음.. 뭔지모르지만 추천하는 데시보더 설정을 적용한다는 의미같음.</span></span><br><span class="line">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 음.. 뭔지 모르겠지만 프록시를 처리하는 명령어 같음.</span></span><br><span class="line">kubectl proxy</span><br></pre></td></tr></table></figure>
+
+<h1 id="토큰-생성"><a href="#토큰-생성" class="headerlink" title="토큰 생성"></a>토큰 생성</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="대시보드-접속"><a href="#대시보드-접속" class="headerlink" title="대시보드 접속"></a>대시보드 접속</h1><p><a href="http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</a></p>
+<h1 id="쿠버네티스-주요-개념"><a href="#쿠버네티스-주요-개념" class="headerlink" title="쿠버네티스 주요 개념"></a>쿠버네티스 주요 개념</h1><ul>
+<li>노드: 컨테이너가 배치되는 서버</li>
+<li>네임스페이스: 쿠버네티스 클럿 터 안의 가상 클러스터</li>
+<li>파드: 컨테이너의 집합 중 가장 작은 단위, 컨테이너의 실행 방법을 정의</li>
+<li>레플리카세트: 같은 스팩을 갖는 파드를 여러개 생성하고 관리하는 역할</li>
+<li>디플로이먼트: 레플리카 세트의 리비전을 관리</li>
+<li>서비스: 파드의 집합에 접근하기 위한 경로 정의</li>
+<li>인그레스: 서비스를 쿠버네티스 클러스터 외부로 노출</li>
+<li>컨피그맵: 설정 정보를 정의하고 파드에 전달</li>
+<li>퍼시스턴트 볼륨: 파드가 사용할 스토리지의 크기 및 종류 정의</li>
+<li>퍼시스턴트볼륨클레임: 포시스턴트 볼륨을 동적으로 확보</li>
+<li>스토리지클래스: 퍼시스턴트 볼륨이 확보하는 스토리지의 종류를 정의</li>
+<li>스테이트풀세트: 같은 스팩으로 모두 동일한 파드를 여러개 생성하고 관리</li>
+<li>잡: 상주 실행을 목적으로 하지 않는 파드를 여러개 생성하고 정상적인 종료를 보장</li>
+<li>크론잡: 크론 문법으로 스케줄링되는 잡</li>
+<li>시크릿: 인증 정보 같은 기밀 데이터 정의</li>
+<li>롤: 네임스페이스 안에서 조작 가능한 쿠버네티스 리소스의 규칙 정의</li>
+<li>롤바인딩: 쿠버네티스 리소스 사용자와 롤을 연결</li>
+<li>클러스터롤: 클러스터 전체적으로 조작 가능한 쿠버니테스 로스싕 규칙 정의</li>
+<li>클러스터롤바인딩: 쿠버니테스 리소스 사용자와 클러스터 롤 연결</li>
+<li>서비스 계저이: 파드가 쿠버네티스 리소스를 조작할 때 사용하는 계정</li>
+</ul>
+<h1 id="클러스터와-노드"><a href="#클러스터와-노드" class="headerlink" title="클러스터와 노드"></a>클러스터와 노드</h1><p>클러스터는 여러 리소스를 관리하기 위한 집합체 입니다.<br>리소스중 가장 큰 개념은 <strong>노드</strong> 입니다.<br>노드는 클러스터 관리대상으로 등록된 도커 호스트로 컨테이너가 배치되는 대상입니다.</p>
+<p>기본적으로 전체 클러스터를 관리하는 마스터가 적어도 하나 이상 있어야 하며 마스터와 노드의 구릅으로 구성된다고 볼수있습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Cluster &#123;</span><br><span class="line">    Master Node &#123;</span><br><span class="line">        kube apiserver</span><br><span class="line">        etcd</span><br><span class="line">        kube scheduler</span><br><span class="line">        kube controller manager</span><br><span class="line">    &#125;</span><br><span class="line">    Nodes...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="네임스페이스"><a href="#네임스페이스" class="headerlink" title="네임스페이스"></a>네임스페이스</h1><p>클러스터 안에 가상 클러스터를 만들 수 있는데 이를 네임스페이스라고 합니다.<br>현재 존재하는 네임스페이스 조회</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kubectl get namespace</span><br><span class="line">NAME                   STATUS   AGE</span><br><span class="line">default                Active   69m</span><br><span class="line">docker                 Active   68m</span><br><span class="line">kube-node-lease        Active   69m</span><br><span class="line">kube-public            Active   69m</span><br><span class="line">kube-system            Active   69m</span><br><span class="line">kubernetes-dashboard   Active   62m</span><br></pre></td></tr></table></figure>
+
+<h1 id="파드-생성-및-배포"><a href="#파드-생성-및-배포" class="headerlink" title="파드 생성 및 배포"></a>파드 생성 및 배포</h1><p>파드 생성은 kubectl 로도 가능하지만 버젼관리 관점에서도 yaml 파일로 정의하는것이 좋다.<br>쿠버네티스의 여러가지 리소스를 정의하는 파일을 <strong>매니페스트 파일</strong> 이라고 한다.</p>
+<p>simple-echo-pod.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">simple-echo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">goecho</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">lejewk/goecho:latest</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<p>파드 생성 및 확인</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 생성</span></span><br><span class="line">kubectl apply -f simple-echo-pod.yaml</span><br><span class="line"><span class="comment"># 확인</span></span><br><span class="line">kubectl get pod</span><br><span class="line">NAME          READY   STATUS    RESTARTS   AGE</span><br><span class="line">simple-echo   1/1     Running   0          4m19s</span><br><span class="line"><span class="comment"># 제거</span></span><br><span class="line">kubectl delete pod simple-echo</span><br><span class="line">pod <span class="string">"simple-echo"</span> deleted</span><br><span class="line"><span class="comment"># 확인</span></span><br><span class="line">kubectl get pod</span><br><span class="line">No resources found <span class="keyword">in</span> default namespace.</span><br></pre></td></tr></table></figure>
+
+<h1 id="레플리카세트"><a href="#레플리카세트" class="headerlink" title="레플리카세트"></a>레플리카세트</h1><p>파드를 정의한 매니페스트 파일로는 파드 1개밖에 생성할 수 없습니다.<br>이런 경우 레플리카세트를 통해 동일한 파드를 여러개 관리할 수있습니다.</p>
+<p>파드를 정의한 매니페스트까지 포함한 레플리카세트의 매니페스트를 정의할 수 있습니다.</p>
+<p>simple-echo-replicaset.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ReplicaSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">simple-echo</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">simple-echo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">simple-echo</span></span><br><span class="line">  <span class="attr">template:</span> <span class="comment"># template 아래는 파드 리소스 정의와 같음</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">simple-echo</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">goecho</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">lejewk/goecho:latest</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<p>리플리카 생성 및 파드 확인</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 레플리카세트 생성</span></span><br><span class="line">kubectl apply -f simple-echo-replicaset.yaml</span><br><span class="line">replicaset.apps/simple-echo created</span><br><span class="line"></span><br><span class="line"><span class="comment"># 파드 확인</span></span><br><span class="line">kubectl get pods</span><br><span class="line">NAME                READY   STATUS    RESTARTS   AGE</span><br><span class="line">simple-echo-9tpxb   1/1     Running   0          48s</span><br><span class="line">simple-echo-xfk5c   1/1     Running   0          48s</span><br><span class="line">simple-echo-zkfkt   1/1     Running   0          48s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 레플리카세트 삭제</span></span><br><span class="line">kubectl delete -f simple-echo-replicaset.yaml</span><br><span class="line">replicaset.apps <span class="string">"simple-echo"</span> deleted</span><br></pre></td></tr></table></figure>
+
+<h1 id="디플로이먼트"><a href="#디플로이먼트" class="headerlink" title="디플로이먼트"></a>디플로이먼트</h1><p>레플리카세트보다 상위에 해당하는 리소스이며, 애플리케이션 배포의 기본단위가 되는 리소스 입니다.</p>
+<p>레플리카세트는 똑같은 파드의 레플리케이션 개수 관리에 집중하지만,<br>디플로이먼트는 레플리카세트를 관리하고 다루기 위한 요소입니다.</p>
+<p>관계를 정리하면</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Deployment --create--&gt; ReplicaSet --create--&gt; Pod (<span class="built_in">echo</span>-1a)</span><br><span class="line">  (<span class="built_in">echo</span>)                (<span class="built_in">echo</span>-1)  --create--&gt; Pod (<span class="built_in">echo</span>-1b)</span><br><span class="line">                                  --create--&gt; Pod (<span class="built_in">echo</span>-1c)</span><br></pre></td></tr></table></figure>
+
+<p>디플로이먼트를 정의한 매니페스트 파일은 다음과 같습니다.</p>
+<p>simple-echo-deployment.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">simple-echo</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">simple-echo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">simple-echo</span></span><br><span class="line">  <span class="attr">template:</span> <span class="comment"># template 아래는 파드 리소스 정의와 같음</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">simple-echo</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">goecho</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">lejewk/goecho:latest</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<p>디플로이먼트 반영</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f simple-echo-deployment.yaml --record</span><br><span class="line">deployment.apps/simple-echo created</span><br><span class="line"></span><br><span class="line"><span class="comment"># --record 옵션을 통해 어떤 kubectl 명령어를 날렸는지를 기록합니다. 왜인지는...</span></span><br></pre></td></tr></table></figure>
+
+<p>리소스를 확인해보자</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod,replicaset,deployment --selector app=simple-echo</span><br><span class="line">NAME                             READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/simple-echo-66f7fffb-792bk   1/1     Running   0          4m44s</span><br><span class="line">pod/simple-echo-66f7fffb-p2fbv   1/1     Running   0          4m44s</span><br><span class="line">pod/simple-echo-66f7fffb-x4ztb   1/1     Running   0          4m44s</span><br><span class="line"></span><br><span class="line">NAME                                   DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/simple-echo-66f7fffb   3         3         3       4m44s</span><br><span class="line"></span><br><span class="line">NAME                          READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/simple-echo   3/3     3            3           4m44s</span><br></pre></td></tr></table></figure>
+
+<p>디플로이먼트의 리비전을 확인해보자</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl rollout <span class="built_in">history</span> deployment simple-echo</span><br><span class="line">deployment.apps/simple-echo</span><br><span class="line">REVISION  CHANGE-CAUSE</span><br><span class="line">1         kubectl.exe apply --filename=simple-echo-deployment.yaml --record=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>현재 리비전은 1이다.</p>
+<p><strong>결과적으로</strong> 쿠버네티스는 디플로이먼트를 활용해 애플리케이션을 배포합니다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/go-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -906,96 +1039,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lejewk.github.io/go-json/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/11376406?s=460&v=4">
-      <meta itemprop="name" content="이재욱이">
-      <meta itemprop="description" content="소스코드 파밍중...">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="개발자님 cs 드세요">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/go-json/" class="post-title-link" itemprop="url">go json 다루기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-03-03 21:12:47" itemprop="dateCreated datePublished" datetime="2020-03-03T21:12:47+09:00">2020-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-06 16:24:14" itemprop="dateModified" datetime="2020-03-06T16:24:14+09:00">2020-03-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Unmarshal"><a href="#Unmarshal" class="headerlink" title="Unmarshal"></a>Unmarshal</h1><p>JSON string 을 interface 로 변환합니다.<br>변환된 interface 는 go에서 참조하기가 수월합니다.</p>
-<h2 id="JSON-to-Struct"><a href="#JSON-to-Struct" class="headerlink" title="JSON to Struct"></a>JSON to Struct</h2><p>구조체를 선언하고 json 을 매핑하는 예시입니다.</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Me <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="keyword">struct</span> &#123;</span><br><span class="line">        First <span class="keyword">string</span></span><br><span class="line">        Last <span class="keyword">string</span></span><br><span class="line">    &#125;</span><br><span class="line">    Job <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test := <span class="string">`&#123;</span></span><br><span class="line"><span class="string">    "name": &#123;</span></span><br><span class="line"><span class="string">        "first": "LEE",</span></span><br><span class="line"><span class="string">        "last": "JAE WOOK"</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    "job": "developer"</span></span><br><span class="line"><span class="string">&#125;`</span></span><br><span class="line"></span><br><span class="line">data := Me&#123;&#125;</span><br><span class="line">err := json.Unmarshal([]<span class="keyword">byte</span>(test), &amp;data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(data)</span><br><span class="line">fmt.Println(<span class="string">"full name: "</span> + data.Name.First, data.Name.Last)</span><br><span class="line">fmt.Println(<span class="string">"job: "</span> + data.Job)</span><br></pre></td></tr></table></figure>
-<p>result</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;LEE JAE WOOK&#125; developer&#125;</span><br><span class="line">full name: LEE JAE WOOK</span><br><span class="line">job: developer</span><br></pre></td></tr></table></figure>
-<h2 id="JSON-to-Map"><a href="#JSON-to-Map" class="headerlink" title="JSON to Map"></a>JSON to Map</h2><p>map 자료형에 매핑하는 예시입니다.</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">test := <span class="string">`&#123;</span></span><br><span class="line"><span class="string">    "name": &#123;</span></span><br><span class="line"><span class="string">        "first": "LEE",</span></span><br><span class="line"><span class="string">        "last": "JAE WOOK"</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    "job": "developer"</span></span><br><span class="line"><span class="string">&#125;`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 깊이를 알수 없는 json 이므로 interface 에 담길수있도록 처리</span></span><br><span class="line">data := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line">err := json.Unmarshal([]<span class="keyword">byte</span>(test), &amp;data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(data)</span><br><span class="line"><span class="comment">// fmt.Println(data["name"]["last"]) // 오류 발생. 이런식의 접근을 원하면 JSON to Nested Map 참조</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 하위 요소 index 에 접근하기 위해 캐스팅</span></span><br><span class="line">name := data[<span class="string">"name"</span>].(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// interface 를 string 연산해야하므로 캐스팅</span></span><br><span class="line">fmt.Println(<span class="string">"full name: "</span> + name[<span class="string">"first"</span>].(<span class="keyword">string</span>) + name[<span class="string">"last"</span>].(<span class="keyword">string</span>))</span><br><span class="line">fmt.Println(<span class="string">"job: "</span> + data[<span class="string">"job"</span>].(<span class="keyword">string</span>))</span><br></pre></td></tr></table></figure>
-<p>result</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map[job:developer name:map[first:LEE last:JAE WOOK]]</span><br><span class="line">full name: LEEJAE WOOK</span><br><span class="line">job: developer</span><br></pre></td></tr></table></figure>
-
-<h3 id="주의"><a href="#주의" class="headerlink" title="주의"></a>주의</h3><ol>
-<li>Unmarshal 의 첫번째 파라미터 타입은 <code>[]byte</code> 이므로 string 을 전달하지 않고 <code>[]byte()</code> 를 통해 변환하여 전달합니다.</li>
-<li>Map 으로 변환할 경우 하위 요소에 접근할때마다 캐스팅을 해주어야 합니다.</li>
-</ol>
-<h2 id="JSON-to-Nested-Map"><a href="#JSON-to-Nested-Map" class="headerlink" title="JSON to Nested Map"></a>JSON to Nested Map</h2><p>다차원 맵으로 파싱</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">test := <span class="string">`&#123;</span></span><br><span class="line"><span class="string">    "name": &#123;</span></span><br><span class="line"><span class="string">        "first": "LEE",</span></span><br><span class="line"><span class="string">        "last": "JAE WOOK"</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    "job": &#123;</span></span><br><span class="line"><span class="string">        "major": "developer",</span></span><br><span class="line"><span class="string">        "minor": "lol player"</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// map 형식을 json 의 깊이와 동일하게 구성</span></span><br><span class="line">data := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line">err := json.Unmarshal([]<span class="keyword">byte</span>(test), &amp;data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(data)</span><br><span class="line">fmt.Println(<span class="string">"full name: "</span> + data[<span class="string">"name"</span>][<span class="string">"first"</span>] + data[<span class="string">"name"</span>][<span class="string">"last"</span>])</span><br><span class="line">fmt.Println(<span class="string">"job: "</span> + data[<span class="string">"job"</span>][<span class="string">"major"</span>] + <span class="string">", "</span> + data[<span class="string">"job"</span>][<span class="string">"minor"</span>])</span><br></pre></td></tr></table></figure>
-<p>result</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map[job:map[major:developer minor:lol player] name:map[first:LEE last:JAE WOOK]]</span><br><span class="line">full name: LEEJAE WOOK</span><br><span class="line">job: developer, lol player</span><br></pre></td></tr></table></figure>
-
-<h1 id="Marshal"><a href="#Marshal" class="headerlink" title="Marshal"></a>Marshal</h1><p>interface 를 JSON string 으로 변환합니다.</p>
-<h2 id="Map-to-JSON"><a href="#Map-to-JSON" class="headerlink" title="Map to JSON"></a>Map to JSON</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Me <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="keyword">struct</span> &#123;</span><br><span class="line">        First <span class="keyword">string</span></span><br><span class="line">        Last <span class="keyword">string</span></span><br><span class="line">    &#125;</span><br><span class="line">    Job <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">me := Me&#123;&#125;</span><br><span class="line">me.Name.First = <span class="string">"LEE"</span></span><br><span class="line">me.Name.Last = <span class="string">"JAE WOOK"</span></span><br><span class="line">me.Job = <span class="string">"developer"</span></span><br><span class="line"></span><br><span class="line">meJson, err := json.Marshal(me)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(<span class="keyword">string</span>(meJson))</span><br></pre></td></tr></table></figure>
-<p>result</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"Name"</span>:&#123;<span class="string">"First"</span>:<span class="string">"LEE"</span>,<span class="string">"Last"</span>:<span class="string">"JAE WOOK"</span>&#125;,<span class="string">"Job"</span>:<span class="string">"developer"</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="JSON-핸들링-라이브러리"><a href="#JSON-핸들링-라이브러리" class="headerlink" title="JSON 핸들링 라이브러리"></a>JSON 핸들링 라이브러리</h1><h2 id="gojsonq"><a href="#gojsonq" class="headerlink" title="gojsonq"></a>gojsonq</h2><p><a href="https://godoc.org/github.com/thedevsaddam/gojsonq">https://godoc.org/github.com/thedevsaddam/gojsonq</a></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"github.com/thedevsaddam/gojsonq"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> json = <span class="string">`&#123;"name":&#123;"first":"Tom","last":"Hanks"&#125;,"age":61&#125;`</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  name := gojsonq.New().FromString(json).Find(<span class="string">"name.first"</span>)</span><br><span class="line">  <span class="built_in">println</span>(name.(<span class="keyword">string</span>)) <span class="comment">// Tom</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1088,7 +1131,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">84</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
