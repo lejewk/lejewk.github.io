@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lejewk.github.io/kubernetes-kubernetes-pod-replicaset-deploymemt/</loc>
+    <loc>https://lejewk.github.io/kubernetes-service/</loc>
     
-    <lastmod>2020-05-17T00:43:11.993Z</lastmod>
+    <lastmod>2020-05-17T00:44:13.004Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lejewk.github.io/kubernetes-pod-replicaset-deploymemt/</loc>
+    
+    <lastmod>2020-05-17T00:44:02.591Z</lastmod>
     
   </url>
   
